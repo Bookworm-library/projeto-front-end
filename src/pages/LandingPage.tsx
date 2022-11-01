@@ -1,10 +1,12 @@
-import { Modal } from "../components/Modal";
+import { Flex } from "@chakra-ui/react";
+import { HeaderLandingPage } from "../components/HeaderLandingPage";
+import { MainLandingPage } from "../components/MainLandingPage";
 
 export const LandingPage = () => {
   return (
-   <>
-     {/* <h1>Landing Page</h1> */}
-     <Modal /> 
-   </>
+    <Flex direction={"column"} w="100vw" h="100vh">
+      <HeaderLandingPage />
+      <MainLandingPage />
+    </Flex>
   );
 };
