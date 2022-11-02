@@ -5,17 +5,13 @@ import { api } from "../services/api";
 interface iUserContext {
   submitRegister: (body: iRegisterBody) => Promise<void>;
   modalControl: boolean;
-  modalType: iModalType;
+  modalType: "login" | "register";
   setModalControl: React.Dispatch<React.SetStateAction<boolean>>;
-  setModalType: React.Dispatch<React.SetStateAction<iModalType>>;
+  setModalType: React.Dispatch<React.SetStateAction<"login" | "register">>;
 }
 
 interface iUserContextProps {
   children: ReactNode;
-}
-
-interface iModalType {
-  type: "register" | "login";
 }
 
 export interface iRegisterBody {
@@ -29,7 +25,7 @@ export const UserContext = createContext<iUserContext>({} as iUserContext);
 
 export const UserProvider = ({ children }: iUserContextProps) => {
   const [modalControl, setModalControl] = useState<boolean>(false);
-  const [modalType, setModalType] = useState<iModalType>({ type: "login" });
+  const [modalType, setModalType] = useState<"login" | "register">("login");
   const submitRegister = async (body: iRegisterBody): Promise<void> => {
     try {
       console.log(body);
@@ -42,7 +38,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         isClosable: true,
         position: "top",
       });
-      setModalType({ type: "login" });
+      setModalType("login");
     } catch (error) {
       console.log(error);
     }
