@@ -1,6 +1,10 @@
 import { Flex, Heading, Stack, Button, Image } from "@chakra-ui/react";
 
+import { useContextFunction } from "../../contexts/userContext";
 export const HeaderLandingPage = () => {
+
+  const {onOpen} = useContextFunction()
+  
   return (
     <Flex
       as={"header"}
@@ -18,7 +22,7 @@ export const HeaderLandingPage = () => {
         <Heading color="#DAEEFA"> Bookworm Library</Heading>
       </Flex>
       <Stack align="center" direction={"row"} color="white" gap="20px">
-        <Button
+        <Button onClick={() => onOpen()}
           sx={{ boxShadow: "0px 4px 9px rgba(0, 0, 0, 0.315)" }}
           _hover={{ opacity: "0.7" }}
           bgGradient="linear(to-t,#2CEDE0, #2C7AED)"

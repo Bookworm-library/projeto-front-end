@@ -1,7 +1,22 @@
-import { createContext } from "react";
+import { createContext, useState, useContext } from "react";
+import { useDisclosure } from '@chakra-ui/react'
 
-export const UserContext = createContext({});
+export interface IUserContext {
+  isOpen: boolean,
+  onOpen: () => void,
+  onClose:() => void
+}
 
+export const UserContext = createContext<IUserContext>({} as IUserContext);
 export const UserProvider = ({ children }: any) => {
-  return <UserContext.Provider value>{children}</UserContext.Provider>;
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  return <UserContext.Provider value={{ isOpen, onOpen, onClose }}>{children}</UserContext.Provider>;
 };
+
+
+export function useContextFunction() {
+  const contextUser = useContext(UserContext)
+  return contextUser
+}
