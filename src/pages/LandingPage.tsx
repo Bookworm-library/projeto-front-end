@@ -1,4 +1,5 @@
 import { Box, Button, Flex, Heading, Image, Stack, Text } from "@chakra-ui/react";
+import { LoginPage } from "./LoginPage";
 
 export const LandingPage = () => {
   return (
@@ -24,6 +25,7 @@ export const LandingPage = () => {
             sx={{ boxShadow: "0px 4px 9px rgba(0, 0, 0, 0.315)" }}
             _hover={{ opacity: "0.7" }}
             bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
+            onClick={LoginPage}
           >
             Login
           </Button>
