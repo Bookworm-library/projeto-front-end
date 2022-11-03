@@ -21,8 +21,8 @@ import loginImage from "../../assets/images/login-image-desktop.png";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { loginSchema } from '../../validations/login'
-
+import { loginSchema } from '../../v../../contexts/userContext/userContext
+../../contexts/userContext/userContext
 import { useContextFunction } from '../../contexts/userContext'
 import { iLoginBody } from '../../contexts/userContext';
 
