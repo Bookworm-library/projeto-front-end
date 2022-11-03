@@ -47,17 +47,24 @@ export const ModalLogin = () => {
         <>
             <Flex>
                 <Modal isOpen={isOpen} onClose={onClose}  >
-                    <ModalOverlay />
-                    <Box boxSize='sm'>
-                        <ModalContent bg="#2C7AED" flexDirection={"row"}>
-                            <Box width={"500px"}>
+                    <ModalOverlay  /> 
+                    <Box boxSize='sm' >
+                        <ModalContent bg="transparent" flexDirection={"row"} maxWidth="80vw" h="500px"
+                        justifyContent={"center"}
+                        alignItems={"center"}
+                        >
+                            <Box>
                                 <Image
                                     display={{ sm: "none", lg: "block" }}
-                                     h="100%"
+                                    h="500px" 
+                                    w="600px"
                                     src={loginImage}
                                 />
                             </Box>
-                            <Box bg="#2C7AED">
+                            <Box 
+                            bg="#2C7AED"  
+                            h="100%" 
+                            w="425px">
                                 <Center color='white'>
                                     <ModalHeader >Login</ModalHeader>
                                 </Center>
@@ -65,6 +72,7 @@ export const ModalLogin = () => {
                                     bg="#FFFFFF"
                                     color="#4552CE"
                                     _hover={{ bg: "#FFFFFF" }}
+                                    fontWeight='bold'
                                 />
                                 <ModalBody  >
                                     <FormControl
@@ -81,13 +89,18 @@ export const ModalLogin = () => {
                                                 bg="#FFFFFF"
                                                 placeholder="Digite seu email..."
                                                 {...register("email")} />
+                                            <Box
+                                            h={"30px"}>
                                             <FormErrorMessage
+                                                marginTop={0}
+                                                h={"22px"}
                                                 fontSize={"16px"}
                                                 fontWeight={700}
                                                 color={"red.300"}
-                                            >
+                                                >
                                                 {errors.email?.message}
                                             </FormErrorMessage>
+                                            </Box>    
                                         </FormControl>
                                         <FormControl isInvalid={Boolean(errors.password)}>
                                             <FormLabel
@@ -100,18 +113,24 @@ export const ModalLogin = () => {
                                                 bg="#FFFFFF"
                                                 placeholder="Digite sua senha..."
                                                 {...register("password")} />
-                                            <FormErrorMessage
-                                                fontSize={"16px"}
-                                                fontWeight={700}
-                                                color={"red.300"}
-                                            >
-                                                {errors.password?.message}
-                                            </FormErrorMessage>
+                                            <Box
+                                            h={"30px"}>
+                                                <FormErrorMessage
+                                                    marginTop={0}
+                                                    h={"22px"}
+                                                    fontSize={"16px"}
+                                                    fontWeight={700}
+                                                    color={"red.300"}
+                                                    >
+                                                    {errors.password?.message}
+                                                </FormErrorMessage>
+                                            </Box>    
                                         </FormControl>
                                         <Center color='white'>
-                                            <Text fontWeight='bold'>Ainda não possui cadastro?</Text>
+                                        
                                         </Center>
                                         <Button
+                                            marginTop={"20px"}
                                             type='submit'
                                             borderStyle="4px"
                                             w="100%"

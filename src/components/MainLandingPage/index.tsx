@@ -18,7 +18,7 @@ export const MainLandingPage = () => {
         justify="center"
       >
         <Image src="./src/assets/img/books.png" />
-        <Flex bg={"#2C7AED"} h="85%" align={"center"} justify="center" p={"5px"} maxW="400px">
+        <Flex bg={"#2C7AED"} h="85%" align={"center"} justify="center" p={"5px"} maxW="400px" maxH="450px">
           <Text color={"white"} >
             Lorem Ipsum is simply dummy text of the printing and
              typesetting industry. Lorem Ipsum has been the industry's

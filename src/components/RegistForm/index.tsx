@@ -1,9 +1,11 @@
 import {
   Button,
+  Box,
   Flex,
   FormControl,
   FormErrorMessage,
   FormLabel,
+  ModalCloseButton,
   Heading,
   Image,
   Input,
@@ -31,19 +33,22 @@ export const RegistForm = () => {
 
   return (
     <Flex
-      width={{ sm: "85%", lg: "65%" }}
-      height={{ sm: "auto", lg: "700px" }}
+      width={ "100%" }
+      height={ "100vh" }
       flexDirection={{ sm: "column", lg: "row" }}
+      alignItems={"center"}
+          justifyContent={"center"}
     >
       <Image
         display={{ sm: "none", lg: "block" }}
-        width={"500px"}
+        width={"640px"}
+        height={"640px"}
         src={registImage}
         alt="Pessoa segurando um livro"
       />
       <Flex
-        width={"100%"}
-        height={"auto"}
+        width={"400px"}
+        height={"640px"}
         flexDirection={"column"}
         alignItems={"center"}
         gap={"1rem"}
@@ -67,30 +72,16 @@ export const RegistForm = () => {
           >
             Cadastro
           </Heading>
-          <Button
+          <ModalCloseButton
+            bg="#FFFFFF"
+            color="#4552CE"
+            _hover={{ bg: "#FFFFFF" }}
             onClick={() => {
               setModalControl(false);
             }}
-            padding={0}
-            width={"24px"}
-            height={"32px"}
-            display={"flex"}
-            justifyContent={"center"}
-            alignItems={"center"}
-            borderRadius={"50%"}
-            bg={"white"}
-            color={"violet"}
-            fontWeight={700}
-            fontSize={"1.5rem"}
-            position={"absolute"}
-            right={"0"}
-            _focus={{ bg: "white" }}
-            _hover={{ bg: "white" }}
-          >
-            X
-          </Button>
+           />
         </Flex>
-        <form onSubmit={handleSubmit(submitRegister)}>
+        <FormControl as="form" onSubmit={handleSubmit(submitRegister)} >
           <FormControl isInvalid={Boolean(errors.name)}>
             <FormLabel
               marginY={"0.5rem"}
@@ -111,13 +102,18 @@ export const RegistForm = () => {
               bg={"white"}
               placeholder={"Digite seu nome"}
             />
+            <Box
+            h={"26px"}>
             <FormErrorMessage
+              marginTop={0}
+              h={"22px"}
               fontSize={"16px"}
               fontWeight={700}
               color={"red.300"}
-            >
+              >
               {errors.name && errors.name.message}
             </FormErrorMessage>
+            </Box>
           </FormControl>
           <FormControl isInvalid={Boolean(errors.email)}>
             <FormLabel
@@ -139,13 +135,18 @@ export const RegistForm = () => {
               bg={"white"}
               placeholder={"Digite seu email"}
             />
+            <Box
+            h={"26px"}>
             <FormErrorMessage
+              marginTop={0}
+              h={"22px"}
               fontSize={"16px"}
               fontWeight={700}
               color={"red.300"}
-            >
+              >
               {errors.email && errors.email.message}
             </FormErrorMessage>
+            </Box>
           </FormControl>
           <FormControl isInvalid={Boolean(errors.password)}>
             <FormLabel
@@ -167,13 +168,18 @@ export const RegistForm = () => {
               bg={"white"}
               placeholder={"Digite sua senha"}
             />
+            <Box
+            h={"26px"}>
             <FormErrorMessage
+              marginTop={0}
+              h={"22px"}
               fontSize={"16px"}
               fontWeight={700}
               color={"red.300"}
-            >
+              >
               {errors.password && errors.password.message}
             </FormErrorMessage>
+            </Box>
           </FormControl>
           <FormControl isInvalid={Boolean(errors.confirmPassword)}>
             <FormLabel
@@ -195,13 +201,18 @@ export const RegistForm = () => {
               bg={"white"}
               placeholder={"Digite sua senha novamente"}
             />
+            <Box
+            h={"26px"}>
             <FormErrorMessage
+              marginTop={0}
+              h={"22px"}
               fontSize={"16px"}
               fontWeight={700}
               color={"red.300"}
-            >
+              >
               {errors.confirmPassword && errors.confirmPassword.message}
             </FormErrorMessage>
+            </Box>
           </FormControl>
           <Button
             type="submit"
@@ -244,7 +255,7 @@ export const RegistForm = () => {
               Entrar
             </Button>
           </Text>
-        </form>
+        </FormControl>
       </Flex>
     </Flex>
   );
