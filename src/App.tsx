@@ -1,4 +1,4 @@
-import { UserProvider } from "./contexts/userContext";
+import { UserProvider } from "./contexts/userContext/userContext";
 import { RoutesMain } from "./routes";
 
 function App() {
