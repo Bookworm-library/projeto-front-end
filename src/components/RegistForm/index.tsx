@@ -18,7 +18,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useContextFunction } from "../../contexts/userContext";
 
 export const RegistForm = () => {
-  const { submitRegister } = useContextFunction();
+
+  const { submitRegister,setModalControl } = useContextFunction();
 
   const {
     register,
@@ -31,11 +32,12 @@ export const RegistForm = () => {
   return (
     <Flex
       width={{ sm: "85%", lg: "65%" }}
-      height={{ sm: "auto", lg: "600px" }}
+      height={{ sm: "auto", lg: "700px" }}
       flexDirection={{ sm: "column", lg: "row" }}
     >
       <Image
         display={{ sm: "none", lg: "block" }}
+        width={"500px"}
         src={registImage}
         alt="Pessoa segurando um livro"
       />
@@ -66,6 +68,9 @@ export const RegistForm = () => {
             Cadastro
           </Heading>
           <Button
+            onClick={() => {
+              setModalControl(false);
+            }}
             padding={0}
             width={"24px"}
             height={"32px"}

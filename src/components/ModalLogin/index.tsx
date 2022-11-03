@@ -45,9 +45,7 @@ export const ModalLogin = () => {
         <>
             <Flex>
                 <img
-                    /*  display={{ sm: "none", lg: "block" }} */
                     src="../../assets/images/login-image-desktop.png"
-                /*  alt="Pessoa segurando um livro" */
                 />
                 <Modal isOpen={isOpen} onClose={onClose}  >
                     <ModalOverlay />
@@ -77,7 +75,7 @@ export const ModalLogin = () => {
                                         bg="#FFFFFF"
                                         placeholder="Digite seu email..."
                                         {...register("email")} />
-                                    <p >{errors.password?.message}</p>
+                                    <p >{errors.email?.message}</p>
                                     <FormLabel
                                         color='white'
                                         fontWeight='bold'>
