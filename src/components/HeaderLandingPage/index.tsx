@@ -26,7 +26,7 @@ export const HeaderLandingPage = () => {
     >
       <Flex align="center" gap="20px">
         <Image src="./src/assets/img/logo.svg" />
-        <Heading color="#DAEEFA"> Bookworm Library</Heading>
+        <Heading color="#DAEEFA" fontSize={"26px"}> Bookworm Library</Heading>
       </Flex>
       <Stack align="center" direction={"row"} color="white" gap="20px">
         <Button onClick={() => onOpen()}

@@ -11,7 +11,7 @@ export const LandingPage = () => {
   const { modalControl, modalType, isOpen, onClose } = useContext(UserContext);
   return (
     <>
-      <Box w="100vw" h="100vh">
+      <Box w="100vw" h="100vh" >
         <HeaderLandingPage />
         <MainLandingPage />
         <Modal
@@ -20,7 +20,7 @@ export const LandingPage = () => {
           isCentered
           isOpen={modalControl}
           closeOnOverlayClick={true}
-          onClose={() => { }}
+          onClose={onClose}
         >
           <ModalOverlay />
           <ModalContent  

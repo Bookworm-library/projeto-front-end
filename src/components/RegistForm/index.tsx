@@ -19,9 +19,10 @@ import { registerSchema } from "../../validations/register";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContextFunction } from "../../contexts/userContext";
 
+
 export const RegistForm = () => {
 
-  const { submitRegister,setModalControl } = useContextFunction();
+  const { submitRegister,setModalControl, onClose } = useContextFunction();
 
   const {
     register,
@@ -37,7 +38,7 @@ export const RegistForm = () => {
       height={ "100vh" }
       flexDirection={{ sm: "column", lg: "row" }}
       alignItems={"center"}
-          justifyContent={"center"}
+      justifyContent={"center"}  
     >
       <Image
         display={{ sm: "none", lg: "block" }}
@@ -228,7 +229,7 @@ export const RegistForm = () => {
             fontWeight={"800"}
             fontSize={"20px"}
             color={"blue.dark"}
-            _focus={{ bg: "cyan" }}
+            _hover={{ opacity: "0.7" }}
           >
             Cadastrar
           </Button>

@@ -46,12 +46,17 @@ export const ModalLogin = () => {
     return (
         <>
             <Flex>
-                <Modal isOpen={isOpen} onClose={onClose}  >
+                <Modal isOpen={isOpen} onClose={onClose} >
                     <ModalOverlay  /> 
                     <Box boxSize='sm' >
-                        <ModalContent bg="transparent" flexDirection={"row"} maxWidth="80vw" h="500px"
+                        <ModalContent 
+                        bg="transparent" 
+                        flexDirection={"row"} 
+                        maxWidth="100vw" h="100vh"
+                        margin={"0 auto"}
                         justifyContent={"center"}
-                        alignItems={"center"}
+                        alignItems={"center"}  
+                             
                         >
                             <Box>
                                 <Image
@@ -63,17 +68,20 @@ export const ModalLogin = () => {
                             </Box>
                             <Box 
                             bg="#2C7AED"  
-                            h="100%" 
+                            h="500px" 
                             w="425px">
                                 <Center color='white'>
                                     <ModalHeader >Login</ModalHeader>
-                                </Center>
                                 <ModalCloseButton
                                     bg="#FFFFFF"
                                     color="#4552CE"
                                     _hover={{ bg: "#FFFFFF" }}
                                     fontWeight='bold'
+                                    position={"unset"}
+                                    marginLeft="100px"
+                                    marginRight="-120px"
                                 />
+                                </Center>
                                 <ModalBody  >
                                     <FormControl
                                         as="form"
@@ -85,6 +93,7 @@ export const ModalLogin = () => {
                                             >Email:
                                             </FormLabel>
                                             <Input
+                                                height={"3rem"}
                                                 type='email'
                                                 bg="#FFFFFF"
                                                 placeholder="Digite seu email..."
@@ -109,6 +118,7 @@ export const ModalLogin = () => {
                                                 Senha:
                                             </FormLabel>
                                             <Input
+                                                height={"3rem"}
                                                 type='password'
                                                 bg="#FFFFFF"
                                                 placeholder="Digite sua senha..."
@@ -130,6 +140,9 @@ export const ModalLogin = () => {
                                         
                                         </Center>
                                         <Button
+                                            fontWeight={"bold"}
+                                            fontSize={"20px"}
+                                            height={"3rem"}
                                             marginTop={"20px"}
                                             type='submit'
                                             borderStyle="4px"
