@@ -1,18 +1,25 @@
-import { createContext, useState, useContext,ReactNode } from "react";
+
+import { createContext, useState, useContext, ReactNode } from "react";
 import { useDisclosure } from '@chakra-ui/react'
 import { Toast } from "@chakra-ui/react";
 import { api } from "../services/api";
 
+/* import { createContext } from "react"; */
+import React, {  Dispatch } from 'react'
+interface IModalLogin {
+  modal: boolean,
+  setModal: Dispatch<boolean>
+}
 interface iUserContext {
   submitRegister: (body: iRegisterBody) => Promise<void>;
   submitLogin: (body: iRegisterBody) => Promise<void>;
   modalControl: boolean;
   modalType: "login" | "register";
   setModalControl: React.Dispatch<React.SetStateAction<boolean>>;
- /*  setModalType: React.Dispatch<React.SetStateAction<iModalType>>; */
+  /*  setModalType: React.Dispatch<React.SetStateAction<iModalType>>; */
   isOpen: boolean;
   onOpen: () => void;
-  onClose:() => void;
+  onClose: () => void;
   setModalType: React.Dispatch<React.SetStateAction<"login" | "register">>;
 }
 
@@ -95,10 +102,22 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       {children}
     </UserContext.Provider>
   );
-};
+}
 
 
-export function useContextFunction() {
+/* export const UserProvider = ({ children }: any) => {
+
+  const [modal, setModal] = useState<IModalLogin>(false)
+  const closeModal = () => {
+      setModal(false)
+    }
+
+  return <UserContext.Provider value={{modal, setModal}}>{children}</UserContext.Provider>;
+
+}; */
+
+
+export const useContextFunction = () => {
   const contextUser = useContext(UserContext)
   return contextUser
 }
