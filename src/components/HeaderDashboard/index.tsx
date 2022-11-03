@@ -8,8 +8,15 @@ import {
   Input,
   Stack,
 } from "@chakra-ui/react";
+import { FormEvent, useContext } from "react";
+import { SearchContext } from "../../contexts/searchContext/searchContext";
 
 export const HeaderDashboard = () => {
+  const { submitSearch, setSearch } = useContext(SearchContext);
+  const searchFunction = (event: FormEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    submitSearch();
+  };
   return (
     <Flex
       as={"header"}
@@ -24,7 +31,7 @@ export const HeaderDashboard = () => {
       position="fixed"
     >
       <Flex align="center" gap="20px">
-        <Image src="./src/assets/img/logo.svg" />
+        <Image src="../../src/assets/img/logo.svg" />
         <Heading color="#DAEEFA"> Bookworm Library</Heading>
       </Flex>
       <FormControl
@@ -36,8 +43,12 @@ export const HeaderDashboard = () => {
         justifyContent="center"
         bg="white"
         borderRadius="24px"
+        onSubmit={(event) => {
+          searchFunction(event);
+        }}
       >
         <Input
+          required
           type="text"
           placeholder="Pesquisar..."
           w="80%"
@@ -47,6 +58,9 @@ export const HeaderDashboard = () => {
           border="none"
           _focus={{ border: "none" }}
           _focusVisible={{ border: "transparent", boxShadow: "none" }}
+          onChange={(event) => {
+            setSearch(event.target.value);
+          }}
         />
         <Button
           type="submit"

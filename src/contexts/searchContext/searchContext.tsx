@@ -68,6 +68,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
         };
         return item;
       });
+      console.log(result);
       setSearchResults(result);
       setLoading(false);
     } catch (error) {
