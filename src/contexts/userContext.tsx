@@ -3,6 +3,8 @@ import { createContext, useState, useContext, ReactNode } from "react";
 import { useDisclosure } from '@chakra-ui/react'
 import { Toast } from "@chakra-ui/react";
 import { apiFake } from "../services/api";
+import { useNavigate } from "react-router-dom";
+import { LandingPage } from "../pages/LandingPage";
 
 import React, { Dispatch } from 'react'
 interface iUserContext {
@@ -33,9 +35,23 @@ export interface iLoginBody {
   password: string
 }
 
+interface iUserCadastradoAndLogado {
+  accessToken: string,
+  user: {
+    email: string
+    nome: string,
+    comfirmPassword: string,
+    id: number
+  }
+}
+
+
 export const UserContext = createContext<iUserContext>({} as iUserContext);
 
 export const UserProvider = ({ children }: iUserContextProps) => {
+
+  const navigate = useNavigate()
+
   const [modalControl, setModalControl] = useState<boolean>(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalType, setModalType] = useState<"login" | "register">("login");
@@ -43,7 +59,8 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   const submitRegister = async (body: iRegisterBody): Promise<void> => {
     try {
       console.log(body);
-         const { data } = await apiFake.post("register", body);
+      const { data } = await apiFake.post<iUserCadastradoAndLogado>("register", body);
+      console.log(data)
       Toast({
         title: "Cadastro efetuado com sucesso!",
         description: "Você já pode logar com sua nova conta.",
@@ -60,8 +77,17 @@ export const UserProvider = ({ children }: iUserContextProps) => {
 
   const submitLogin = async (body: iLoginBody): Promise<void> => {
     try {
-      console.log(body);
-        const { data } = await apiFake.post("login", body);
+      const { data } = await apiFake.post<iUserCadastradoAndLogado>("login", body);
+      console.log(data)
+
+      localStorage.setItem("token", data.accessToken)
+
+      const getToken = localStorage.getItem("token")
+      sessionStorage.setItem("uuid",`${data.user.id}`)
+
+      if (getToken) {
+        navigate("/dashboard")
+      } 
       Toast({
         title: "Login efetuado com sucesso!",
         duration: 2000,
