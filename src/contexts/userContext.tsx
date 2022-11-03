@@ -2,9 +2,8 @@
 import { createContext, useState, useContext, ReactNode } from "react";
 import { useDisclosure } from '@chakra-ui/react'
 import { Toast } from "@chakra-ui/react";
-import { api } from "../services/api";
+import { apiFake } from "../services/api";
 
-/* import { createContext } from "react"; */
 import React, { Dispatch } from 'react'
 interface iUserContext {
   submitRegister: (body: iRegisterBody) => Promise<void>;
@@ -44,7 +43,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   const submitRegister = async (body: iRegisterBody): Promise<void> => {
     try {
       console.log(body);
-         const { data } = await api.post("register", body);
+         const { data } = await apiFake.post("register", body);
       Toast({
         title: "Cadastro efetuado com sucesso!",
         description: "Você já pode logar com sua nova conta.",
@@ -62,7 +61,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   const submitLogin = async (body: iLoginBody): Promise<void> => {
     try {
       console.log(body);
-        const { data } = await api.post("login", body);
+        const { data } = await apiFake.post("login", body);
       Toast({
         title: "Login efetuado com sucesso!",
         duration: 2000,
