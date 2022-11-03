@@ -49,6 +49,7 @@ export const HeaderDashboard = () => {
           _focusVisible={{ border: "transparent", boxShadow: "none" }}
         />
         <Button
+          type="submit"
           w="10%"
           h="90%"
           margin={0}
