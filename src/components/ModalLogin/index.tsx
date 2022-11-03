@@ -13,6 +13,8 @@ import {
     Image,
     Button,
     Text,
+    FormControl,
+    FormErrorMessage
 } from '@chakra-ui/react'
 
 import loginImage from "../../assets/images/login-image-desktop.png";
@@ -44,61 +46,81 @@ export const ModalLogin = () => {
     return (
         <>
             <Flex>
-                <img
-                    src="../../assets/images/login-image-desktop.png"
-                />
                 <Modal isOpen={isOpen} onClose={onClose}  >
                     <ModalOverlay />
                     <Box boxSize='sm'>
-                        <Box>
-                            <Image src='blaz-photo-zMRLZh40kms-unsplash' />
-                        </Box>
-
-                        <ModalContent bg="#2C7AED">
-                            <Center color='white'>
-                                <ModalHeader >Login</ModalHeader>
-                            </Center>
-                            <ModalCloseButton
-                                bg="#FFFFFF"
-                                color="#4552CE"
-                                _hover={{ bg: "#FFFFFF" }}
-                            />
-                            <ModalBody >
-                                <form onSubmit={handleSubmit(onSubmitFunction)}>
-                                    <FormLabel
-                                        color='white'
-                                        fontWeight='bold'
-                                    >Email:
-                                    </FormLabel>
-                                    <Input
-                                        type='email'
-                                        bg="#FFFFFF"
-                                        placeholder="Digite seu email..."
-                                        {...register("email")} />
-                                    <p >{errors.email?.message}</p>
-                                    <FormLabel
-                                        color='white'
-                                        fontWeight='bold'>
-                                        Senha:
-                                    </FormLabel>
-                                    <Input
-                                        type='password'
-                                        bg="#FFFFFF"
-                                        placeholder="Digite sua senha..."
-                                        {...register("password")} />
-                                    <p >{errors.password?.message}</p>
-                                    <Center color='white'>
-                                        <Text fontWeight='bold'>Ainda não possui cadastro?</Text>
-                                    </Center>
-                                    <Button
-                                        type='submit'
-                                        borderStyle="4px"
-                                        w="100%"
-                                        bg="#2CEDE0"
-                                        color="#3580EE"
-                                        _hover={{ opacity: "0.7" }} >Entrar</Button>
-                                </form>
-                            </ModalBody>
+                        <ModalContent bg="#2C7AED" flexDirection={"row"}>
+                            <Box width={"500px"}>
+                                <Image
+                                    display={{ sm: "none", lg: "block" }}
+                                     h="100%"
+                                    src={loginImage}
+                                />
+                            </Box>
+                            <Box bg="#2C7AED">
+                                <Center color='white'>
+                                    <ModalHeader >Login</ModalHeader>
+                                </Center>
+                                <ModalCloseButton
+                                    bg="#FFFFFF"
+                                    color="#4552CE"
+                                    _hover={{ bg: "#FFFFFF" }}
+                                />
+                                <ModalBody  >
+                                    <FormControl
+                                        as="form"
+                                        onSubmit={handleSubmit(onSubmitFunction)}>
+                                        <FormControl isInvalid={Boolean(errors.email)} >
+                                            <FormLabel
+                                                color='white'
+                                                fontWeight='bold'
+                                            >Email:
+                                            </FormLabel>
+                                            <Input
+                                                type='email'
+                                                bg="#FFFFFF"
+                                                placeholder="Digite seu email..."
+                                                {...register("email")} />
+                                            <FormErrorMessage
+                                                fontSize={"16px"}
+                                                fontWeight={700}
+                                                color={"red.300"}
+                                            >
+                                                {errors.email?.message}
+                                            </FormErrorMessage>
+                                        </FormControl>
+                                        <FormControl isInvalid={Boolean(errors.password)}>
+                                            <FormLabel
+                                                color='white'
+                                                fontWeight='bold'>
+                                                Senha:
+                                            </FormLabel>
+                                            <Input
+                                                type='password'
+                                                bg="#FFFFFF"
+                                                placeholder="Digite sua senha..."
+                                                {...register("password")} />
+                                            <FormErrorMessage
+                                                fontSize={"16px"}
+                                                fontWeight={700}
+                                                color={"red.300"}
+                                            >
+                                                {errors.password?.message}
+                                            </FormErrorMessage>
+                                        </FormControl>
+                                        <Center color='white'>
+                                            <Text fontWeight='bold'>Ainda não possui cadastro?</Text>
+                                        </Center>
+                                        <Button
+                                            type='submit'
+                                            borderStyle="4px"
+                                            w="100%"
+                                            bg="#2CEDE0"
+                                            color="#3580EE"
+                                            _hover={{ opacity: "0.7" }} >Entrar</Button>
+                                    </FormControl>
+                                </ModalBody>
+                            </Box>
                         </ModalContent>
                     </Box>
                 </Modal>
