@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import DashboardLibrary from "../components/DashboardLibrary";
 import { DashboardPage } from "../pages/DashboardPage";
 import { LandingPage } from "../pages/LandingPage";
 import ProtectedRoutes from "../components/ProtectedRouter";
