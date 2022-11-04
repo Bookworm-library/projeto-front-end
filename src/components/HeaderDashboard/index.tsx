@@ -1,4 +1,5 @@
 import { SearchIcon } from "@chakra-ui/icons";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   Flex,
@@ -12,11 +13,15 @@ import { FormEvent, useContext } from "react";
 import { SearchContext } from "../../contexts/searchContext/searchContext";
 
 export const HeaderDashboard = () => {
+
+  const navigate = useNavigate()
   const { submitSearch, setSearch } = useContext(SearchContext);
+
   const searchFunction = (event: FormEvent<HTMLDivElement>) => {
     event.preventDefault();
     submitSearch();
   };
+
   return (
     <Flex
       as={"header"}
@@ -29,6 +34,7 @@ export const HeaderDashboard = () => {
       bg="#2C7AED"
       sx={{ boxShadow: "0px 4px 9px rgba(0, 0, 0, 0.507)" }}
       position="fixed"
+      zIndex="2"
     >
       <Flex align="center" gap="20px">
         <Image src="../../src/assets/img/logo.svg" />
@@ -77,18 +83,23 @@ export const HeaderDashboard = () => {
       </FormControl>
       <Stack align="center" direction={"row"} color="white" gap="20px">
         <Button
-          // onClick={() => onOpen()}
           sx={{ boxShadow: "0px 4px 9px rgba(0, 0, 0, 0.315)" }}
           _hover={{ opacity: "0.7" }}
           bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
+          onClick={() => {
+            navigate("/dashboard/biblioteca")
+          }}
         >
           Biblioteca
         </Button>
         <Button
-          // onClick={}
           sx={{ boxShadow: "0px 4px 9px rgba(0, 0, 0, 0.315)" }}
           _hover={{ opacity: "0.7" }}
           bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
+          onClick={() => {
+            localStorage.removeItem("token");
+            navigate("/")
+          }}
         >
           Deslogar
         </Button>
