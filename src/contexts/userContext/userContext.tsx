@@ -1,7 +1,7 @@
 import { createContext, useState, useContext, ReactNode } from "react";
 import { useDisclosure } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from 'react-toastify';
 import React from "react";
 import { apiFake } from "../../services/api";
 interface iUserContext {
@@ -61,9 +61,15 @@ export const UserProvider = ({ children }: iUserContextProps) => {
     try {
 
       const { data } = await apiFake.post<iUserCadastradoAndLogado>("register", body);
+      toast.success('Registro realizado com sucesso', {
+        position: 'top-right',
+        autoClose: 2000
+      })
       setModalType("register");
     } catch (error) {
-      console.log(error);
+      toast.error("Email já existente / Senha inválida", {
+        position: toast.POSITION.TOP_RIGHT
+      });
     }
   };
 
