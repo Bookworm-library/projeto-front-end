@@ -16,7 +16,7 @@ import {
     FormErrorMessage,
     Text
 } from "@chakra-ui/react";
-import loginImage from "../../assets/images/login-image-desktop.png";
+import loginImage from "../../assets/img/login-image-desktop.png";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../validations/login";
