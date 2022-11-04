@@ -29,6 +29,7 @@ export const HeaderDashboard = () => {
       bg="#2C7AED"
       sx={{ boxShadow: "0px 4px 9px rgba(0, 0, 0, 0.507)" }}
       position="fixed"
+      zIndex="1"
     >
       <Flex align="center" gap="20px">
         <Image src="../../src/assets/img/logo.svg" />
