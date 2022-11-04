@@ -52,7 +52,6 @@ export const UserProvider = ({ children }: iUserContextProps) => {
 
 
   const [userInfo, setuserInfo] = useState<[] | undefined>([]);
-  /* const [modalControl, setModalControl] = useState<boolean>(false); */
   const [modalControl, setModalControl] = useState<boolean>(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalType, setModalType] = useState<"login" | "register">("login");
@@ -61,6 +60,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
     try {
 
       const { data } = await apiFake.post<iUserCadastradoAndLogado>("register", body);
+
       setModalType("register");
     } catch (error) {
       console.log(error);
