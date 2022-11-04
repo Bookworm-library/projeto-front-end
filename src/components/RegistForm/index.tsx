@@ -20,8 +20,8 @@ import { registerSchema } from "../../validations/register";
 
 export const RegistForm = () => {
 
-  const { submitRegister,setModalControl, onClose } = useContextFunction();
- 
+  const { submitRegister, setModalControl,onOpen } = useContextFunction();
+
   const {
     register,
     handleSubmit,
@@ -246,6 +246,10 @@ export const RegistForm = () => {
               textDecoration={"underline"}
               _focus={{ bg: "transparent" }}
               _hover={{ bg: "transparent" }}
+              onClick={() => {
+                setModalControl(false)
+                onOpen()
+              }}
             >
               Entrar
             </Button>

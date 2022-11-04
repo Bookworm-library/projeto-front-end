@@ -1,82 +1,81 @@
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalCloseButton,
-  Box,
-  Input,
-  FormLabel,
-  Flex,
-  Center,
-  Image,
-  Button,
-  FormControl,
-  FormErrorMessage,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    ModalCloseButton,
+    Box,
+    Input,
+    FormLabel,
+    Flex,
+    Center,
+    Image,
+    Button,
+    FormControl,
+    FormErrorMessage,
+    Text
 } from "@chakra-ui/react";
 import loginImage from "../../assets/images/login-image-desktop.png";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../validations/login";
 import {
-  iLoginBody,
-  useContextFunction,
+    iLoginBody,
+    useContextFunction,
 } from "../../contexts/userContext/userContext";
 
 export const ModalLogin = () => {
-  const { isOpen, onClose, submitLogin } = useContextFunction();
+    const { isOpen, onClose, submitLogin, setModalControl } = useContextFunction();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<iLoginBody>({
-    resolver: yupResolver(loginSchema),
-  });
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<iLoginBody>({
+        resolver: yupResolver(loginSchema),
+    });
 
     const onSubmitFunction = (data: any) => {
         submitLogin(data)
     };
-
     return (
         <>
             <Flex>
                 <Modal isOpen={isOpen} onClose={onClose} >
-                    <ModalOverlay  /> 
+                    <ModalOverlay />
                     <Box boxSize='sm' >
-                        <ModalContent 
-                        bg="transparent" 
-                        flexDirection={"row"} 
-                        maxWidth="100vw" h="100vh"
-                        margin={"0 auto"}
-                        justifyContent={"center"}
-                        alignItems={"center"}  
-                             
+                        <ModalContent
+                            bg="transparent"
+                            flexDirection={"row"}
+                            maxWidth="100vw" h="100vh"
+                            margin={"0 auto"}
+                            justifyContent={"center"}
+                            alignItems={"center"}
                         >
                             <Box>
                                 <Image
                                     display={{ sm: "none", lg: "block" }}
-                                    h="500px" 
+                                    h="500px"
                                     w="600px"
                                     src={loginImage}
                                 />
                             </Box>
-                            <Box 
-                            bg="#2C7AED"  
-                            h="500px" 
-                            w="425px">
+                            <Box
+                                bg="#2C7AED"
+                                h="500px"
+                                w="425px">
                                 <Center color='white'>
                                     <ModalHeader >Login</ModalHeader>
-                                <ModalCloseButton
-                                    bg="#FFFFFF"
-                                    color="#4552CE"
-                                    _hover={{ bg: "#FFFFFF" }}
-                                    fontWeight='bold'
-                                    position={"unset"}
-                                    marginLeft="100px"
-                                    marginRight="-120px"
-                                />
+                                    <ModalCloseButton
+                                        bg="#FFFFFF"
+                                        color="#4552CE"
+                                        _hover={{ bg: "#FFFFFF" }}
+                                        fontWeight='bold'
+                                        position={"unset"}
+                                        marginLeft="100px"
+                                        marginRight="-120px"
+                                    />
                                 </Center>
                                 <ModalBody  >
                                     <FormControl
@@ -95,17 +94,17 @@ export const ModalLogin = () => {
                                                 placeholder="Digite seu email..."
                                                 {...register("email")} />
                                             <Box
-                                            h={"30px"}>
-                                            <FormErrorMessage
-                                                marginTop={0}
-                                                h={"22px"}
-                                                fontSize={"16px"}
-                                                fontWeight={700}
-                                                color={"red.300"}
+                                                h={"30px"}>
+                                                <FormErrorMessage
+                                                    marginTop={0}
+                                                    h={"22px"}
+                                                    fontSize={"16px"}
+                                                    fontWeight={700}
+                                                    color={"red.300"}
                                                 >
-                                                {errors.email?.message}
-                                            </FormErrorMessage>
-                                            </Box>    
+                                                    {errors.email?.message}
+                                                </FormErrorMessage>
+                                            </Box>
                                         </FormControl>
                                         <FormControl isInvalid={Boolean(errors.password)}>
                                             <FormLabel
@@ -120,20 +119,19 @@ export const ModalLogin = () => {
                                                 placeholder="Digite sua senha..."
                                                 {...register("password")} />
                                             <Box
-                                            h={"30px"}>
+                                                h={"30px"}>
                                                 <FormErrorMessage
                                                     marginTop={0}
                                                     h={"22px"}
                                                     fontSize={"16px"}
                                                     fontWeight={700}
                                                     color={"red.300"}
-                                                    >
+                                                >
                                                     {errors.password?.message}
                                                 </FormErrorMessage>
-                                            </Box>    
+                                            </Box>
                                         </FormControl>
                                         <Center color='white'>
-                                        
                                         </Center>
                                         <Button
                                             fontWeight={"bold"}
@@ -146,6 +144,33 @@ export const ModalLogin = () => {
                                             bg="#2CEDE0"
                                             color="#3580EE"
                                             _hover={{ opacity: "0.7" }} >Entrar</Button>
+                                        <Text
+                                            width="100%"
+                                            display="flex"
+                                            justifyContent="center"
+                                            alignItems="center"
+                                            mt="1rem"
+                                            as="p"
+                                            color="white"
+                                        >
+                                            Não tem conta conosco?
+                                            <Button
+                                                width={"auto"}
+                                                height={"auto"}
+                                                pl="0.25rem"
+                                                bg="transparent"
+                                                color={"cyan"}
+                                                textDecoration={"underline"}
+                                                _focus={{ bg: "transparent" }}
+                                                _hover={{ bg: "transparent" }}
+                                                onClick={() => {
+                                                    onClose()
+                                                    setModalControl(true)
+                                                }}
+                                            >
+                                                Cadastre-se
+                                            </Button>
+                                        </Text>
                                     </FormControl>
                                 </ModalBody>
                             </Box>
@@ -158,4 +183,3 @@ export const ModalLogin = () => {
 }
 
 
-  
