@@ -1,10 +1,7 @@
-import { createContext, useState, useContext, ReactNode } from "react";
+import { createContext, useState, useContext, ReactNode, useEffect } from "react";
 import { useDisclosure } from "@chakra-ui/react";
-import { Toast } from "@chakra-ui/react";
 import { apiFake } from "../../services/api";
 import { useNavigate } from "react-router-dom";
-
-
 
 import React, { Dispatch } from "react";
 interface iUserContext {
@@ -45,12 +42,12 @@ interface iUserCadastradoAndLogado {
   }
 }
 
-
 export const UserContext = createContext<iUserContext>({} as iUserContext);
 
 export const UserProvider = ({ children }: iUserContextProps) => {
 
   const navigate = useNavigate()
+  const getToken = localStorage.getItem("token")
 
   const [modalControl, setModalControl] = useState<boolean>(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -58,17 +55,8 @@ export const UserProvider = ({ children }: iUserContextProps) => {
 
   const submitRegister = async (body: iRegisterBody): Promise<void> => {
     try {
-      console.log(body);
       const { data } = await apiFake.post<iUserCadastradoAndLogado>("register", body);
-      console.log(data)
-      Toast({
-        title: "Cadastro efetuado com sucesso!",
-        description: "Você já pode logar com sua nova conta.",
-        duration: 2000,
-        status: "success",
-        isClosable: true,
-        position: "top",
-      });
+
       setModalType("register");
     } catch (error) {
       console.log(error);
@@ -76,31 +64,22 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   };
 
   const submitLogin = async (body: iLoginBody): Promise<void> => {
+    console.log(body)
     try {
       const { data } = await apiFake.post<iUserCadastradoAndLogado>("login", body);
       console.log(data)
 
       localStorage.setItem("token", data.accessToken)
 
-      const getToken = localStorage.getItem("token")
-      sessionStorage.setItem("uuid",`${data.user.id}`)
-
-      if (getToken) {
-        navigate("/dashboard")
-      } 
-      console.log(body);
-      Toast({
-        title: "Login efetuado com sucesso!",
-        duration: 2000,
-        status: "success",
-        isClosable: true,
-        position: "top",
-      });
+      sessionStorage.setItem("uuid", `${data.user.id}`)
+      navigate("/dashboard")
       setModalType("login");
     } catch (error) {
       console.log(error);
     }
   };
+
+ 
   return (
     <UserContext.Provider
       value={{

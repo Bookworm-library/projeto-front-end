@@ -1,13 +1,11 @@
 import { Flex, Heading, Stack, Button, Image } from "@chakra-ui/react";
 import { useContext } from "react";
-import { UserContext } from "../../contexts/userContext/userContext";
 
 import { useContextFunction } from "../../contexts/userContext/userContext";
+
 export const HeaderLandingPage = () => {
-  const { onOpen } = useContextFunction();
-
-  const { setModalControl, setModalType } = useContext(UserContext);
-
+  const {onOpen,setModalControl, setModalType} = useContextFunction()
+  
   const openRegisterModal = () => {
     setModalControl(true), setModalType("register");
   };
@@ -29,8 +27,7 @@ export const HeaderLandingPage = () => {
         <Heading color="#DAEEFA"> Bookworm Library</Heading>
       </Flex>
       <Stack align="center" direction={"row"} color="white" gap="20px">
-        <Button
-          onClick={() => onOpen()}
+        <Button onClick={() => onOpen()}
           sx={{ boxShadow: "0px 4px 9px rgba(0, 0, 0, 0.315)" }}
           _hover={{ opacity: "0.7" }}
           bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
