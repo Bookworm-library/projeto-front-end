@@ -8,7 +8,7 @@ import { RegistForm } from "../components/RegistForm";
 import { UserContext } from "../contexts/userContext/userContext";
 
 export const LandingPage = () => {
-  const { modalControl, modalType } = useContext(UserContext);
+  const { modalControl, modalType, onClose } = useContext(UserContext);
 
   const navigate = useNavigate()
 

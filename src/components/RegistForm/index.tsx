@@ -9,15 +9,14 @@ import {
   Heading,
   Image,
   Input,
-  Text,
+  Text
 } from "@chakra-ui/react";
 
-import { useForm } from "react-hook-form";
-import registImage from "../../assets/images/regist-image-desktop.png";
-import { iRegisterBody } from "../../contexts/userContext/userContext";
-import { registerSchema } from "../../validations/register";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContextFunction } from "../../contexts/userContext/userContext";
+import { useForm } from "react-hook-form";
+import registImage from "../../assets/img/regist-image-desktop.png";
+import { iRegisterBody, useContextFunction } from "../../contexts/userContext/userContext";
+import { registerSchema } from "../../validations/register";
 
 export const RegistForm = () => {
 
