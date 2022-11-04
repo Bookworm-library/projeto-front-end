@@ -1,15 +1,10 @@
 import { createContext, useState, useContext, ReactNode } from "react";
 import { useDisclosure } from "@chakra-ui/react";
 import { Toast } from "@chakra-ui/react";
-<<<<<<< HEAD:src/contexts/userContext.tsx
-import { apiFake } from "../services/api";
 import { useNavigate } from "react-router-dom";
-import { LandingPage } from "../pages/LandingPage";
-=======
-import { apiFake } from "../../services/api";
->>>>>>> develop:src/contexts/userContext/userContext.tsx
 
 import React, { Dispatch } from "react";
+import { apiFake } from "../../services/api";
 interface iUserContext {
   submitRegister: (body: iRegisterBody) => Promise<void>;
   submitLogin: (body: iRegisterBody) => Promise<void>;
@@ -39,21 +34,19 @@ export interface iLoginBody {
 }
 
 interface iUserCadastradoAndLogado {
-  accessToken: string,
+  accessToken: string;
   user: {
-    email: string
-    nome: string,
-    comfirmPassword: string,
-    id: number
-  }
+    email: string;
+    nome: string;
+    comfirmPassword: string;
+    id: number;
+  };
 }
-
 
 export const UserContext = createContext<iUserContext>({} as iUserContext);
 
 export const UserProvider = ({ children }: iUserContextProps) => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [modalControl, setModalControl] = useState<boolean>(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -62,12 +55,11 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   const submitRegister = async (body: iRegisterBody): Promise<void> => {
     try {
       console.log(body);
-<<<<<<< HEAD:src/contexts/userContext.tsx
-      const { data } = await apiFake.post<iUserCadastradoAndLogado>("register", body);
-      console.log(data)
-=======
-      const { data } = await apiFake.post("register", body);
->>>>>>> develop:src/contexts/userContext/userContext.tsx
+      const { data } = await apiFake.post<iUserCadastradoAndLogado>(
+        "register",
+        body
+      );
+      console.log(data);
       Toast({
         title: "Cadastro efetuado com sucesso!",
         description: "Você já pode logar com sua nova conta.",
@@ -84,22 +76,20 @@ export const UserProvider = ({ children }: iUserContextProps) => {
 
   const submitLogin = async (body: iLoginBody): Promise<void> => {
     try {
-<<<<<<< HEAD:src/contexts/userContext.tsx
-      const { data } = await apiFake.post<iUserCadastradoAndLogado>("login", body);
-      console.log(data)
+      const { data } = await apiFake.post<iUserCadastradoAndLogado>(
+        "login",
+        body
+      );
+      console.log(data);
 
-      localStorage.setItem("token", data.accessToken)
+      localStorage.setItem("token", data.accessToken);
 
-      const getToken = localStorage.getItem("token")
-      sessionStorage.setItem("uuid",`${data.user.id}`)
+      const getToken = localStorage.getItem("token");
+      sessionStorage.setItem("uuid", `${data.user.id}`);
 
       if (getToken) {
-        navigate("/dashboard")
-      } 
-=======
-      console.log(body);
-      const { data } = await apiFake.post("login", body);
->>>>>>> develop:src/contexts/userContext/userContext.tsx
+        navigate("/dashboard");
+      }
       Toast({
         title: "Login efetuado com sucesso!",
         duration: 2000,
