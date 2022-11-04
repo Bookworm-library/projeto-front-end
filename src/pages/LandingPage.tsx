@@ -19,10 +19,15 @@ export const LandingPage = () => {
           isCentered
           isOpen={modalControl}
           closeOnOverlayClick={true}
-          onClose={() => {}}
+          onClose={onClose}
         >
           <ModalOverlay />
-          <ModalContent w="800px">
+          <ModalContent
+            maxWidth="100vw"
+            bg="transparent"
+            h="100vh"
+            margin={"0 auto"}
+          >
             {modalType === "login" ? <ModalLogin /> : <RegistForm />}
           </ModalContent>
         </Modal>
