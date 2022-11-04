@@ -20,8 +20,11 @@ import loginImage from "../../assets/images/login-image-desktop.png";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../validations/login";
-import { useContextFunction } from "../../contexts/userContext";
-import { iLoginBody } from "../../contexts/userContext";
+import {
+  iLoginBody,
+  useContextFunction,
+} from "../../contexts/userContext/userContext";
+
 export const ModalLogin = () => {
   const { isOpen, onClose, submitLogin } = useContextFunction();
   const {
