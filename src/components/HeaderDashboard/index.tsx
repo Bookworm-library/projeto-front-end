@@ -17,7 +17,7 @@ export const HeaderDashboard = () => {
 
   const navigate = useNavigate()
   const { submitSearch, setSearch } = useContext(SearchContext);
-  const { setModalControl } = useContextFunction();
+  const { setModalControl, onClose } = useContextFunction();
 
   const searchFunction = (event: FormEvent<HTMLDivElement>) => {
     event.preventDefault();
@@ -102,6 +102,7 @@ export const HeaderDashboard = () => {
             localStorage.removeItem("token");
             navigate("/")
             setModalControl(false)
+            onClose()
           }}
         >
           Deslogar

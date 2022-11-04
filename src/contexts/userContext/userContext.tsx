@@ -15,10 +15,12 @@ interface iUserContext {
   setModalControl: React.Dispatch<React.SetStateAction<boolean>>;
   isOpen: boolean;
   userInfo: [] | undefined
+  btnModalLoading: boolean;
   setuserInfo: React.Dispatch<React.SetStateAction<[] | undefined>>
   onOpen: () => void;
   onClose: () => void;
   setModalType: React.Dispatch<React.SetStateAction<"login" | "register">>;
+  setBVtnModalLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 interface iUserContextProps {
@@ -56,6 +58,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
 
   const [userInfo, setuserInfo] = useState<[] | undefined>([]);
   const [modalControl, setModalControl] = useState<boolean>(false);
+  const [btnModalLoading, setBVtnModalLoading] = useState<boolean>(false)
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalType, setModalType] = useState<"login" | "register">("login");
 
@@ -63,6 +66,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
     try {
 
       const { data } = await apiFake.post<iUserCadastradoAndLogado>("register", body)
+      setBVtnModalLoading(true)
       toast.success('Registro realizado com sucesso', {
         icon: FaBookOpen,
         theme: "colored",
@@ -87,7 +91,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
 
       const { data } = await apiFake.post<iUserCadastradoAndLogado>("login", body);
       localStorage.setItem("token", data.accessToken);
-
+      setBVtnModalLoading(true)
       toast.success('Login realizado com sucesso', {
         icon: FaBookOpen,
         theme: "colored",
@@ -126,7 +130,9 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         onOpen,
         onClose,
         userInfo,
-        setuserInfo
+        setuserInfo,
+        btnModalLoading,
+        setBVtnModalLoading
       }}
     >
       {children}

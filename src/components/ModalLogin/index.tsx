@@ -27,7 +27,7 @@ import {
 import { Fade, ScaleFade, Slide, SlideFade, Spinner } from '@chakra-ui/react'
 
 export const ModalLogin = () => {
-    const { isOpen, onClose, submitLogin, setModalControl } = useContextFunction();
+    const { isOpen, onClose, submitLogin, setModalControl, btnModalLoading } = useContextFunction();
 
     const {
         register,
@@ -54,7 +54,7 @@ export const ModalLogin = () => {
                             justifyContent={"center"}
                             alignItems={"center"}
                         >
-                            
+
                             <Box>
                                 <Image
                                     display={{ sm: "none", lg: "block" }}
@@ -136,13 +136,6 @@ export const ModalLogin = () => {
                                         <Center color='white'>
                                         </Center>
                                         <Button
-                                            onClick={() => <Spinner
-                                                thickness='4px'
-                                                speed='0.65s'
-                                                emptyColor='gray.200'
-                                                color='blue.500'
-                                                size='md'
-                                              />}
                                             fontWeight={"bold"}
                                             fontSize={"20px"}
                                             height={"3rem"}
@@ -152,8 +145,16 @@ export const ModalLogin = () => {
                                             w="100%"
                                             bg="#2CEDE0"
                                             color="#3580EE"
-                                            _hover={{ opacity: "0.7" }}                                           
-                                            >Entrar</Button>
+                                            _hover={{ opacity: "0.7" }}
+                                        >
+                                            {btnModalLoading ? (<Spinner
+                                                thickness='4px'
+                                                speed='0.65s'
+                                                emptyColor='gray.200'
+                                                color='blue.500'
+                                                size='md'
+                                            />) : (<Text>Entrar</Text>)}
+                                        </Button>
                                         <Text
                                             width="100%"
                                             display="flex"
@@ -184,7 +185,7 @@ export const ModalLogin = () => {
                                     </FormControl>
                                 </ModalBody>
                             </Box>
-                        
+
                         </ModalContent>
                     </Box>
                 </Modal>

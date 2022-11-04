@@ -9,7 +9,8 @@ import {
   Heading,
   Image,
   Input,
-  Text
+  Text,
+  Spinner
 } from "@chakra-ui/react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -20,7 +21,7 @@ import { registerSchema } from "../../validations/register";
 
 export const RegistForm = () => {
 
-  const { submitRegister, setModalControl,onOpen } = useContextFunction();
+  const { submitRegister, setModalControl, onOpen, btnModalLoading } = useContextFunction();
 
   const {
     register,
@@ -225,7 +226,13 @@ export const RegistForm = () => {
             color={"blue.dark"}
             _hover={{ opacity: "0.7" }}
           >
-            Cadastrar
+            {btnModalLoading ? (<Spinner
+              thickness='4px'
+              speed='0.65s'
+              emptyColor='gray.200'
+              color='blue.500'
+              size='md'
+            />) : (<Text>Cadastrar</Text>)}
           </Button>
           <Text
             width={"100%"}
