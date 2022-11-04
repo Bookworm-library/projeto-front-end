@@ -7,15 +7,13 @@ import { RegistForm } from "../components/RegistForm";
 import { UserContext } from "../contexts/userContext/userContext";
 
 export const LandingPage = () => {
-  const { modalControl, modalType, isOpen, onClose } = useContext(UserContext);
+  const { modalControl, modalType, onClose } = useContext(UserContext);
   return (
     <>
       <Box w="100vw" h="100vh">
         <HeaderLandingPage />
         <MainLandingPage />
         <Modal
-          /* isOpen={isOpen}  */
-          /*  onClose={onClose} */
           isCentered
           isOpen={modalControl}
           closeOnOverlayClick={true}
