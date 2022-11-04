@@ -1,12 +1,12 @@
-
 import { createContext, useState, useContext, ReactNode } from "react";
-import { useDisclosure } from '@chakra-ui/react'
+import { useDisclosure } from "@chakra-ui/react";
 import { Toast } from "@chakra-ui/react";
-import { apiFake } from "../services/api";
+import { apiFake } from "../../services/api";
 import { useNavigate } from "react-router-dom";
-import { LandingPage } from "../pages/LandingPage";
 
-import React, { Dispatch } from 'react'
+
+
+import React, { Dispatch } from "react";
 interface iUserContext {
   submitRegister: (body: iRegisterBody) => Promise<void>;
   submitLogin: (body: iRegisterBody) => Promise<void>;
@@ -31,8 +31,8 @@ export interface iRegisterBody {
 }
 
 export interface iLoginBody {
-  email: string,
-  password: string
+  email: string;
+  password: string;
 }
 
 interface iUserCadastradoAndLogado {
@@ -88,6 +88,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       if (getToken) {
         navigate("/dashboard")
       } 
+      console.log(body);
       Toast({
         title: "Login efetuado com sucesso!",
         duration: 2000,
@@ -111,15 +112,15 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         setModalType,
         isOpen,
         onOpen,
-        onClose
+        onClose,
       }}
     >
       {children}
     </UserContext.Provider>
   );
-}
+};
 
 export const useContextFunction = () => {
-  const contextUser = useContext(UserContext)
-  return contextUser
-}
+  const contextUser = useContext(UserContext);
+  return contextUser;
+};

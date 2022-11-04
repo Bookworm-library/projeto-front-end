@@ -1,11 +1,10 @@
-import { Box, Modal, ModalContent, ModalOverlay, } from "@chakra-ui/react";
+import { Box, Modal, ModalContent, ModalOverlay } from "@chakra-ui/react";
 import { useContext } from "react";
 import { HeaderLandingPage } from "../components/HeaderLandingPage";
 import { MainLandingPage } from "../components/MainLandingPage";
 import { ModalLogin } from "../components/ModalLogin";
 import { RegistForm } from "../components/RegistForm";
-import { UserContext } from "../contexts/userContext";
-
+import { UserContext } from "../contexts/userContext/userContext";
 
 export const LandingPage = () => {
   const { modalControl, modalType, isOpen, onClose } = useContext(UserContext);
@@ -16,11 +15,11 @@ export const LandingPage = () => {
         <MainLandingPage />
         <Modal
           /* isOpen={isOpen}  */
-         /*  onClose={onClose} */
+          /*  onClose={onClose} */
           isCentered
           isOpen={modalControl}
           closeOnOverlayClick={true}
-          onClose={() => { }}
+          onClose={() => {}}
         >
           <ModalOverlay />
           <ModalContent w="800px">
@@ -29,8 +28,5 @@ export const LandingPage = () => {
         </Modal>
       </Box>
     </>
-  )
-}
-
-
-
+  );
+};
