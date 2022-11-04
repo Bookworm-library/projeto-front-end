@@ -8,7 +8,7 @@ import CardsLibrary from "../CardsLibrary";
 
 const DashboardLibrary = () => {
   return (
-    <Flex direction="column" h="100%" w="100%">
+    <Flex direction="column" h="100vh" w="100vw" >
       <Flex
         as={"main"}
         bgImage="../src/assets/img/bgbooks.svg"
