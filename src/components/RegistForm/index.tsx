@@ -20,8 +20,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useContextFunction } from "../../contexts/userContext/userContext";
 
 export const RegistForm = () => {
-  const { submitRegister, setModalControl, onClose } = useContextFunction();
 
+  const { submitRegister,setModalControl, onClose } = useContextFunction();
+ 
   const {
     register,
     handleSubmit,

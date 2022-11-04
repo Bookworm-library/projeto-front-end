@@ -1,6 +1,5 @@
-import { createContext, useState, useContext, ReactNode } from "react";
+import { createContext, useState, useContext, ReactNode, useEffect } from "react";
 import { useDisclosure } from "@chakra-ui/react";
-import { Toast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 import React, { Dispatch } from "react";
@@ -46,7 +45,9 @@ interface iUserCadastradoAndLogado {
 export const UserContext = createContext<iUserContext>({} as iUserContext);
 
 export const UserProvider = ({ children }: iUserContextProps) => {
-  const navigate = useNavigate();
+
+  const navigate = useNavigate()
+  const getToken = localStorage.getItem("token")
 
   const [modalControl, setModalControl] = useState<boolean>(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -54,20 +55,13 @@ export const UserProvider = ({ children }: iUserContextProps) => {
 
   const submitRegister = async (body: iRegisterBody): Promise<void> => {
     try {
+
+      const { data } = await apiFake.post<iUserCadastradoAndLogado>("register", body);
+
       console.log(body);
-      const { data } = await apiFake.post<iUserCadastradoAndLogado>(
-        "register",
-        body
-      );
+   
       console.log(data);
-      Toast({
-        title: "Cadastro efetuado com sucesso!",
-        description: "Você já pode logar com sua nova conta.",
-        duration: 2000,
-        status: "success",
-        isClosable: true,
-        position: "top",
-      });
+    
       setModalType("register");
     } catch (error) {
       console.log(error);
@@ -75,14 +69,18 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   };
 
   const submitLogin = async (body: iLoginBody): Promise<void> => {
+    console.log(body)
     try {
-      const { data } = await apiFake.post<iUserCadastradoAndLogado>(
-        "login",
-        body
-      );
+
+      const { data } = await apiFake.post<iUserCadastradoAndLogado>("login", body);
+      console.log(data)
+
+
       console.log(data);
 
       localStorage.setItem("token", data.accessToken);
+
+      navigate("/dashboard")
 
       const getToken = localStorage.getItem("token");
       sessionStorage.setItem("uuid", `${data.user.id}`);
@@ -90,18 +88,13 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       if (getToken) {
         navigate("/dashboard");
       }
-      Toast({
-        title: "Login efetuado com sucesso!",
-        duration: 2000,
-        status: "success",
-        isClosable: true,
-        position: "top",
-      });
       setModalType("login");
     } catch (error) {
       console.log(error);
     }
   };
+
+ 
   return (
     <UserContext.Provider
       value={{
