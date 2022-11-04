@@ -1,9 +1,9 @@
 import { createContext, useState, useContext, ReactNode, useEffect } from "react";
 import { useDisclosure } from "@chakra-ui/react";
-import { apiFake } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 
 import React, { Dispatch } from "react";
+import { apiFake } from "../../services/api";
 interface iUserContext {
   submitRegister: (body: iRegisterBody) => Promise<void>;
   submitLogin: (body: iRegisterBody) => Promise<void>;
@@ -33,13 +33,13 @@ export interface iLoginBody {
 }
 
 interface iUserCadastradoAndLogado {
-  accessToken: string,
+  accessToken: string;
   user: {
-    email: string
-    nome: string,
-    comfirmPassword: string,
-    id: number
-  }
+    email: string;
+    nome: string;
+    comfirmPassword: string;
+    id: number;
+  };
 }
 
 export const UserContext = createContext<iUserContext>({} as iUserContext);
@@ -55,8 +55,13 @@ export const UserProvider = ({ children }: iUserContextProps) => {
 
   const submitRegister = async (body: iRegisterBody): Promise<void> => {
     try {
+
       const { data } = await apiFake.post<iUserCadastradoAndLogado>("register", body);
 
+      console.log(body);
+   
+      console.log(data);
+    
       setModalType("register");
     } catch (error) {
       console.log(error);
@@ -66,13 +71,23 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   const submitLogin = async (body: iLoginBody): Promise<void> => {
     console.log(body)
     try {
+
       const { data } = await apiFake.post<iUserCadastradoAndLogado>("login", body);
       console.log(data)
 
-      localStorage.setItem("token", data.accessToken)
 
-      sessionStorage.setItem("uuid", `${data.user.id}`)
+      console.log(data);
+
+      localStorage.setItem("token", data.accessToken);
+
       navigate("/dashboard")
+
+      const getToken = localStorage.getItem("token");
+      sessionStorage.setItem("uuid", `${data.user.id}`);
+
+      if (getToken) {
+        navigate("/dashboard");
+      }
       setModalType("login");
     } catch (error) {
       console.log(error);

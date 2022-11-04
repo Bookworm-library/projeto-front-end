@@ -19,11 +19,10 @@ import { registerSchema } from "../../validations/register";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContextFunction } from "../../contexts/userContext/userContext";
 
-
 export const RegistForm = () => {
 
   const { submitRegister,setModalControl, onClose } = useContextFunction();
-
+ 
   const {
     register,
     handleSubmit,
@@ -34,11 +33,11 @@ export const RegistForm = () => {
 
   return (
     <Flex
-      width={ "100%" }
-      height={ "100vh" }
+      width={"100%"}
+      height={"100vh"}
       flexDirection={{ sm: "column", lg: "row" }}
       alignItems={"center"}
-      justifyContent={"center"}  
+      justifyContent={"center"}
     >
       <Image
         display={{ sm: "none", lg: "block" }}
@@ -80,9 +79,9 @@ export const RegistForm = () => {
             onClick={() => {
               setModalControl(false);
             }}
-           />
+          />
         </Flex>
-        <FormControl as="form" onSubmit={handleSubmit(submitRegister)} >
+        <FormControl as="form" onSubmit={handleSubmit(submitRegister)}>
           <FormControl isInvalid={Boolean(errors.name)}>
             <FormLabel
               marginY={"0.5rem"}
@@ -103,17 +102,16 @@ export const RegistForm = () => {
               bg={"white"}
               placeholder={"Digite seu nome"}
             />
-            <Box
-            h={"26px"}>
-            <FormErrorMessage
-              marginTop={0}
-              h={"22px"}
-              fontSize={"16px"}
-              fontWeight={700}
-              color={"red.300"}
+            <Box h={"26px"}>
+              <FormErrorMessage
+                marginTop={0}
+                h={"22px"}
+                fontSize={"16px"}
+                fontWeight={700}
+                color={"red.300"}
               >
-              {errors.name && errors.name.message}
-            </FormErrorMessage>
+                {errors.name && errors.name.message}
+              </FormErrorMessage>
             </Box>
           </FormControl>
           <FormControl isInvalid={Boolean(errors.email)}>
@@ -136,17 +134,16 @@ export const RegistForm = () => {
               bg={"white"}
               placeholder={"Digite seu email"}
             />
-            <Box
-            h={"26px"}>
-            <FormErrorMessage
-              marginTop={0}
-              h={"22px"}
-              fontSize={"16px"}
-              fontWeight={700}
-              color={"red.300"}
+            <Box h={"26px"}>
+              <FormErrorMessage
+                marginTop={0}
+                h={"22px"}
+                fontSize={"16px"}
+                fontWeight={700}
+                color={"red.300"}
               >
-              {errors.email && errors.email.message}
-            </FormErrorMessage>
+                {errors.email && errors.email.message}
+              </FormErrorMessage>
             </Box>
           </FormControl>
           <FormControl isInvalid={Boolean(errors.password)}>
@@ -169,17 +166,16 @@ export const RegistForm = () => {
               bg={"white"}
               placeholder={"Digite sua senha"}
             />
-            <Box
-            h={"26px"}>
-            <FormErrorMessage
-              marginTop={0}
-              h={"22px"}
-              fontSize={"16px"}
-              fontWeight={700}
-              color={"red.300"}
+            <Box h={"26px"}>
+              <FormErrorMessage
+                marginTop={0}
+                h={"22px"}
+                fontSize={"16px"}
+                fontWeight={700}
+                color={"red.300"}
               >
-              {errors.password && errors.password.message}
-            </FormErrorMessage>
+                {errors.password && errors.password.message}
+              </FormErrorMessage>
             </Box>
           </FormControl>
           <FormControl isInvalid={Boolean(errors.confirmPassword)}>
@@ -202,17 +198,16 @@ export const RegistForm = () => {
               bg={"white"}
               placeholder={"Digite sua senha novamente"}
             />
-            <Box
-            h={"26px"}>
-            <FormErrorMessage
-              marginTop={0}
-              h={"22px"}
-              fontSize={"16px"}
-              fontWeight={700}
-              color={"red.300"}
+            <Box h={"26px"}>
+              <FormErrorMessage
+                marginTop={0}
+                h={"22px"}
+                fontSize={"16px"}
+                fontWeight={700}
+                color={"red.300"}
               >
-              {errors.confirmPassword && errors.confirmPassword.message}
-            </FormErrorMessage>
+                {errors.confirmPassword && errors.confirmPassword.message}
+              </FormErrorMessage>
             </Box>
           </FormControl>
           <Button
