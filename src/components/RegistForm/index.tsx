@@ -12,14 +12,13 @@ import {
 
 import { useForm } from "react-hook-form";
 import registImage from "../../assets/images/regist-image-desktop.png";
-import { iRegisterBody } from "../../contexts/userContext";
+import { iRegisterBody } from "../../contexts/userContext/userContext";
 import { registerSchema } from "../../validations/register";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContextFunction } from "../../contexts/userContext";
+import { useContextFunction } from "../../contexts/userContext/userContext";
 
 export const RegistForm = () => {
-
-  const { submitRegister,setModalControl } = useContextFunction();
+  const { submitRegister, setModalControl } = useContextFunction();
 
   const {
     register,
