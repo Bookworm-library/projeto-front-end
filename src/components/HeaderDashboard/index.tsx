@@ -10,12 +10,14 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { FormEvent, useContext } from "react";
+import { useContextFunction } from "../../contexts/userContext/userContext";
 import { SearchContext } from "../../contexts/searchContext/searchContext";
 
 export const HeaderDashboard = () => {
 
   const navigate = useNavigate()
   const { submitSearch, setSearch } = useContext(SearchContext);
+  const { setModalControl } = useContextFunction();
 
   const searchFunction = (event: FormEvent<HTMLDivElement>) => {
     event.preventDefault();
@@ -38,7 +40,7 @@ export const HeaderDashboard = () => {
     >
       <Flex align="center" gap="20px">
         <Image src="../../src/assets/img/logo.svg" />
-        <Heading color="#DAEEFA"> Bookworm Library</Heading>
+        <Heading fontSize={"26px"} color="#DAEEFA"> Bookworm Library</Heading>
       </Flex>
       <FormControl
         as="form"
@@ -99,6 +101,7 @@ export const HeaderDashboard = () => {
           onClick={() => {
             localStorage.removeItem("token");
             navigate("/")
+            setModalControl(false)
           }}
         >
           Deslogar

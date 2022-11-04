@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import React from "react";
 import { apiFake } from "../../services/api";
+import { FaBookOpen, FaBook } from 'react-icons/fa';
+
 interface iUserContext {
   submitRegister: (body: iRegisterBody) => Promise<void>;
   submitLogin: (body: iRegisterBody) => Promise<void>;
@@ -62,14 +64,20 @@ export const UserProvider = ({ children }: iUserContextProps) => {
 
       const { data } = await apiFake.post<iUserCadastradoAndLogado>("register", body);
       toast.success('Registro realizado com sucesso', {
+        icon: FaBookOpen,
+        theme: "colored",
         position: 'top-right',
         autoClose: 2000
       })
       setModalType("register");
+      setModalControl(false)
     } catch (error) {
       toast.error("Email já existente / Senha inválida", {
-        position: toast.POSITION.TOP_RIGHT
-      });
+        icon: FaBook,
+        theme: "colored",
+        position: 'top-right',
+        autoClose: 2000
+      })
     }
   };
 
@@ -79,6 +87,12 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       const { data } = await apiFake.post<iUserCadastradoAndLogado>("login", body);
       localStorage.setItem("token", data.accessToken);
 
+      toast.success('Login realizado com sucesso', {
+        icon: FaBookOpen,
+        theme: "colored",
+        position: 'top-right',
+        autoClose: 2000
+      })
       navigate("/dashboard")
 
       const getToken = localStorage.getItem("token");
@@ -88,7 +102,12 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       }
       setModalType("login");
     } catch (error) {
-      console.log(error);
+      toast.error('Usuário ou senha inválido!', {
+        icon: FaBook,
+        theme: "colored",
+        position: 'top-right',
+        autoClose: 2000
+      })
     }
   };
 
