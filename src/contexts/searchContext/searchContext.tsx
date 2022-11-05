@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { apiSearch } from "../../services/api";
+import { toast } from "react-toastify";
+import { apiFake, apiSearch } from "../../services/api";
 
 interface iSearchProviderProps {
   children: ReactNode;
@@ -13,9 +14,11 @@ interface iSearchContext {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   searchResults: iBooks[] | undefined;
   setSearchResults: React.Dispatch<React.SetStateAction<iBooks[] | undefined>>;
-  submitSearch: () => void;
   currentBook: iBooks | undefined;
   setCurrentBook: React.Dispatch<React.SetStateAction<iBooks | undefined>>;
+  submitSearch: () => void;
+  addToWishlist: () => Promise<void>;
+  addToLibrary: () => Promise<void>;
 }
 
 interface iBooks {
@@ -47,6 +50,8 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
   const [currentBook, setCurrentBook] = useState<iBooks>();
   const location = useLocation();
   const navigate = useNavigate();
+  const userId = localStorage.getItem("@BookwordmLibrary:userId");
+  const token = localStorage.getItem("@BookwordmLibrary:token");
 
   const submitSearch = async () => {
     if (location.pathname !== "/dashboard/pesquisa") {
@@ -84,6 +89,72 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
       console.log(error);
     }
   };
+
+  const addToWishlist = async () => {
+    try {
+      const {
+        data: { wishlist },
+      } = await apiFake(`users/${userId}`, {
+        headers: { authorization: `Bearer ${token}` },
+      });
+      const find = wishlist.find((book: iBooks) => {
+        return book.id === currentBook?.id;
+      });
+      if (find) {
+        toast.error("Este livro já está na sua lista de desejos!", {
+          theme: "colored",
+          position: "top-right",
+          autoClose: 2000,
+        });
+      } else {
+        const body = { wishlist: [...wishlist, currentBook] };
+        const { data } = await apiFake.patch(`users/${userId}`, body, {
+          headers: { authorization: `Bearer ${token}` },
+        });
+        toast.success("Livro adicionado à lista de desejos!", {
+          theme: "colored",
+          position: "top-right",
+          autoClose: 2000,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const addToLibrary = async () => {
+    try {
+      const {
+        data: { library },
+      } = await apiFake(`users/${userId}`, {
+        headers: { authorization: `Bearer ${token}` },
+      });
+      const find = library.find((book: iBooks) => {
+        return book.id === currentBook?.id;
+      });
+      if (find) {
+        toast.error("Este livro já está na sua biblioteca!", {
+          theme: "colored",
+          position: "top-right",
+          autoClose: 2000,
+        });
+      } else {
+        const body = { library: [...library, currentBook] };
+        const { data } = await apiFake.patch(`users/${userId}`, body, {
+          headers: { authorization: `Bearer ${token}` },
+        });
+        console.log(data);
+        toast.success("Livro adicionado à biblioteca!", {
+          theme: "colored",
+          position: "top-right",
+          autoClose: 2000,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <SearchContext.Provider
       value={{
@@ -96,6 +167,8 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
         submitSearch,
         currentBook,
         setCurrentBook,
+        addToWishlist,
+        addToLibrary,
       }}
     >
       {children}
