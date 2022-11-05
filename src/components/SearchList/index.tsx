@@ -21,8 +21,13 @@ import unknownImage from "../../assets/img/no-image-item.png";
 import { SearchContext } from "../../contexts/searchContext/searchContext";
 
 export const SearchList = () => {
-  const { searchResults, currentBook, setCurrentBook } =
-    useContext(SearchContext);
+  const {
+    searchResults,
+    currentBook,
+    setCurrentBook,
+    addToWishlist,
+    addToLibrary,
+  } = useContext(SearchContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -203,10 +208,10 @@ export const SearchList = () => {
             </Box>
           </ModalBody>
           <ModalFooter display="flex" flexDir="column" gap="10px">
-            <Button bg="blue.dark" color="white">
+            <Button onClick={addToWishlist} bg="blue.dark" color="white">
               Adicionar à lista de desejos
             </Button>
-            <Button bg="blue.dark" color="white">
+            <Button onClick={addToLibrary} bg="blue.dark" color="white">
               Adicionar à biblioteca
             </Button>
           </ModalFooter>
