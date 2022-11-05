@@ -1,11 +1,11 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoutes = () => {
-    const token = localStorage.getItem("token");
+  const token = localStorage.getItem("@BookwordmLibrary:token");
 
-    if (token) return <Outlet />;
+  if (token) return <Outlet />;
 
-    return <Navigate to="/" />;
-}
+  return <Navigate to="/" />;
+};
 
-export default ProtectedRoutes
+export default ProtectedRoutes;

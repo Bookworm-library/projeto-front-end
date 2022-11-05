@@ -14,8 +14,7 @@ import { useContextFunction } from "../../contexts/userContext/userContext";
 import { SearchContext } from "../../contexts/searchContext/searchContext";
 
 export const HeaderDashboard = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { submitSearch, setSearch } = useContext(SearchContext);
   const { setModalControl, onClose } = useContextFunction();
 
@@ -40,7 +39,10 @@ export const HeaderDashboard = () => {
     >
       <Flex align="center" gap="20px">
         <Image src="../../src/assets/img/logo.svg" />
-        <Heading fontSize={"26px"} color="#DAEEFA"> Bookworm Library</Heading>
+        <Heading fontSize={"26px"} color="#DAEEFA">
+          {" "}
+          Bookworm Library
+        </Heading>
       </Flex>
       <FormControl
         as="form"
@@ -89,7 +91,7 @@ export const HeaderDashboard = () => {
           _hover={{ opacity: "0.7" }}
           bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
           onClick={() => {
-            navigate("/dashboard/biblioteca")
+            navigate("/dashboard/biblioteca");
           }}
         >
           Biblioteca
@@ -99,10 +101,11 @@ export const HeaderDashboard = () => {
           _hover={{ opacity: "0.7" }}
           bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
           onClick={() => {
-            localStorage.removeItem("token");
-            navigate("/")
-            setModalControl(false)
-            onClose()
+            localStorage.removeItem("@BookwordmLibrary:token");
+            localStorage.removeItem("@BookwordmLibrary:userId");
+            navigate("/");
+            setModalControl(false);
+            onClose();
           }}
         >
           Deslogar

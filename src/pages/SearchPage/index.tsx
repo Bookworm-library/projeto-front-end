@@ -1,5 +1,5 @@
 import { Box, Flex, Heading } from "@chakra-ui/react";
-import { SearchList } from "../../components/SeacrhList";
+import { SearchList } from "../../components/SearchList";
 
 export const SearchPage = () => {
   return (

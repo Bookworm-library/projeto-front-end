@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
-import { HeaderDashboard } from "../components/HeaderDashboard";
-import { SearchProvider } from "../contexts/searchContext/searchContext";
+import { HeaderDashboard } from "../../components/HeaderDashboard";
+import { SearchProvider } from "../../contexts/searchContext/searchContext";
 
 export const DashboardPage = () => {
   return (

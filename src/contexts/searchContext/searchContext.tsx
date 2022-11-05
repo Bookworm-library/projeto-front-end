@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { apiSearch } from "../../services/api";
 
 interface iSearchProviderProps {
@@ -13,6 +14,8 @@ interface iSearchContext {
   searchResults: iBooks[] | undefined;
   setSearchResults: React.Dispatch<React.SetStateAction<iBooks[] | undefined>>;
   submitSearch: () => void;
+  currentBook: iBooks | undefined;
+  setCurrentBook: React.Dispatch<React.SetStateAction<iBooks | undefined>>;
 }
 
 interface iBooks {
@@ -41,8 +44,14 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
   const [search, setSearch] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [searchResults, setSearchResults] = useState<iBooks[]>();
+  const [currentBook, setCurrentBook] = useState<iBooks>();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const submitSearch = async () => {
+    if (location.pathname !== "/dashboard/pesquisa") {
+      navigate("/dashboard/pesquisa");
+    }
     try {
       setLoading(true);
       const {
@@ -85,6 +94,8 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
         searchResults,
         setSearchResults,
         submitSearch,
+        currentBook,
+        setCurrentBook,
       }}
     >
       {children}
