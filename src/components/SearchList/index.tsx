@@ -26,7 +26,7 @@ export const SearchList = () => {
     currentBook,
     setCurrentBook,
     addToWishlist,
-    addToLibrary,
+    addToLibrary
   } = useContext(SearchContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (

@@ -103,6 +103,18 @@ export const HeaderDashboard = () => {
           onClick={() => {
             localStorage.removeItem("@BookwordmLibrary:token");
             localStorage.removeItem("@BookwordmLibrary:userId");
+            navigate("/dashboard/pesquisa");
+          }}
+        >
+          Livros Pesquisados
+        </Button>
+        <Button
+          sx={{ boxShadow: "0px 4px 9px rgba(0, 0, 0, 0.315)" }}
+          _hover={{ opacity: "0.7" }}
+          bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
+          onClick={() => {
+            localStorage.removeItem("@BookwordmLibrary:token");
+            localStorage.removeItem("@BookwordmLibrary:userId");
             navigate("/");
             setModalControl(false);
             onClose();
@@ -111,6 +123,6 @@ export const HeaderDashboard = () => {
           Deslogar
         </Button>
       </Stack>
-    </Flex>
+    </Flex >
   );
 };

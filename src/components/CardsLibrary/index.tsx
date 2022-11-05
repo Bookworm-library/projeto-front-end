@@ -14,7 +14,6 @@
 
 const CardsLibrary = () => {
     const { searchResults } = useContext(SearchContext);
-
     return (
         <>
         <UnorderedList
