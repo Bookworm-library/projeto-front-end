@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, SetStateAction, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { apiFake, apiSearch } from "../../services/api";
@@ -19,6 +19,8 @@ interface iSearchContext {
   submitSearch: () => void;
   addToWishlist: () => Promise<void>;
   addToLibrary: () => Promise<void>;
+  library:any;
+  setLibrary: any;
 }
 
 interface iBooks {
@@ -48,11 +50,13 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
   const [loading, setLoading] = useState(true);
   const [searchResults, setSearchResults] = useState<iBooks[]>();
   const [currentBook, setCurrentBook] = useState<iBooks>();
+
+  const[library,setLibrary] = useState<any>([])
+
   const location = useLocation();
   const navigate = useNavigate();
   const userId = localStorage.getItem("@BookwordmLibrary:userId");
   const token = localStorage.getItem("@BookwordmLibrary:token");
-
   const submitSearch = async () => {
     if (location.pathname !== "/dashboard/pesquisa") {
       navigate("/dashboard/pesquisa");
@@ -82,7 +86,6 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
         };
         return item;
       });
-      console.log(result);
       setSearchResults(result);
       setLoading(false);
     } catch (error) {
@@ -131,19 +134,24 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
       });
       const find = library.find((book: iBooks) => {
         return book.id === currentBook?.id;
+
       });
+     
       if (find) {
         toast.error("Este livro já está na sua biblioteca!", {
           theme: "colored",
           position: "top-right",
           autoClose: 2000,
         });
+        
+
       } else {
         const body = { library: [...library, currentBook] };
         const { data } = await apiFake.patch(`users/${userId}`, body, {
           headers: { authorization: `Bearer ${token}` },
         });
-        console.log(data);
+        setLibrary(data.library)
+        console.log(data)
         toast.success("Livro adicionado à biblioteca!", {
           theme: "colored",
           position: "top-right",
@@ -169,6 +177,8 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
         setCurrentBook,
         addToWishlist,
         addToLibrary,
+        library,
+        setLibrary
       }}
     >
       {children}
