@@ -4,8 +4,8 @@ import { useContext } from "react";
 import { useContextFunction } from "../../contexts/userContext/userContext";
 
 export const HeaderLandingPage = () => {
-  const {onOpen,setModalControl, setModalType} = useContextFunction()
-  
+  const { onOpen, setModalControl, setModalType } = useContextFunction()
+
   const openRegisterModal = () => {
     setModalControl(true), setModalType("register");
   };
@@ -27,7 +27,7 @@ export const HeaderLandingPage = () => {
         <Heading fontSize={"26px"} color="#DAEEFA"> Bookworm Library</Heading>
       </Flex>
       <Stack align="center" direction={"row"} color="white" gap="20px">
-        <Button onClick={() => onOpen()}
+        <Button onClick={onOpen}
           sx={{ boxShadow: "0px 4px 9px rgba(0, 0, 0, 0.315)" }}
           _hover={{ opacity: "0.7" }}
           bgGradient="linear(to-t,#2CEDE0, #2C7AED)"

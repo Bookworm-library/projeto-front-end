@@ -15,7 +15,7 @@ import { SearchContext } from "../../contexts/searchContext/searchContext";
 
 export const HeaderDashboard = () => {
   const navigate = useNavigate();
-  const { submitSearch, setSearch } = useContext(SearchContext);
+  const { submitSearch, setSearch} = useContext(SearchContext);
   const { setModalControl, onClose } = useContextFunction();
 
   const searchFunction = (event: FormEvent<HTMLDivElement>) => {
@@ -101,8 +101,6 @@ export const HeaderDashboard = () => {
           _hover={{ opacity: "0.7" }}
           bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
           onClick={() => {
-            localStorage.removeItem("@BookwordmLibrary:token");
-            localStorage.removeItem("@BookwordmLibrary:userId");
             navigate("/dashboard/pesquisa");
           }}
         >

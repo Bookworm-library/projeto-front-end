@@ -1,10 +1,11 @@
-import { createContext, useState, useContext, ReactNode } from "react";
+import { createContext, useState, useContext, ReactNode, useEffect } from "react";
 import { useDisclosure } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import React from "react";
 import { apiFake } from "../../services/api";
 import { FaBookOpen, FaBook } from "react-icons/fa";
+import { SearchContext } from "../searchContext/searchContext";
 
 interface iUserContext {
   submitRegister: (body: iRegisterBody) => Promise<void>;
@@ -15,7 +16,7 @@ interface iUserContext {
   isOpen: boolean;
   userInfo: [] | undefined;
   btnModalLoading: boolean;
-  setuserInfo: React.Dispatch<React.SetStateAction<[] | undefined>>;
+  setUserInfo: React.Dispatch<React.SetStateAction<[] | undefined>>;
   onOpen: () => void;
   onClose: () => void;
   setModalType: React.Dispatch<React.SetStateAction<"login" | "register">>;
@@ -52,8 +53,9 @@ export const UserContext = createContext<iUserContext>({} as iUserContext);
 
 export const UserProvider = ({ children }: iUserContextProps) => {
   const navigate = useNavigate();
-
-  const [userInfo, setuserInfo] = useState<[] | undefined>([]);
+  const userId = localStorage.getItem("@BookwordmLibrary:userId");
+  const token = localStorage.getItem("@BookwordmLibrary:token");
+  const [userInfo, setUserInfo] = useState<[] | undefined>([]);
   const [modalControl, setModalControl] = useState<boolean>(false);
   const [btnModalLoading, setBVtnModalLoading] = useState<boolean>(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -61,6 +63,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
 
   const submitRegister = async (body: iRegisterBody): Promise<void> => {
     const newBody = { ...body, library: [], wishlist: [], recomended: [] };
+
     try {
       const { data } = await apiFake.post<iUserCadastradoAndLogado>(
         "register",
@@ -101,13 +104,13 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         position: "top-right",
         autoClose: 2000,
       });
+
       navigate("/dashboard");
 
-      const getToken = localStorage.getItem("@BookwordmLibrary:token");
-
-      if (getToken) {
+      if (token) {
         navigate("/dashboard");
       }
+
       setModalType("login");
     } catch (error) {
       toast.error("Usuário ou senha inválido!", {
@@ -132,7 +135,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         onOpen,
         onClose,
         userInfo,
-        setuserInfo,
+        setUserInfo,
         btnModalLoading,
         setBVtnModalLoading,
       }}

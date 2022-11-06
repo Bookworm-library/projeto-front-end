@@ -9,7 +9,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <ChakraProvider theme={projectTheme}>
-        <App />
+          <App />
       </ChakraProvider>
     </BrowserRouter>
   </React.StrictMode>

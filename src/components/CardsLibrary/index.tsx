@@ -9,11 +9,13 @@
     Stack,
     Button,
     } from "@chakra-ui/react";
-    import { useContext } from "react";
-    import { SearchContext } from "../../contexts/searchContext/searchContext";
+import { useContext } from "react";
+import { SearchContext } from "../../contexts/searchContext/searchContext";
+import unknownImage from "../../assets/img/no-image-item.png";
 
 const CardsLibrary = () => {
-    const { searchResults } = useContext(SearchContext);
+  const{library} = useContext(SearchContext)
+
     return (
         <>
         <UnorderedList
@@ -35,9 +37,10 @@ const CardsLibrary = () => {
             },
             }}
         >
-            {searchResults?.map((element) => {
+            {library?.map((element:any) => {
+              
             return (
-                <List
+                <List key={element.id}
                 border={"1px"}
                 padding="0px 20px"
                 bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
@@ -48,7 +51,11 @@ const CardsLibrary = () => {
                 >
                 <Flex align={"start"} p="10px">
                     <Image
-                    src={element.volumeInfo.imageLinks?.thumbnail}
+                        src={
+                            element.volumeInfo.imageLinks
+                            ? element.volumeInfo.imageLinks?.thumbnail
+                            : unknownImage
+                        }
                     w="125px"
                     h="168px"
                     />
@@ -62,7 +69,7 @@ const CardsLibrary = () => {
                     <Heading as="h3" fontSize={"20px"} marginTop="10px">
                         Autor:
                     </Heading>
-                    <Text as="span" fontSize={"16px"}>
+                    <Text as="span" fontSize={"16px"} noOfLines={[1]}>
                         {element.volumeInfo.authors}
                     </Text>
                     </Box>

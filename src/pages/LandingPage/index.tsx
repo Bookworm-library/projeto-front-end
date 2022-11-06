@@ -9,12 +9,12 @@ import { UserContext } from "../../contexts/userContext/userContext";
 
 export const LandingPage = () => {
   const { modalControl, modalType, onClose } = useContext(UserContext);
+  const token = localStorage.getItem("@BookwordmLibrary:token");
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getToken = localStorage.getItem("@BookwordmLibrary:token");
-    if (getToken) navigate("/dashboard", { replace: true });
+    if (token) navigate("/dashboard", { replace: true });
   }, []);
 
   return (
