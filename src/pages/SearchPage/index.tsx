@@ -4,7 +4,7 @@ import { SearchList } from "../../components/SearchList";
 export const SearchPage = () => {
   return (
     <Flex
-      w="100vw"
+      w="100%"
       h="100vh"
       display="flex"
       flexDirection="column"
@@ -26,7 +26,7 @@ export const SearchPage = () => {
         borderRadius="32px"
         bg="white"
       >
-        <Heading as="h3" fontSize="2rem" color="blue.light">
+        <Heading as="h3" fontSize="2rem" color="blue.light" >
           Livros pesquisados:
         </Heading>
       </Box>

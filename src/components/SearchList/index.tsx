@@ -36,6 +36,19 @@ export const SearchList = () => {
         display="flex"
         flexWrap="wrap"
         gap="2rem"
+        h={"900px"}
+        overflowY="auto"
+        css={{
+          "&::-webkit-scrollbar": {
+              width: "4px",
+          },
+          "&::-webkit-scrollbar-track": {
+              width: "6px",
+          },
+          "&::-webkit-scrollbar-thumb": {
+              borderRadius: "24px",
+          },
+          }}
       >
         {searchResults?.length !== 0 ? (
           searchResults?.map((item) => {
@@ -52,6 +65,7 @@ export const SearchList = () => {
                 marginBottom="1.5rem"
                 bgGradient="linear(to-t, cyan, blue.light)"
                 borderRadius="4px"
+                
               >
                 <Box
                   display="flex"

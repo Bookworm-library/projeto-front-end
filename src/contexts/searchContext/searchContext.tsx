@@ -60,7 +60,8 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
       headers: { authorization: `Bearer ${token}` },
     });
     const livrosUser = data.library
-    setLibrary(livrosUser)
+    const order = livrosUser?.reverse()
+    setLibrary(order)
   }
 
   useEffect(() => {
