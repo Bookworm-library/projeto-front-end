@@ -7,10 +7,10 @@ export const projectTheme = extendTheme({
       100: "#000",
     },
     white: "#FFFFFF",
-    blue:{
-      "light": "#2C7AED",
-      "dark": "#3580EE"
-    } ,
+    blue: {
+      light: "#2C7AED",
+      dark: "#3580EE",
+    },
     cyan: "#2CEDE0",
     violet: "#4552CE",
   },
@@ -18,4 +18,9 @@ export const projectTheme = extendTheme({
     heading: "'Inter', sans-serif",
     Text: "'Inter', sans-serif",
   },
+  breakpoints: { 
+    sm: "320px", 
+    md: "768px", 
+    lg: "960px", 
+    xl: "1200px" },
 });
