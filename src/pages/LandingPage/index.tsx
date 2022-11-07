@@ -20,7 +20,7 @@ export const LandingPage = () => {
 
   return (
     <>
-      <Box w="100vw" h="100vh">
+      <Box w="100%" h="100vh">
         <HeaderLandingPage />
         <MainLandingPage />
         <Modal

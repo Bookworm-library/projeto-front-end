@@ -1,4 +1,4 @@
-    import {
+import {
     Box,
     Image,
     Text,
@@ -8,13 +8,13 @@
     Heading,
     Stack,
     Button,
-    } from "@chakra-ui/react";
+} from "@chakra-ui/react";
 import { useContext } from "react";
 import { SearchContext } from "../../contexts/searchContext/searchContext";
 import unknownImage from "../../assets/img/no-image-item.png";
 
 const CardsLibrary = () => {
-  const{library} = useContext(SearchContext)
+    const { library } = useContext(SearchContext);
 
     return (
         <>
@@ -23,7 +23,7 @@ const CardsLibrary = () => {
             gap="30px"
             w="100%"
             flexWrap={"wrap"}
-            maxH="800px"
+            h="900px"
             overflowY="auto"
             css={{
             "&::-webkit-scrollbar": {
@@ -37,27 +37,32 @@ const CardsLibrary = () => {
             },
             }}
         >
-            {library?.map((element:any) => {
-              
+            {library?.map((element: any) => {
             return (
-                <List key={element.id}
-                border={"1px"}
-                padding="0px 20px"
-                bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
-                maxW="320px"
-                minW="320px"
-                maxH="250px"
-                minH={"250px"}
+                <List
+                key={element.id}
+                w="30%"
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                gap="1.5rem"
+                margin={0}
+                padding={"1rem"}
+                marginBottom="1.5rem"
+                bgGradient="linear(to-t, cyan, blue.light)"
+                borderRadius="4px"
                 >
                 <Flex align={"start"} p="10px">
                     <Image
-                        src={
-                            element.volumeInfo.imageLinks
-                            ? element.volumeInfo.imageLinks?.thumbnail
-                            : unknownImage
-                        }
-                    w="125px"
-                    h="168px"
+                    src={
+                        element.volumeInfo.imageLinks
+                        ? element.volumeInfo.imageLinks?.thumbnail
+                        : unknownImage
+                    }
+                    w="8.25rem"
+                    h="12.5rem"
+                    margin={0}
+                    padding={0}
                     />
                     <Box p="0px 15px" color={"white"} overflow="hidden">
                     <Heading as="h3" fontSize={"20px"}>
@@ -75,7 +80,13 @@ const CardsLibrary = () => {
                     </Box>
                 </Flex>
                 <Stack p="10px 0px">
-                    <Button color="white" bg="#2C7AED" _hover={{ opacity: "0.7" }}>
+                    <Button
+                    color="white"
+                    bg="#2C7AED"
+                    _hover={{ opacity: "0.7" }}
+                    w="13.75rem"
+                    h="2.625rem"
+                    >
                     Ver Livro
                     </Button>
                 </Stack>
@@ -85,5 +96,5 @@ const CardsLibrary = () => {
         </UnorderedList>
         </>
     );
-};
+    };
 export default CardsLibrary;
