@@ -20,7 +20,7 @@ interface iSearchContext {
   addToWishlist: () => Promise<void>;
   addToLibrary: () => Promise<void>;
   library: iBooks[] | undefined;
-  setLibrary: React.Dispatch<SetStateAction<iBooks[] | undefined>>
+  setLibrary: React.Dispatch<SetStateAction<iBooks[] | undefined>>;
 }
 
 interface iBooks {
@@ -30,10 +30,10 @@ interface iBooks {
     authors: string | undefined;
     description: string;
     imageLinks:
-    | {
-      thumbnail: string;
-    }
-    | undefined;
+      | {
+          thumbnail: string;
+        }
+      | undefined;
   };
 }
 interface iBooksArray {
@@ -48,7 +48,29 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
   const [loading, setLoading] = useState(true);
   const [searchResults, setSearchResults] = useState<iBooks[]>();
   const [currentBook, setCurrentBook] = useState<iBooks>();
-  const [library, setLibrary] = useState<iBooks[] | undefined>([])
+  const [library, setLibrary] = useState<iBooks[] | undefined>([
+    {
+      id: "132456789",
+      volumeInfo: {
+        title: "PlaceHolder",
+        authors: "PlaceHolder",
+        description: "PlaceHolder",
+        imageLinks: {
+          thumbnail:
+            "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1663085107/amc-cdn/production/2/movies/62300/62331/PosterDynamic/142915.jpg",
+        },
+      },
+    },
+    {
+      id: "132456789123",
+      volumeInfo: {
+        title: "PlaceHolder2",
+        authors: "PlaceHolder2",
+        description: "PlaceHolder2",
+        imageLinks: undefined,
+      },
+    },
+  ]);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -59,14 +81,14 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
     const { data } = await apiFake.get(`users/${userId}`, {
       headers: { authorization: `Bearer ${token}` },
     });
-    const livrosUser = data.library
-    const order = livrosUser?.reverse()
-    setLibrary(order)
+    const livrosUser = data.library;
+    const order = livrosUser?.reverse();
+    setLibrary(order);
   }
 
   useEffect(() => {
-    getInfoUserLogin()
-  }, [token])
+    getInfoUserLogin();
+  }, [token]);
 
   const submitSearch = async () => {
     if (location.pathname !== "/dashboard/pesquisa") {
@@ -145,7 +167,6 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
       });
       const find = library.find((book: iBooks) => {
         return book.id === currentBook?.id;
-
       });
 
       if (find) {
@@ -154,15 +175,13 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
           position: "top-right",
           autoClose: 2000,
         });
-
-
       } else {
         const body = { library: [...library, currentBook] };
         const { data } = await apiFake.patch(`users/${userId}`, body, {
           headers: { authorization: `Bearer ${token}` },
         });
-        setLibrary(data.library)
-        console.log(data)
+        setLibrary(data.library);
+        console.log(data);
         toast.success("Livro adicionado à biblioteca!", {
           theme: "colored",
           position: "top-right",
@@ -189,11 +208,10 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
         addToWishlist,
         addToLibrary,
         library,
-        setLibrary
+        setLibrary,
       }}
     >
       {children}
     </SearchContext.Provider>
   );
 };
-

@@ -12,9 +12,12 @@ import {
 import { useContext } from "react";
 import { SearchContext } from "../../contexts/searchContext/searchContext";
 import unknownImage from "../../assets/img/no-image-item.png";
+import { ModalLibrary } from "../ModalLibrary";
+import { useContextFunction } from "../../contexts/userContext/userContext";
 
 const CardsLibrary = () => {
-  const { library } = useContext(SearchContext);
+  const { library, setCurrentBook } = useContext(SearchContext);
+  const { onOpen, isOpen, onClose } = useContextFunction();
 
   return (
     <>
@@ -86,9 +89,15 @@ const CardsLibrary = () => {
                   _hover={{ opacity: "0.7" }}
                   w="13.75rem"
                   h="2.625rem"
+                  onClick={(e) => {
+                    e.preventDefault;
+                    onOpen();
+                    setCurrentBook(element);
+                  }}
                 >
                   Ver Livro
                 </Button>
+                <ModalLibrary isOpen={isOpen} onClose={onClose} />
               </Stack>
             </ListItem>
           );

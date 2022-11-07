@@ -8,13 +8,10 @@ import ProtectedRoutes from "../components/ProtectedRouter";
 export const RoutesMain = () => (
   <Routes>
     <Route path="/" element={<LandingPage />} />
+    <Route path="/dashboard/biblioteca" element={<DashboardLibrary />}></Route>
     <Route path="/" element={<ProtectedRoutes />}>
       <Route path="dashboard" element={<DashboardPage />}>
         <Route index></Route>
-        <Route
-          path="/dashboard/biblioteca"
-          element={<DashboardLibrary />}
-        ></Route>
         <Route path="/dashboard/pesquisa" element={<SearchPage />}></Route>
       </Route>
     </Route>
