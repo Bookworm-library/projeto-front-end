@@ -19,6 +19,7 @@ import {
 import { useContext } from "react";
 import unknownImage from "../../assets/img/no-image-item.png";
 import { SearchContext } from "../../contexts/searchContext/searchContext";
+import { ListCard } from "../ListCard";
 
 export const SearchList = () => {
   const {
@@ -36,7 +37,7 @@ export const SearchList = () => {
         display="flex"
         flexWrap="wrap"
         gap="2rem"
-        h={"100%"}
+        h={"80vh"}
         overflowY="auto"
         css={{
           "&::-webkit-scrollbar": {
@@ -51,99 +52,13 @@ export const SearchList = () => {
           }}
       >
         {searchResults?.length !== 0 ? (
-          searchResults?.map((item) => {
+          searchResults?.map((element) => {
             return (
-              <ListItem
-                key={item.id}
-                w="30%"
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                gap="1.5rem"
-                margin={"0"}
-                padding={"1rem"}
-                marginBottom="1.5rem"
-                bgGradient="linear(to-t, cyan, blue.light)"
-                borderRadius="4px"
-                maxW={"320px"}
-                minW="320px"
-                minH="20.5rem"
-                maxH="20.5rem"
-              >
-                <Box
-                  display="flex"
-                  flexDirection="row"
-                  justifyContent="center"
-                  gap="12px"
-                >
-                  <Box w="8.25rem" h="12.5rem">
-                    <Image
-                      src={
-                        item.volumeInfo.imageLinks
-                          ? item.volumeInfo.imageLinks?.thumbnail
-                          : unknownImage
-                      }
-                      w="100%"
-                      h="100%"
-                      margin={0}
-                      padding={0}
-                    />
-                  </Box>
-                  <Box
-                    w="40"
-                    maxW="60%"
-                    display="flex"
-                    flexDirection="column"
-                    gap="1rem"
-                  >
-                    <Box>
-                      <Heading as="h4" fontSize="1.25rem" color="white">
-                        Título:
-                      </Heading>
-                      <Text
-                        as="p"
-                        whiteSpace="nowrap"
-                        overflow="hidden"
-                        textOverflow="ellipsis"
-                        fontSize="1rem"
-                        color="white"
-                      >
-                        {item.volumeInfo.title}
-                      </Text>
-                    </Box>
-                    <Box>
-                      <Heading as="h4" fontSize="1.25rem" color="white">
-                        Autor:
-                      </Heading>
-                      <Text
-                        as="p"
-                        whiteSpace="nowrap"
-                        overflow="hidden"
-                        textOverflow="ellipsis"
-                        fontSize="1rem"
-                        color="white"
-                      >
-                        {item.volumeInfo.authors}
-                      </Text>
-                    </Box>
-                  </Box>
-                </Box>
-                <Button
-                  type="button"
-                  w="13.75rem"
-                  h="2.625rem"
-                  color="white"
-                  bg="blue.dark"
-                  _hover={{ bg: "blue.dark" }}
-                  _focus={{ bg: "blue.dark" }}
-                  onClick={() => {
-                    setCurrentBook(item);
-                    onOpen();
-                  }}
-                >
-                  Adicionar a biblioteca
-                </Button>
-              </ListItem>
+              <ListCard key={element.id} element={element} buttonTitle={"Ver Livro"} itemAction={()=>{
+                setCurrentBook(element)
+                onOpen()
+              }} />
+
             );
           })
         ) : (

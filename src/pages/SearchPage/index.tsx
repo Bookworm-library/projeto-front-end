@@ -14,6 +14,7 @@ export const SearchPage = () => {
       backgroundSize="cover"
       backgroundPosition="center"
       backgroundRepeat="no-repeat"
+      
     >
       <Box
         w="22.5rem"
@@ -30,7 +31,9 @@ export const SearchPage = () => {
           Livros pesquisados:
         </Heading>
       </Box>
-      <SearchList  />
+      <Flex  margin={"0px auto"} w="86.5%" >  
+        <SearchList  />
+      </Flex>
     </Flex>
   );
 };

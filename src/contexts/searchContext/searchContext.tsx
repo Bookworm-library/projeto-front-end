@@ -59,8 +59,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
     const { data } = await apiFake.get(`users/${userId}`, {
       headers: { authorization: `Bearer ${token}` },
     });
-    const livrosUser = data.library
-    const order = livrosUser?.reverse()
+    const order = data.library.reverse()
     setLibrary(order)
   }
 
@@ -161,7 +160,8 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
         const { data } = await apiFake.patch(`users/${userId}`, body, {
           headers: { authorization: `Bearer ${token}` },
         });
-        setLibrary(data.library)
+        const order = data.library.reverse()
+        setLibrary(order)
         toast.success("Livro adicionado à biblioteca!", {
           theme: "colored",
           position: "top-right",
