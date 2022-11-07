@@ -19,7 +19,7 @@ import {
 import { useForm } from "react-hook-form";
 import { useContextFunction } from "../../contexts/userContext/userContext";
 
-export const LibraryModal = () => {
+export const ModalLibrary = () => {
   const { onOpen, isOpen, onClose } = useContextFunction();
 
   const { register, handleSubmit } = useForm();
@@ -110,30 +110,38 @@ export const LibraryModal = () => {
             </Box>
           </ModalBody>
 
-          <ModalFooter w="100%" flexDirection="column" alignItems="baseline">
-            <FormControl as="form" onSubmit={handleSubmit(onSubmitFunction)}>
-              <FormLabel>Digite seu comentário:</FormLabel>
-              <Textarea
-                color="black"
-                bgColor="white"
-                required
-                placeholder="Digite seu comentário"
-                size="sm"
-                {...register("coment")}
-              />
-              <Button
-                type="submit"
-                borderStyle="4px"
-                mt="10px"
-                w="100%"
-                bg="white"
-                color="black"
-                _hover={{ opacity: "0.7" }}
-                alignSelf="end"
-              >
-                Entrar
-              </Button>
-            </FormControl>
+          <ModalFooter
+            w="100%"
+            flexDirection="row"
+            alignItems="baseline"
+            justifyContent="space-between"
+            gap="15px"
+          >
+            <Button
+              type="button"
+              borderStyle="4px"
+              mt="10px"
+              w="100%"
+              bg="white"
+              color="black"
+              _hover={{ opacity: "0.7" }}
+              alignSelf="end"
+            >
+              Recomendar
+            </Button>
+
+            <Button
+              type="button"
+              borderStyle="4px"
+              mt="10px"
+              w="100%"
+              bg="red"
+              color="white"
+              _hover={{ opacity: "0.7" }}
+              alignSelf="end"
+            >
+              Exluir
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
