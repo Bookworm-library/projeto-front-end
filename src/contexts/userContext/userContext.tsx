@@ -66,26 +66,27 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   const [userInfo, setUserInfo] = useState<[] | undefined>([]);
 
   const [modalControl, setModalControl] = useState<boolean>(false);
+
   const [modalLogin, setModalLogin] = useState<boolean>(false);
   const [modalCadastro, setModalCadastro] = useState<boolean>(false);
   const [modalType, setModalType] = useState<"login" | "register">("login");
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [btnModalLoadingLogin, setBVtnModalLoadingLogin] = useState<boolean>(false);
   const [btnModalLoadingCadastro, setBVtnModalLoadingCadastro] = useState<boolean>(false);
 
-  console.log("//////////////////////////////////")
-  console.log("btnModalLoadingLogin",btnModalLoadingLogin)
-  console.log("btnModalLoadingCadastro",btnModalLoadingCadastro)
-
-  console.log("//////////////////////////////////")
-  console.log("isOpen",isOpen)
   console.log("modalControl",modalControl)
+  console.log("isOpen",isOpen)
   
+
   const submitRegister = async (body: iRegisterBody): Promise<void> => {
 
-    const newBody = { ...body, library: [], wishlist: [], recomended: [] };
+    if(body === undefined){
+      setBVtnModalLoadingCadastro(false);
+    }
 
+    const newBody = { ...body, library: [], wishlist: [], recomended: [] };
     try {
       const { data } = await apiFake.post<iUserCadastradoAndLogado>(
         "register",
@@ -97,7 +98,9 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         position: "top-right",
         autoClose: 2000,
       });
+
       setBVtnModalLoadingCadastro(false);
+      
       setModalType("register");
       setModalControl(false);
     } catch (error) {
@@ -111,7 +114,9 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   };
 
   const submitLogin = async (body: iLoginBody): Promise<void> => {
-   
+    if(body === undefined){
+      setBVtnModalLoadingLogin(false);
+    }
     try {
       const { data } = await apiFake.post<iUserCadastradoAndLogado>(
         "login",
@@ -119,8 +124,6 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       );
       localStorage.setItem("@BookwordmLibrary:token", data.accessToken);
       localStorage.setItem("@BookwordmLibrary:userId", data.user.id + "");
-
-     
 
       toast.success("Login realizado com sucesso", {
         icon: FaBookOpen,
