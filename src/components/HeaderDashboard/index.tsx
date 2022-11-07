@@ -15,8 +15,8 @@ import { SearchContext } from "../../contexts/searchContext/searchContext";
 
 export const HeaderDashboard = () => {
   const navigate = useNavigate();
-  const { submitSearch, setSearch} = useContext(SearchContext);
-  const { setModalControl, onClose } = useContextFunction();
+  const { submitSearch, setSearch } = useContext(SearchContext);
+  const { setModalControl, onClose, setBVtnModalLoadingLogin } = useContextFunction();
 
   const searchFunction = (event: FormEvent<HTMLDivElement>) => {
     event.preventDefault();
@@ -91,20 +91,20 @@ export const HeaderDashboard = () => {
           _hover={{ opacity: "0.7" }}
           bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
           onClick={() => {
-            navigate("/dashboard/biblioteca");
+            navigate("/dashboard/pesquisa");
           }}
         >
-          Biblioteca
+          Home
         </Button>
         <Button
           sx={{ boxShadow: "0px 4px 9px rgba(0, 0, 0, 0.315)" }}
           _hover={{ opacity: "0.7" }}
           bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
           onClick={() => {
-            navigate("/dashboard/pesquisa");
+            navigate("/dashboard/biblioteca");
           }}
         >
-          Livros Pesquisados
+          Biblioteca
         </Button>
         <Button
           sx={{ boxShadow: "0px 4px 9px rgba(0, 0, 0, 0.315)" }}
@@ -116,6 +116,7 @@ export const HeaderDashboard = () => {
             navigate("/");
             setModalControl(false);
             onClose();
+            setBVtnModalLoadingLogin(false)
           }}
         >
           Deslogar

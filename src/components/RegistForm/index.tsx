@@ -21,7 +21,7 @@ import { registerSchema } from "../../validations/register";
 
 export const RegistForm = () => {
 
-  const { submitRegister, setModalControl, onOpen, btnModalLoading } = useContextFunction();
+  const { submitRegister, setModalControl, onOpen, setBVtnModalLoadingCadastro, btnModalLoadingCadastro } = useContextFunction();
 
   const {
     register,
@@ -225,8 +225,9 @@ export const RegistForm = () => {
             fontSize={"20px"}
             color={"blue.dark"}
             _hover={{ opacity: "0.7" }}
+            onClick={() => setBVtnModalLoadingCadastro(true)}
           >
-            {btnModalLoading ? (<Spinner
+            {btnModalLoadingCadastro ? (<Spinner
               thickness='4px'
               speed='0.65s'
               emptyColor='gray.200'
@@ -254,7 +255,7 @@ export const RegistForm = () => {
               _focus={{ bg: "transparent" }}
               _hover={{ bg: "transparent" }}
               onClick={() => {
-                setModalControl(false)
+                setModalControl(true)
                 onOpen()
               }}
             >
