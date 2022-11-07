@@ -23,7 +23,7 @@ interface iSearchContext {
   setLibrary: React.Dispatch<SetStateAction<iBooks[] | undefined>>
 }
 
-interface iBooks {
+export interface iBooks {
   id: string;
   volumeInfo: {
     title: string;
@@ -63,6 +63,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
     const order = livrosUser?.reverse()
     setLibrary(order)
   }
+
   useEffect(() => {
     getInfoUserLogin()
   }, [token])
@@ -153,13 +154,14 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
           position: "top-right",
           autoClose: 2000,
         });
+
+
       } else {
         const body = { library: [...library, currentBook] };
         const { data } = await apiFake.patch(`users/${userId}`, body, {
           headers: { authorization: `Bearer ${token}` },
         });
         setLibrary(data.library)
-        console.log(data)
         toast.success("Livro adicionado à biblioteca!", {
           theme: "colored",
           position: "top-right",
@@ -170,6 +172,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
       console.log(error);
     }
   };
+
   return (
     <SearchContext.Provider
       value={{
@@ -192,4 +195,3 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
     </SearchContext.Provider>
   );
 };
-

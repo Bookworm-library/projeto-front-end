@@ -36,7 +36,7 @@ export const SearchList = () => {
         display="flex"
         flexWrap="wrap"
         gap="2rem"
-        h={"900px"}
+        h={"100%"}
         overflowY="auto"
         css={{
           "&::-webkit-scrollbar": {
@@ -60,12 +60,15 @@ export const SearchList = () => {
                 flexDirection="column"
                 alignItems="center"
                 gap="1.5rem"
-                margin={0}
+                margin={"0"}
                 padding={"1rem"}
                 marginBottom="1.5rem"
                 bgGradient="linear(to-t, cyan, blue.light)"
                 borderRadius="4px"
-                
+                maxW={"320px"}
+                minW="320px"
+                minH="20.5rem"
+                maxH="20.5rem"
               >
                 <Box
                   display="flex"

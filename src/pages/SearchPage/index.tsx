@@ -30,7 +30,7 @@ export const SearchPage = () => {
           Livros pesquisados:
         </Heading>
       </Box>
-      <SearchList />
+      <SearchList  />
     </Flex>
   );
 };

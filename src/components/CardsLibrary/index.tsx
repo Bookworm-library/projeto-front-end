@@ -3,15 +3,16 @@ import {
     Image,
     Text,
     UnorderedList,
-    List,
     Flex,
     Heading,
     Stack,
     Button,
+    ListItem
 } from "@chakra-ui/react";
 import { useContext } from "react";
 import { SearchContext } from "../../contexts/searchContext/searchContext";
 import unknownImage from "../../assets/img/no-image-item.png";
+import { iBooks } from "../../contexts/searchContext/searchContext";
 
 const CardsLibrary = () => {
     const { library } = useContext(SearchContext);
@@ -23,8 +24,9 @@ const CardsLibrary = () => {
             gap="30px"
             w="100%"
             flexWrap={"wrap"}
-            h="900px"
             overflowY="auto"
+            h="100% "           
+            alignItems={"center"}
             css={{
             "&::-webkit-scrollbar": {
                 width: "4px",
@@ -35,22 +37,26 @@ const CardsLibrary = () => {
             "&::-webkit-scrollbar-thumb": {
                 borderRadius: "24px",
             },
+           
             }}
         >
-            {library?.map((element: any) => {
+            {library?.map((element: iBooks) => {
             return (
-                <List
+                <ListItem
                 key={element.id}
-                w="30%"
+                width={"30%"}
                 display="flex"
                 flexDirection="column"
                 alignItems="center"
-                gap="1.5rem"
                 margin={0}
                 padding={"1rem"}
                 marginBottom="1.5rem"
                 bgGradient="linear(to-t, cyan, blue.light)"
                 borderRadius="4px"
+                maxW={"320px"}
+                minW="320px"
+                minH="20.5rem"
+                maxH="20.5rem"
                 >
                 <Flex align={"start"} p="10px">
                     <Image
@@ -59,8 +65,8 @@ const CardsLibrary = () => {
                         ? element.volumeInfo.imageLinks?.thumbnail
                         : unknownImage
                     }
-                    w="8.25rem"
-                    h="12.5rem"
+                    minW="8.25rem"
+                    minH="12.5rem"
                     margin={0}
                     padding={0}
                     />
@@ -90,7 +96,7 @@ const CardsLibrary = () => {
                     Ver Livro
                     </Button>
                 </Stack>
-                </List>
+                </ListItem>
             );
             })}
         </UnorderedList>
