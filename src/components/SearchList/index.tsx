@@ -26,7 +26,7 @@ export const SearchList = () => {
     currentBook,
     setCurrentBook,
     addToWishlist,
-    addToLibrary
+    addToLibrary,
   } = useContext(SearchContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -40,15 +40,15 @@ export const SearchList = () => {
         overflowY="auto"
         css={{
           "&::-webkit-scrollbar": {
-              width: "4px",
+            width: "4px",
           },
           "&::-webkit-scrollbar-track": {
-              width: "6px",
+            width: "6px",
           },
           "&::-webkit-scrollbar-thumb": {
-              borderRadius: "24px",
+            borderRadius: "24px",
           },
-          }}
+        }}
       >
         {searchResults?.length !== 0 ? (
           searchResults?.map((item) => {
@@ -65,7 +65,6 @@ export const SearchList = () => {
                 marginBottom="1.5rem"
                 bgGradient="linear(to-t, cyan, blue.light)"
                 borderRadius="4px"
-                
               >
                 <Box
                   display="flex"
@@ -191,33 +190,37 @@ export const SearchList = () => {
                 </Text>
               </Flex>
             </Flex>
-            <Box
-              mt="10px"
-              bg="white"
-              padding="10px"
-              maxH="150px"
-              overflowY="scroll"
-              borderRadius="4px"
-              css={{
-                scrollbarWidth: "auto",
-                scrollbarColor: "#2c7aed #ffffff",
-                "::-webkit-scrollbar": {
-                  width: "12px",
-                },
-                "::-webkit-scrollbar-track": {
-                  background: "#ffffff",
-                },
-                "::-webkit-scrollbar-thumb": {
-                  backgroundColor: "#2c7aed",
-                  borderRadius: "10px",
-                  border: "2px solid #ffffff",
-                },
-              }}
-            >
-              <Text fontSize="1rem">
-                {currentBook?.volumeInfo.description
-                  ? currentBook?.volumeInfo.description
-                  : "O título não possui uma descrição"}
+
+            <Box w="100%" mt="10px">
+              <Heading as="h4" fontSize="1.25rem" m="8px" color="white">
+                Sinopse:
+              </Heading>
+              <Text
+                size="20px"
+                p="10px"
+                bg="white"
+                color="black"
+                borderRadius="4px"
+                maxH="150px"
+                overflowY="scroll"
+                css={{
+                  scrollbarWidth: "auto",
+                  scrollbarColor: "#2c7aed #ffffff",
+                  "::-webkit-scrollbar": {
+                    width: "12px",
+                  },
+                  "::-webkit-scrollbar-track": {
+                    background: "#ffffff",
+                  },
+                  "::-webkit-scrollbar-thumb": {
+                    backgroundColor: "#2c7aed",
+                    borderRadius: "10px",
+                    border: "2px solid #ffffff",
+                  },
+                }}
+              >
+                {currentBook?.volumeInfo.description ||
+                  "O título não possui uma descrição"}
               </Text>
             </Box>
           </ModalBody>

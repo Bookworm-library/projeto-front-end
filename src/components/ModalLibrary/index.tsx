@@ -11,6 +11,7 @@ import {
   Button,
   Heading,
   Box,
+  Flex,
 } from "@chakra-ui/react";
 import { useContext } from "react";
 import unknownImage from "../../assets/img/no-image-item.png";
@@ -22,74 +23,66 @@ interface iModalProps {
 }
 
 export const ModalLibrary = ({ isOpen, onClose }: iModalProps) => {
-  const { currentBook } = useContext(SearchContext);
+  const { currentBook, removeFromLibrary, addToRecomendedList } =
+    useContext(SearchContext);
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal
+      blockScrollOnMount={false}
+      isCentered
+      isOpen={isOpen}
+      onClose={onClose}
+    >
       <ModalOverlay />
       <ModalContent
-        minW={{ base: "300px", lg: "950px" }}
-        maxW={{ base: "300px", lg: "950px" }}
+        minW={{ base: "300px", md: "450px" }}
+        maxW={{ base: "300px", md: "450px" }}
         display="flex"
-        flexDirection={{ base: "column", lg: "row" }}
+        flexDirection={"column"}
         flexWrap="wrap"
         color="white"
-        bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
+        bgGradient="linear(to-t, cyan, blue.light)"
       >
-        <ModalHeader
-          display="flex"
-          gap="10px"
-          minW={{ base: "100%", lg: "50%" }}
-          maxW="inherit"
-        >
-          <Image
-            maxW={{ base: "100px", lg: "200px" }}
-            src={
-              currentBook?.volumeInfo.imageLinks
-                ? currentBook?.volumeInfo.imageLinks?.thumbnail
-                : unknownImage
-            }
-          />
-          <Box
-            display="flex"
-            gap="17px"
-            flexDirection="column"
-            maxW="inherit"
-            overflow="auto"
-          >
-            <Heading as="h2" size="24px">
-              Titulo:
-            </Heading>
-            <Text
-              size="20px"
-              textOverflow="ellipsis"
-              overflow="hidden"
-              whiteSpace="nowrap"
-            >
-              {currentBook?.volumeInfo.title}
-            </Text>
-            <Heading as="h2" size="24px">
-              Autor:
-            </Heading>
-            <Text
-              size="20px"
-              textOverflow="ellipsis"
-              overflow="hidden"
-              whiteSpace="nowrap"
-            >
-              {currentBook?.volumeInfo.authors}
-            </Text>
-          </Box>
+        <ModalHeader textAlign="center" color="white">
+          Livro Selecionado
         </ModalHeader>
+        <ModalCloseButton
+          bg="#FFFFFF"
+          color="#4552CE"
+          _hover={{ bg: "#FFFFFF" }}
+          fontWeight="bold"
+        />
 
-        <ModalCloseButton />
-        <ModalBody
-          flexDirection="row"
-          display="flex"
-          justifyContent="space-between"
-        >
-          <Box>
-            <Heading as="h2" size="24px" m="8px">
+        <ModalBody>
+          <Flex gap="20px">
+            <Image
+              maxW={{ base: "100px", md: "200px" }}
+              src={
+                currentBook?.volumeInfo.imageLinks
+                  ? currentBook?.volumeInfo.imageLinks?.thumbnail
+                  : unknownImage
+              }
+            />
+            <Flex flexDir="column">
+              <Heading as="h4" fontSize="1.25rem" color="white">
+                Título:
+              </Heading>
+
+              <Text fontSize="1rem" color="white">
+                {currentBook?.volumeInfo.title}
+              </Text>
+
+              <Heading mt="15px" as="h4" fontSize="1.25rem" color="white">
+                Autor:
+              </Heading>
+
+              <Text fontSize="1rem" color="white">
+                {currentBook?.volumeInfo.authors}
+              </Text>
+            </Flex>
+          </Flex>
+          <Box w="100%" mt="10px">
+            <Heading as="h4" fontSize="1.25rem" m="8px">
               Sinopse:
             </Heading>
             <Text
@@ -98,8 +91,26 @@ export const ModalLibrary = ({ isOpen, onClose }: iModalProps) => {
               bg="white"
               color="black"
               borderRadius="4px"
+              maxH="150px"
+              overflowY="scroll"
+              css={{
+                scrollbarWidth: "auto",
+                scrollbarColor: "#2c7aed #ffffff",
+                "::-webkit-scrollbar": {
+                  width: "12px",
+                },
+                "::-webkit-scrollbar-track": {
+                  background: "#ffffff",
+                },
+                "::-webkit-scrollbar-thumb": {
+                  backgroundColor: "#2c7aed",
+                  borderRadius: "10px",
+                  border: "2px solid #ffffff",
+                },
+              }}
             >
-              {currentBook?.volumeInfo.description || "Não há nada aqui"}
+              {currentBook?.volumeInfo.description ||
+                "O título não possui uma descrição"}
             </Text>
           </Box>
         </ModalBody>
@@ -120,6 +131,7 @@ export const ModalLibrary = ({ isOpen, onClose }: iModalProps) => {
             color="black"
             _hover={{ opacity: "0.7" }}
             alignSelf="end"
+            onClick={addToRecomendedList}
           >
             Recomendar
           </Button>
@@ -133,6 +145,11 @@ export const ModalLibrary = ({ isOpen, onClose }: iModalProps) => {
             color="white"
             _hover={{ opacity: "0.7" }}
             alignSelf="end"
+            onClick={(e) => {
+              e.preventDefault();
+              removeFromLibrary();
+              onClose();
+            }}
           >
             Exluir
           </Button>

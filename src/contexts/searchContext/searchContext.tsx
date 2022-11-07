@@ -21,6 +21,9 @@ interface iSearchContext {
   addToLibrary: () => Promise<void>;
   library: iBooks[] | undefined;
   setLibrary: React.Dispatch<SetStateAction<iBooks[] | undefined>>;
+  removeFromWishlist: () => Promise<void>;
+  removeFromLibrary: () => Promise<void>;
+  addToRecomendedList: () => Promise<void>;
 }
 
 interface iBooks {
@@ -88,7 +91,8 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
 
   useEffect(() => {
     getInfoUserLogin();
-  }, [token]);
+    setLoading(false);
+  }, [library]);
 
   const submitSearch = async () => {
     if (location.pathname !== "/dashboard/pesquisa") {
@@ -158,6 +162,37 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
     }
   };
 
+  const removeFromWishlist = async () => {
+    try {
+      const {
+        data: { wishlist },
+      } = await apiFake(`users/${userId}`, {
+        headers: { authorization: `Bearer ${token}` },
+      });
+      const find = wishlist.find((book: iBooks) => {
+        return book.id === currentBook?.id;
+      });
+      if (find) {
+        const filter = wishlist.filter(
+          (book: iBooks) => book.id !== currentBook?.id
+        );
+        const body = {
+          wishlist: filter,
+        };
+        const { data } = await apiFake.patch(`users/${userId}`, body, {
+          headers: { authorization: `Bearer ${token}` },
+        });
+        toast.success("Livro removido da lista de desejos!", {
+          theme: "colored",
+          position: "top-right",
+          autoClose: 2000,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const addToLibrary = async () => {
     try {
       const {
@@ -168,7 +203,6 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
       const find = library.find((book: iBooks) => {
         return book.id === currentBook?.id;
       });
-
       if (find) {
         toast.error("Este livro já está na sua biblioteca!", {
           theme: "colored",
@@ -181,12 +215,95 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
           headers: { authorization: `Bearer ${token}` },
         });
         setLibrary(data.library);
-        console.log(data);
+
         toast.success("Livro adicionado à biblioteca!", {
           theme: "colored",
           position: "top-right",
           autoClose: 2000,
         });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeFromLibrary = async () => {
+    try {
+      const {
+        data: { library },
+      } = await apiFake(`users/${userId}`, {
+        headers: { authorization: `Bearer ${token}` },
+      });
+      const find = library.find((book: iBooks) => {
+        return book.id === currentBook?.id;
+      });
+      if (find) {
+        const filter = library.filter(
+          (book: iBooks) => book.id !== currentBook?.id
+        );
+        const body = {
+          library: filter,
+        };
+        const { data } = await apiFake.patch(`users/${userId}`, body, {
+          headers: { authorization: `Bearer ${token}` },
+        });
+        toast.success("Livro removido da biblioteca!", {
+          theme: "colored",
+          position: "top-right",
+          autoClose: 2000,
+        });
+        setLibrary(body.library);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const addToRecomendedList = async () => {
+    try {
+      const {
+        data: { recomended },
+      } = await apiFake(`users/${userId}`, {
+        headers: { authorization: `Bearer ${token}` },
+      });
+      const find = recomended.find((book: iBooks) => {
+        return book.id === currentBook?.id;
+      });
+      if (find) {
+        toast.error("Você já recomendou este livro", {
+          theme: "colored",
+          position: "top-right",
+          autoClose: 2000,
+        });
+      } else {
+        const body = { recomended: [...recomended, currentBook] };
+        const post = await apiFake.patch(`users/${userId}`, body, {
+          headers: { authorization: `Bearer ${token}` },
+        });
+        toast.success("Livro Recomendado com sucesso", {
+          theme: "colored",
+          position: "top-right",
+          autoClose: 2000,
+        });
+        try {
+          const { data } = await apiFake.get(
+            `livrosRecomendados/${currentBook?.id}`,
+            { headers: { authorization: `Bearer ${token}` } }
+          );
+          const votes = data.votes;
+          const patch = await apiFake.patch(
+            `livrosRecomendados/${currentBook?.id}`,
+            { votes: votes + 1 },
+            { headers: { authorization: `Bearer ${token}` } }
+          );
+        } catch (error) {
+          const book = { ...currentBook, votes: 1 };
+          const post = await apiFake.post(
+            `livrosRecomendados/${currentBook?.id}`,
+            book,
+            { headers: { authorization: `Bearer ${token}` } }
+          );
+        }
       }
     } catch (error) {
       console.log(error);
@@ -209,6 +326,9 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
         addToLibrary,
         library,
         setLibrary,
+        removeFromWishlist,
+        removeFromLibrary,
+        addToRecomendedList,
       }}
     >
       {children}

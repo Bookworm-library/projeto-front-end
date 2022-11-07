@@ -16,10 +16,12 @@ import { ModalLibrary } from "../ModalLibrary";
 import { useContextFunction } from "../../contexts/userContext/userContext";
 
 const CardsLibrary = () => {
-  const { library, setCurrentBook } = useContext(SearchContext);
+  const { library, setCurrentBook, loading } = useContext(SearchContext);
   const { onOpen, isOpen, onClose } = useContextFunction();
 
-  return (
+  return library?.length === 0 ? (
+    <h2> Você não possui livros na sua biblioteca! </h2>
+  ) : (
     <>
       <UnorderedList
         display={"flex"}
@@ -58,7 +60,7 @@ const CardsLibrary = () => {
               <Flex align={"start"} p="10px">
                 <Image
                   src={
-                    element.volumeInfo.imageLinks
+                    element.volumeInfo?.imageLinks
                       ? element.volumeInfo.imageLinks?.thumbnail
                       : unknownImage
                   }
@@ -72,13 +74,13 @@ const CardsLibrary = () => {
                     Título:
                   </Heading>
                   <Text as="span" fontSize={"16px"} noOfLines={[1, 2, 3]}>
-                    {element.volumeInfo.title}
+                    {element.volumeInfo?.title}
                   </Text>
                   <Heading as="h3" fontSize={"20px"} marginTop="10px">
                     Autor:
                   </Heading>
                   <Text as="span" fontSize={"16px"} noOfLines={[1]}>
-                    {element.volumeInfo.authors}
+                    {element.volumeInfo?.authors}
                   </Text>
                 </Box>
               </Flex>
