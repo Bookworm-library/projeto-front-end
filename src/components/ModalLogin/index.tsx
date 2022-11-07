@@ -56,7 +56,7 @@ export const ModalLogin = () => {
                         >
                             <Box>
                                 <Image
-                                    display={{ sm: "none", lg: "block" }}
+                                    display={{base: "none", sm: "none", lg: "block" }}
                                     h="500px"
                                     w="600px"
                                     src={loginImage}

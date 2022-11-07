@@ -40,7 +40,7 @@ export const RegistForm = () => {
       justifyContent={"center"}
     >
       <Image
-        display={{ sm: "none", lg: "block" }}
+        display={{base: "none", sm: "none", lg: "block" }}
         width={"640px"}
         height={"640px"}
         src={registImage}
