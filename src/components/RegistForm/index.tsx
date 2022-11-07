@@ -21,7 +21,7 @@ import { registerSchema } from "../../validations/register";
 
 export const RegistForm = () => {
 
-  const { submitRegister, setModalControl, onOpen, btnModalLoading } = useContextFunction();
+  const { submitRegister, setModalControl, onClose, setBVtnModalLoadingCadastro, btnModalLoadingCadastro, setModalType } = useContextFunction();
 
   const {
     register,
@@ -78,6 +78,7 @@ export const RegistForm = () => {
             _hover={{ bg: "#FFFFFF" }}
             onClick={() => {
               setModalControl(false);
+              onClose()
             }}
           />
         </Flex>
@@ -225,8 +226,15 @@ export const RegistForm = () => {
             fontSize={"20px"}
             color={"blue.dark"}
             _hover={{ opacity: "0.7" }}
+            onClick={() => {
+              setTimeout(() => {
+                setBVtnModalLoadingCadastro(false)
+              }, 2000);
+              setBVtnModalLoadingCadastro(true)
+            }
+            }
           >
-            {btnModalLoading ? (<Spinner
+            {btnModalLoadingCadastro ? (<Spinner
               thickness='4px'
               speed='0.65s'
               emptyColor='gray.200'
@@ -255,7 +263,7 @@ export const RegistForm = () => {
               _hover={{ bg: "transparent" }}
               onClick={() => {
                 setModalControl(false)
-                onOpen()
+                setModalType("login");
               }}
             >
               Entrar

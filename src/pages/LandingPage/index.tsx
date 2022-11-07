@@ -1,4 +1,5 @@
 import { Box, Modal, ModalContent, ModalOverlay } from "@chakra-ui/react";
+import { isMotionComponent } from "framer-motion";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { HeaderLandingPage } from "../../components/HeaderLandingPage";
@@ -8,7 +9,7 @@ import { RegistForm } from "../../components/RegistForm";
 import { UserContext } from "../../contexts/userContext/userContext";
 
 export const LandingPage = () => {
-  const { modalControl, modalType, onClose } = useContext(UserContext);
+  const { modalControl, modalType } = useContext(UserContext);
   const token = localStorage.getItem("@BookwordmLibrary:token");
 
   const navigate = useNavigate();
@@ -26,17 +27,17 @@ export const LandingPage = () => {
           isCentered
           isOpen={modalControl}
           closeOnOverlayClick={true}
-          onClose={() => {}}
+          onClose={() => { }}
         >
           <ModalOverlay />
-          <ModalContent
-            maxWidth="100vw"
-            bg="transparent"
-            h="100vh"
-            margin={"0 auto"}
-          >
-            {modalType === "login" ? <ModalLogin /> : <RegistForm />}
-          </ModalContent>
+            <ModalContent
+              maxWidth="100vw"
+              bg="transparent"
+              h="100vh"
+              margin={"0 auto"}
+            >
+              {modalType === "login" ? <ModalLogin /> : <RegistForm />}
+            </ModalContent>
         </Modal>
       </Box>
     </>

@@ -24,10 +24,10 @@ import {
     iLoginBody,
     useContextFunction,
 } from "../../contexts/userContext/userContext";
-import { Fade, ScaleFade, Slide, SlideFade, Spinner } from '@chakra-ui/react'
+import { Spinner } from '@chakra-ui/react'
 
 export const ModalLogin = () => {
-    const { isOpen, onClose, submitLogin, setModalControl, btnModalLoading } = useContextFunction();
+    const { isOpen, onClose, submitLogin, setModalControl, setBVtnModalLoadingLogin, onOpen, btnModalLoadingLogin, setModalType } = useContextFunction();
 
     const {
         register,
@@ -43,7 +43,7 @@ export const ModalLogin = () => {
     return (
         <>
             <Flex>
-                <Modal isOpen={isOpen} onClose={onClose} >
+                <Modal isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay />
                     <Box boxSize='sm' >
                         <ModalContent
@@ -54,7 +54,6 @@ export const ModalLogin = () => {
                             justifyContent={"center"}
                             alignItems={"center"}
                         >
-
                             <Box>
                                 <Image
                                     display={{ sm: "none", lg: "block" }}
@@ -146,8 +145,14 @@ export const ModalLogin = () => {
                                             bg="#2CEDE0"
                                             color="#3580EE"
                                             _hover={{ opacity: "0.7" }}
+                                            onClick={() => {
+                                                setTimeout(() => {
+                                                    setBVtnModalLoadingLogin(false)
+                                                }, 2000);
+                                                setBVtnModalLoadingLogin(true)
+                                            }}
                                         >
-                                            {btnModalLoading ? (<Spinner
+                                            {btnModalLoadingLogin ? (<Spinner
                                                 thickness='4px'
                                                 speed='0.65s'
                                                 emptyColor='gray.200'
@@ -175,8 +180,8 @@ export const ModalLogin = () => {
                                                 _focus={{ bg: "transparent" }}
                                                 _hover={{ bg: "transparent" }}
                                                 onClick={() => {
-                                                    onClose()
                                                     setModalControl(true)
+                                                    setModalType("register")
                                                 }}
                                             >
                                                 Cadastre-se
@@ -185,7 +190,6 @@ export const ModalLogin = () => {
                                     </FormControl>
                                 </ModalBody>
                             </Box>
-
                         </ModalContent>
                     </Box>
                 </Modal>

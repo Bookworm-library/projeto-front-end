@@ -5,22 +5,30 @@ import { toast } from "react-toastify";
 import React from "react";
 import { apiFake } from "../../services/api";
 import { FaBookOpen, FaBook } from "react-icons/fa";
-import { SearchContext } from "../searchContext/searchContext";
-
 interface iUserContext {
-  submitRegister: (body: iRegisterBody) => Promise<void>;
-  submitLogin: (body: iRegisterBody) => Promise<void>;
-  modalControl: boolean;
   modalType: "login" | "register";
-  setModalControl: React.Dispatch<React.SetStateAction<boolean>>;
-  isOpen: boolean;
   userInfo: [] | undefined;
-  btnModalLoading: boolean;
+  
   setUserInfo: React.Dispatch<React.SetStateAction<[] | undefined>>;
+  
   onOpen: () => void;
   onClose: () => void;
+  submitLogin: (body: iRegisterBody) => Promise<void>;
+  submitRegister: (body: iRegisterBody) => Promise<void>;
+  
   setModalType: React.Dispatch<React.SetStateAction<"login" | "register">>;
-  setBVtnModalLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setModalControl: React.Dispatch<React.SetStateAction<boolean>>;
+  setBVtnModalLoadingLogin: React.Dispatch<React.SetStateAction<boolean>>;
+  setBVtnModalLoadingCadastro: React.Dispatch<React.SetStateAction<boolean>>;
+  setModalLogin: React.Dispatch<React.SetStateAction<boolean>>;
+  setModalCadastro: React.Dispatch<React.SetStateAction<boolean>>;
+  
+  btnModalLoadingLogin: boolean;
+  btnModalLoadingCadastro: boolean;
+  isOpen: boolean;
+  modalLogin: boolean;
+  modalCadastro: boolean;
+  modalControl: boolean;
 }
 
 interface iUserContextProps {
@@ -53,23 +61,37 @@ export const UserContext = createContext<iUserContext>({} as iUserContext);
 
 export const UserProvider = ({ children }: iUserContextProps) => {
   const navigate = useNavigate();
-  const userId = localStorage.getItem("@BookwordmLibrary:userId");
+
   const token = localStorage.getItem("@BookwordmLibrary:token");
   const [userInfo, setUserInfo] = useState<[] | undefined>([]);
+
   const [modalControl, setModalControl] = useState<boolean>(false);
-  const [btnModalLoading, setBVtnModalLoading] = useState<boolean>(false);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [modalLogin, setModalLogin] = useState<boolean>(false);
+  const [modalCadastro, setModalCadastro] = useState<boolean>(false);
   const [modalType, setModalType] = useState<"login" | "register">("login");
 
-  const submitRegister = async (body: iRegisterBody): Promise<void> => {
-    const newBody = { ...body, library: [], wishlist: [], recomended: [] };
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const [btnModalLoadingLogin, setBVtnModalLoadingLogin] = useState<boolean>(false);
+  const [btnModalLoadingCadastro, setBVtnModalLoadingCadastro] = useState<boolean>(false);
+
+  console.log("modalControl",modalControl)
+  console.log("isOpen",isOpen)
+  
+
+  const submitRegister = async (body: iRegisterBody): Promise<void> => {
+
+    if(body === undefined){
+      setBVtnModalLoadingCadastro(false);
+    }
+
+    const newBody = { ...body, library: [], wishlist: [], recomended: [] };
     try {
       const { data } = await apiFake.post<iUserCadastradoAndLogado>(
         "register",
         newBody
       );
-      setBVtnModalLoading(true);
       toast.success("Registro realizado com sucesso", {
         icon: FaBookOpen,
         theme: "colored",
@@ -77,6 +99,8 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         autoClose: 2000,
       });
 
+      setBVtnModalLoadingCadastro(false);
+      
       setModalType("register");
       setModalControl(false);
     } catch (error) {
@@ -90,6 +114,9 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   };
 
   const submitLogin = async (body: iLoginBody): Promise<void> => {
+    if(body === undefined){
+      setBVtnModalLoadingLogin(false);
+    }
     try {
       const { data } = await apiFake.post<iUserCadastradoAndLogado>(
         "login",
@@ -97,14 +124,14 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       );
       localStorage.setItem("@BookwordmLibrary:token", data.accessToken);
       localStorage.setItem("@BookwordmLibrary:userId", data.user.id + "");
-      setBVtnModalLoading(true);
+
       toast.success("Login realizado com sucesso", {
         icon: FaBookOpen,
         theme: "colored",
         position: "top-right",
         autoClose: 2000,
       });
-
+      setBVtnModalLoadingLogin(false);
       navigate("/dashboard");
 
       if (token) {
@@ -136,8 +163,14 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         onClose,
         userInfo,
         setUserInfo,
-        btnModalLoading,
-        setBVtnModalLoading,
+        btnModalLoadingLogin,
+        setBVtnModalLoadingLogin,
+        btnModalLoadingCadastro,
+        setBVtnModalLoadingCadastro,
+        modalLogin,
+        modalCadastro,
+        setModalLogin,
+        setModalCadastro,
       }}
     >
       {children}

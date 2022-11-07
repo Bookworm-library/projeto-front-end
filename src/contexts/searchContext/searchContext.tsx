@@ -88,7 +88,6 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
     const order = livrosUser?.reverse();
     setLibrary(order);
   }
-
   useEffect(() => {
     getInfoUserLogin();
     setLoading(false);
@@ -226,7 +225,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
       console.log(error);
     }
   };
-
+  
   const removeFromLibrary = async () => {
     try {
       const {
@@ -309,7 +308,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
       console.log(error);
     }
   };
-
+  
   return (
     <SearchContext.Provider
       value={{
