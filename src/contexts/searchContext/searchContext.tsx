@@ -62,7 +62,6 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
     const livrosUser = data.library
     setLibrary(livrosUser)
   }
-
   useEffect(() => {
     getInfoUserLogin()
   }, [token])
@@ -153,8 +152,6 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
           position: "top-right",
           autoClose: 2000,
         });
-
-
       } else {
         const body = { library: [...library, currentBook] };
         const { data } = await apiFake.patch(`users/${userId}`, body, {
@@ -172,7 +169,6 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
       console.log(error);
     }
   };
-
   return (
     <SearchContext.Provider
       value={{

@@ -24,10 +24,10 @@ import {
     iLoginBody,
     useContextFunction,
 } from "../../contexts/userContext/userContext";
-import { Fade, ScaleFade, Slide, SlideFade, Spinner } from '@chakra-ui/react'
+import {  Spinner } from '@chakra-ui/react'
 
 export const ModalLogin = () => {
-    const { isOpen, onClose, submitLogin, setModalControl, btnModalLoading } = useContextFunction();
+    const { isOpen, onClose, submitLogin, setModalControl, setBVtnModalLoadingLogin, btnModalLoadingLogin, setModalCadastro } = useContextFunction();
 
     const {
         register,
@@ -54,7 +54,6 @@ export const ModalLogin = () => {
                             justifyContent={"center"}
                             alignItems={"center"}
                         >
-
                             <Box>
                                 <Image
                                     display={{ sm: "none", lg: "block" }}
@@ -146,8 +145,9 @@ export const ModalLogin = () => {
                                             bg="#2CEDE0"
                                             color="#3580EE"
                                             _hover={{ opacity: "0.7" }}
+                                            onClick={() => setBVtnModalLoadingLogin(true)}
                                         >
-                                            {btnModalLoading ? (<Spinner
+                                            {btnModalLoadingLogin ? (<Spinner
                                                 thickness='4px'
                                                 speed='0.65s'
                                                 emptyColor='gray.200'
