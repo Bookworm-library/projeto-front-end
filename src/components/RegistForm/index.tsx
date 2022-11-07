@@ -21,7 +21,7 @@ import { registerSchema } from "../../validations/register";
 
 export const RegistForm = () => {
 
-  const { submitRegister, setModalControl, onClose, setBVtnModalLoadingCadastro, btnModalLoadingCadastro, setModalType } = useContextFunction();
+  const { submitRegister, setModalControl,onOpen, onClose, setBVtnModalLoadingCadastro, btnModalLoadingCadastro, setModalType } = useContextFunction();
 
   const {
     register,
