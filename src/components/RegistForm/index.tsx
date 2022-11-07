@@ -263,6 +263,7 @@ export const RegistForm = () => {
               _hover={{ bg: "transparent" }}
               onClick={() => {
                 setModalControl(false)
+                onOpen()
                 setModalType("login");
               }}
             >
