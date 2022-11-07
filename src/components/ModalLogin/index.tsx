@@ -73,11 +73,9 @@ export const ModalLogin = () => {
                                         color="#4552CE"
                                         _hover={{ bg: "#FFFFFF" }}
                                         fontWeight='bold'
-                                        position={{base:"absolute", md:"unset"}}
-                                        top={"22%"}
-                                        left={"50%"}
-                                        marginLeft="100px"
-                                        marginRight="-120px"
+                                        position={"unset"}
+                                        marginLeft={{base:"60px",sm:"70px",lg:"100px"}}
+                                        marginRight={{base:"-70px",sm:"-60px",lg:"-120px"}}
                                     />
                                 </Center>
                                 <ModalBody  >
@@ -88,7 +86,7 @@ export const ModalLogin = () => {
                                             <FormLabel
                                                 color='white'
                                                 fontWeight='bold'
-                                            >Email:
+                                            >Email:"-120px"
                                             </FormLabel>
                                             <Input
                                                 height={"3rem"}
