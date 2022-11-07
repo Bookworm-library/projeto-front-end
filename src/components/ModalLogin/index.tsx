@@ -44,12 +44,12 @@ export const ModalLogin = () => {
         <>
             <Flex>
                 <Modal isOpen={isOpen} onClose={onClose}>
-                    <ModalOverlay />
+                    <ModalOverlay w="100%" h="100%"/>
                     <Box boxSize='sm' >
                         <ModalContent
                             bg="transparent"
                             flexDirection={"row"}
-                            maxWidth="100vw" h="100vh"
+                            maxWidth="100%" h="100%"
                             margin={"0 auto"}
                             justifyContent={"center"}
                             alignItems={"center"}
@@ -65,7 +65,7 @@ export const ModalLogin = () => {
                             <Box
                                 bg="#2C7AED"
                                 h="500px"
-                                w="425px">
+                                w={{base:"300px", md:"425px"}}>
                                 <Center color='white'>
                                     <ModalHeader >Login</ModalHeader>
                                     <ModalCloseButton
@@ -73,7 +73,9 @@ export const ModalLogin = () => {
                                         color="#4552CE"
                                         _hover={{ bg: "#FFFFFF" }}
                                         fontWeight='bold'
-                                        position={"unset"}
+                                        position={{base:"absolute", md:"unset"}}
+                                        top={"22%"}
+                                        left={"50%"}
                                         marginLeft="100px"
                                         marginRight="-120px"
                                     />

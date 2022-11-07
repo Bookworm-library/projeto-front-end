@@ -47,7 +47,7 @@ export const RegistForm = () => {
         alt="Pessoa segurando um livro"
       />
       <Flex
-        width={"400px"}
+        width={{base:"300px", md:"400px"}}
         height={"640px"}
         flexDirection={"column"}
         alignItems={"center"}
