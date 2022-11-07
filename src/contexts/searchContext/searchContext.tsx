@@ -225,7 +225,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
       console.log(error);
     }
   };
-  
+
   const removeFromLibrary = async () => {
     try {
       const {
@@ -297,18 +297,16 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
           );
         } catch (error) {
           const book = { ...currentBook, votes: 1 };
-          const post = await apiFake.post(
-            `livrosRecomendados/${currentBook?.id}`,
-            book,
-            { headers: { authorization: `Bearer ${token}` } }
-          );
+          const post = await apiFake.post(`livrosRecomendados`, book, {
+            headers: { authorization: `Bearer ${token}` },
+          });
         }
       }
     } catch (error) {
       console.log(error);
     }
   };
-  
+
   return (
     <SearchContext.Provider
       value={{
