@@ -5,8 +5,6 @@ import { toast } from "react-toastify";
 import React from "react";
 import { apiFake } from "../../services/api";
 import { FaBookOpen, FaBook } from "react-icons/fa";
-import { SearchContext } from "../searchContext/searchContext";
-
 interface iUserContext {
   modalType: "login" | "register";
   userInfo: [] | undefined;
@@ -77,12 +75,15 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   const [btnModalLoadingCadastro, setBVtnModalLoadingCadastro] = useState<boolean>(false);
 
   console.log("//////////////////////////////////")
+  console.log("btnModalLoadingLogin",btnModalLoadingLogin)
+  console.log("btnModalLoadingCadastro",btnModalLoadingCadastro)
+
+  console.log("//////////////////////////////////")
   console.log("isOpen",isOpen)
   console.log("modalControl",modalControl)
-  /* console.log("modalLogin",modalLogin)
-  console.log("modalCadastro",modalCadastro)
- */
+  
   const submitRegister = async (body: iRegisterBody): Promise<void> => {
+
     const newBody = { ...body, library: [], wishlist: [], recomended: [] };
 
     try {
@@ -90,13 +91,13 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         "register",
         newBody
       );
-      setBVtnModalLoadingCadastro(false);
       toast.success("Registro realizado com sucesso", {
         icon: FaBookOpen,
         theme: "colored",
         position: "top-right",
         autoClose: 2000,
       });
+      setBVtnModalLoadingCadastro(false);
       setModalType("register");
       setModalControl(false);
     } catch (error) {
@@ -110,6 +111,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   };
 
   const submitLogin = async (body: iLoginBody): Promise<void> => {
+   
     try {
       const { data } = await apiFake.post<iUserCadastradoAndLogado>(
         "login",
@@ -118,16 +120,15 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       localStorage.setItem("@BookwordmLibrary:token", data.accessToken);
       localStorage.setItem("@BookwordmLibrary:userId", data.user.id + "");
 
-      setBVtnModalLoadingLogin(false);
+     
 
-      
       toast.success("Login realizado com sucesso", {
         icon: FaBookOpen,
         theme: "colored",
         position: "top-right",
         autoClose: 2000,
       });
-
+      setBVtnModalLoadingLogin(false);
       navigate("/dashboard");
 
       if (token) {
