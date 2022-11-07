@@ -145,7 +145,11 @@ export const ModalLogin = () => {
                                             bg="#2CEDE0"
                                             color="#3580EE"
                                             _hover={{ opacity: "0.7" }}
-                                            onClick={() => setBVtnModalLoadingLogin(true)}
+                                            onClick={() => {if(btnModalLoadingLogin) {
+                                                setBVtnModalLoadingLogin(true)} else {
+                                                  setBVtnModalLoadingLogin(false)
+                                                }
+                                              }}
                                         >
                                             {btnModalLoadingLogin ? (<Spinner
                                                 thickness='4px'

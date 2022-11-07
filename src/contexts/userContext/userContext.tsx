@@ -118,8 +118,6 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       localStorage.setItem("@BookwordmLibrary:token", data.accessToken);
       localStorage.setItem("@BookwordmLibrary:userId", data.user.id + "");
 
-      setBVtnModalLoadingLogin(false);
-
       
       toast.success("Login realizado com sucesso", {
         icon: FaBookOpen,

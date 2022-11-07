@@ -114,9 +114,9 @@ export const HeaderDashboard = () => {
             localStorage.removeItem("@BookwordmLibrary:token");
             localStorage.removeItem("@BookwordmLibrary:userId");
             navigate("/");
-            setModalControl(false);
             onClose();
             setBVtnModalLoadingLogin(false)
+            setModalControl(false);
           }}
         >
           Deslogar
