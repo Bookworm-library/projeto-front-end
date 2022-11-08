@@ -1,4 +1,6 @@
-import { UnorderedList } from "@chakra-ui/react";
+import {
+  UnorderedList,
+} from "@chakra-ui/react";
 import { useContext } from "react";
 import { SearchContext } from "../../contexts/searchContext/searchContext";
 import { iBooks } from "../../contexts/searchContext/searchContext";
@@ -36,16 +38,11 @@ const CardsLibrary = () => {
       >
         {library?.map((element: iBooks) => {
           return (
-            <ListCard
-              key={element.id}
-              element={element}
-              buttonTitle={"Ver Livro"}
-              itemAction={() => {
-                setCurrentBook(element);
-                onOpen();
-              }}
-            />
-          );
+            <ListCard key={element.id} element={element} buttonTitle={"Ver Livro"} itemAction={() => {
+              onOpen();
+              setCurrentBook(element);
+            }} />
+          )
         })}
       </UnorderedList>
       <ModalLibrary isOpen={isOpen} onClose={onClose} />
