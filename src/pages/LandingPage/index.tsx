@@ -9,7 +9,7 @@ import { RegistForm } from "../../components/RegistForm";
 import { UserContext } from "../../contexts/userContext/userContext";
 
 export const LandingPage = () => {
-  const { modalControl, modalType } = useContext(UserContext);
+  const { modalControl, modalType, setModalControl } = useContext(UserContext);
   const token = localStorage.getItem("@BookwordmLibrary:token");
 
   const navigate = useNavigate();
@@ -30,14 +30,14 @@ export const LandingPage = () => {
           onClose={() => { }}
         >
           <ModalOverlay />
-            <ModalContent
-              maxWidth="100vw"
-              bg="transparent"
-              h="100vh"
-              margin={"0 auto"}
-            >
-              {modalType === "login" ? <ModalLogin /> : <RegistForm />}
-            </ModalContent>
+          <ModalContent
+            maxWidth="100vw"
+            bg="transparent"
+            h="100vh"
+            margin={"0 auto"}
+          >
+            {modalType === "login" ? <ModalLogin /> : <RegistForm />}
+          </ModalContent>
         </Modal>
       </Box>
     </>

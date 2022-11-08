@@ -42,12 +42,12 @@ export const ModalLogin = () => {
     const [eye, setEye] = useState(true)
 
     const changeStateEye = () => {
-        if(eye === true) {
+        if (eye === true) {
             setEye(false)
         } else {
             setEye(true)
         }
-      } 
+    }
 
     const onSubmitFunction = (data: any) => {
         submitLogin(data)
@@ -56,7 +56,7 @@ export const ModalLogin = () => {
         <>
             <Flex>
                 <Modal isOpen={isOpen} onClose={onClose}>
-                    <ModalOverlay w="100%" h="100%"/>
+                    <ModalOverlay w="100%" h="100%" />
                     <Box boxSize='sm' >
                         <ModalContent
                             bg="transparent"
@@ -68,7 +68,7 @@ export const ModalLogin = () => {
                         >
                             <Box>
                                 <Image
-                                    display={{base: "none", sm: "none", lg: "block" }}
+                                    display={{ base: "none", sm: "none", lg: "block" }}
                                     h="500px"
                                     w="600px"
                                     src={loginImage}
@@ -77,7 +77,7 @@ export const ModalLogin = () => {
                             <Box
                                 bg="#2C7AED"
                                 h="500px"
-                                w={{base:"300px", md:"425px"}}>
+                                w={{ base: "300px", md: "425px" }}>
                                 <Center color='white'>
                                     <ModalHeader >Login</ModalHeader>
                                     <ModalCloseButton
@@ -86,8 +86,8 @@ export const ModalLogin = () => {
                                         _hover={{ bg: "#FFFFFF" }}
                                         fontWeight='bold'
                                         position={"unset"}
-                                        marginLeft={{base:"60px",sm:"70px",lg:"100px"}}
-                                        marginRight={{base:"-70px",sm:"-60px",lg:"-120px"}}
+                                        marginLeft={{ base: "60px", sm: "70px", lg: "100px" }}
+                                        marginRight={{ base: "-70px", sm: "-60px", lg: "-120px" }}
                                     />
                                 </Center>
                                 <ModalBody  >
@@ -128,32 +128,29 @@ export const ModalLogin = () => {
                                             <Box display={"flex"} flexDirection={"row"}>
                                                 {
                                                     eye ?
-                                                    <Box display={"flex"} alignItems={"center"} w={"100%"} borderRadius={"4px"} bg="#FFFFFF" paddingRight={"20px"}>
-                                                        <Input    
-                                                            _focus={{ border: "none", outline:"none", input:"focus" }} 
-                                                            _active={{ border: "none", outline:"none", input:"focus" }}  
-                                                            _hover={{ border: "none", outline:"none"  }}                                                     
-                                                            border={{outline:"none", input:"focus"}}
-                                                            height={"3rem"}
-                                                            type='password'
-                                                            bg="#FFFFFF"
-                                                            placeholder="Digite sua senha..."
-                                                            {...register("password")} />
-                                                        <FaEye color="#2C7AED" height={"46px"} onClick={changeStateEye} cursor={"pointer"} fontSize={"20px"} /> 
-                                                    </Box>
-                                                    :                                                    
-                                                    <Box display={"flex"} alignItems={"center"} w={"100%"} borderRadius={"4px"} bg="#FFFFFF" paddingRight={"20px"}>
-                                                        <Input        
-                                                                                                             
-                                                            border={"none"}
-                                                            height={"3rem"}
-                                                            type='text'
-                                                            bg="#FFFFFF"
-                                                            placeholder="Digite sua senha..."
-                                                            {...register("password")} />
-                                                        <FaEye color="#2C7AED" height={"46px"} onClick={changeStateEye} cursor={"pointer"} fontSize={"20px"}  /> 
-                                                    </Box>
-                                                    }                                                                                                
+                                                        <Box display={"flex"} p={"0 20px"} alignItems={"center"} w={"100%"} borderRadius={"4px"} bg="#FFFFFF" >
+                                                            <Input
+                                                                variant='unstyled'
+                                                                height={"3rem"}
+                                                                type='password'
+                                                                bg="#FFFFFF"
+                                                                placeholder="Digite sua senha..."
+                                                                {...register("password")} />
+                                                            <FaEye color="#2C7AED" height={"46px"} onClick={changeStateEye} cursor={"pointer"} fontSize={"20px"} />
+                                                        </Box>
+                                                        :
+                                                        <Box display={"flex"} p={"0 20px"} alignItems={"center"} w={"100%"} borderRadius={"4px"} bg="#FFFFFF" >
+                                                            <Input
+                                                                variant='unstyled'
+                                                                border={"none"}
+                                                                height={"3rem"}
+                                                                type='text'
+                                                                bg="#FFFFFF"
+                                                                placeholder="Digite sua senha..."
+                                                                {...register("password")} />
+                                                            <FaEye color="#2C7AED" height={"46px"} onClick={changeStateEye} cursor={"pointer"} fontSize={"20px"} />
+                                                        </Box>
+                                                }
                                             </Box>
                                             <Box
                                                 h={"30px"}>
