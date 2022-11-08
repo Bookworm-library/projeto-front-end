@@ -86,7 +86,7 @@ export const ModalLogin = () => {
                                             <FormLabel
                                                 color='white'
                                                 fontWeight='bold'
-                                            >Email:"-120px"
+                                            >Email:
                                             </FormLabel>
                                             <Input
                                                 height={"3rem"}

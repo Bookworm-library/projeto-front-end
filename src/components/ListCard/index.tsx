@@ -38,7 +38,6 @@ export const ListCard = ({
       minW="320px"
       minH="20.5rem"
       maxH="20.5rem"
-      
     >
       <Flex align={"start"} p="10px">
         <Image
