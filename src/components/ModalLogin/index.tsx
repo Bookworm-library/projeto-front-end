@@ -25,6 +25,8 @@ import {
     useContextFunction,
 } from "../../contexts/userContext/userContext";
 import { Spinner } from '@chakra-ui/react'
+import { FaEye } from "react-icons/fa";
+import { useState } from "react";
 
 export const ModalLogin = () => {
     const { isOpen, onClose, submitLogin, setModalControl, setBVtnModalLoadingLogin, onOpen, btnModalLoadingLogin, setModalType } = useContextFunction();
@@ -36,6 +38,16 @@ export const ModalLogin = () => {
     } = useForm<iLoginBody>({
         resolver: yupResolver(loginSchema),
     });
+
+    const [eye, setEye] = useState(true)
+
+    const changeStateEye = () => {
+        if(eye === true) {
+            setEye(false)
+        } else {
+            setEye(true)
+        }
+      } 
 
     const onSubmitFunction = (data: any) => {
         submitLogin(data)
@@ -113,12 +125,33 @@ export const ModalLogin = () => {
                                                 fontWeight='bold'>
                                                 Senha:
                                             </FormLabel>
-                                            <Input
-                                                height={"3rem"}
-                                                type='password'
-                                                bg="#FFFFFF"
-                                                placeholder="Digite sua senha..."
-                                                {...register("password")} />
+                                            <Box display={"flex"} flexDirection={"row"}>
+                                                {
+                                                    eye ?
+                                                    <Box display={"flex"} alignItems={"center"} w={"100%"} borderRadius={"4px"} bg="#FFFFFF" paddingRight={"20px"}>
+                                                        <Input                                                           
+                                                            border={"none"}
+                                                            height={"3rem"}
+                                                            type='password'
+                                                            bg="#FFFFFF"
+                                                            placeholder="Digite sua senha..."
+                                                            {...register("password")} />
+                                                        <FaEye color="#2C7AED" height={"46px"} onClick={changeStateEye} cursor={"pointer"} fontSize={"20px"} /> 
+                                                    </Box>
+                                                    :                                                    
+                                                    <Box display={"flex"} alignItems={"center"} w={"100%"} borderRadius={"4px"} bg="#FFFFFF" paddingRight={"20px"}>
+                                                        <Input        
+                                                                                                             
+                                                            border={"none"}
+                                                            height={"3rem"}
+                                                            type='text'
+                                                            bg="#FFFFFF"
+                                                            placeholder="Digite sua senha..."
+                                                            {...register("password")} />
+                                                        <FaEye color="#2C7AED" height={"46px"} onClick={changeStateEye} cursor={"pointer"} fontSize={"20px"}  /> 
+                                                    </Box>
+                                                    }                                                                                                
+                                            </Box>
                                             <Box
                                                 h={"30px"}>
                                                 <FormErrorMessage
