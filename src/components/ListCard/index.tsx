@@ -22,7 +22,6 @@ export const ListCard = ({
   buttonTitle,
   itemAction,
 }: IListCardProps) => {
-  
   return (
     <ListItem
       key={element.id}

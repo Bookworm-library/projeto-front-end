@@ -4,7 +4,6 @@ import {
     Flex,
     Heading,
     Image,
-    List,
     ListItem,
     Stack,
     Text
@@ -68,8 +67,9 @@ export const HomeCard =  ({
                 _hover={{ opacity: "0.7" }}
                 w="13.75rem"
                 h="2.625rem"
+                onClick={itemAction}
               >
-                Ver Livro
+                {buttonTitle}
               </Button>
             </Stack>
           </ListItem>
