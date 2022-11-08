@@ -47,8 +47,8 @@ export const AboutPage = () => {
     },
     {
       nome: "Guilherme Machado",
-      github: "https://github.com/gabrielbrasilmachado",
-      linkedin: "https://www.linkedin.com/in/gabrielbrasilmachado/",
+      github: "https://github.com/GuilhermeLink",
+      linkedin: "https://www.linkedin.com/in/guilhermebmachado/",
       image: "https://ca.slack-edge.com/TQZR39SET-U03CUH0SE2E-502cc7d5b081-512",
       id: 6,
     },
