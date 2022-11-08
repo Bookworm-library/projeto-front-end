@@ -231,8 +231,7 @@ export const RegistForm = () => {
                 setBVtnModalLoadingCadastro(false)
               }, 2000);
               setBVtnModalLoadingCadastro(true)
-            }
-            }
+            }}
           >
             {btnModalLoadingCadastro ? (<Spinner
               thickness='4px'

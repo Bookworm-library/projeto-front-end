@@ -20,14 +20,10 @@ interface iUserContext {
   setModalControl: React.Dispatch<React.SetStateAction<boolean>>;
   setBVtnModalLoadingLogin: React.Dispatch<React.SetStateAction<boolean>>;
   setBVtnModalLoadingCadastro: React.Dispatch<React.SetStateAction<boolean>>;
-  setModalLogin: React.Dispatch<React.SetStateAction<boolean>>;
-  setModalCadastro: React.Dispatch<React.SetStateAction<boolean>>;
   
   btnModalLoadingLogin: boolean;
   btnModalLoadingCadastro: boolean;
   isOpen: boolean;
-  modalLogin: boolean;
-  modalCadastro: boolean;
   modalControl: boolean;
 }
 
@@ -66,11 +62,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   const [userInfo, setUserInfo] = useState<[] | undefined>([]);
 
   const [modalControl, setModalControl] = useState<boolean>(false);
-
-  const [modalLogin, setModalLogin] = useState<boolean>(false);
-  const [modalCadastro, setModalCadastro] = useState<boolean>(false);
   const [modalType, setModalType] = useState<"login" | "register">("login");
-
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [btnModalLoadingLogin, setBVtnModalLoadingLogin] = useState<boolean>(false);
@@ -167,10 +159,6 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         setBVtnModalLoadingLogin,
         btnModalLoadingCadastro,
         setBVtnModalLoadingCadastro,
-        modalLogin,
-        modalCadastro,
-        setModalLogin,
-        setModalCadastro,
       }}
     >
       {children}

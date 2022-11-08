@@ -26,7 +26,7 @@ interface iSearchContext {
   addToRecomendedList: () => Promise<void>;
 }
 
-interface iBooks {
+export interface iBooks {
   id: string;
   volumeInfo: {
     title: string;
