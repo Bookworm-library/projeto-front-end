@@ -4,13 +4,12 @@ import { useContextFunction } from "../../contexts/userContext/userContext";
 import { ModalLogin } from "../ModalLogin";
 
 export const MainLandingPage = () => {
-
   const { isOpen } = useContextFunction();
 
   const breakpoints = {
-    sm: '319px',
-    md: '950px',
-  }
+    sm: "319px",
+    md: "950px",
+  };
 
   return (
     <>
@@ -23,26 +22,51 @@ export const MainLandingPage = () => {
         align={"center"}
         justify="center"
       >
-        <Flex marginTop={{base:"300px", sm:"500px", md:"500px", lg:"100px"}} 
-        w={[320, 950]}
-        display={{ lg: 'flex' }}
+        <Flex
+          marginTop="100px"
+          w={{ base: "100%", md: "" }}
+          display={{ md: "flex" }}
+          align="center"
+          justify="center"
+          gap="50px"
         >
-          <Image src="./src/assets/img/books.png" margin={{sm:"0 auto"}} />
-          <Flex bg={"#2C7AED"} h="100%" minH={"400px"} maxH="400px" align={"center"} justify="center" p={"5px"} maxW="400px" margin={{sm:"0 auto"}} >
-            <Text color={"white"} fontSize={{ base: '14px', md: '16px', lg: '18px' }}>
-              Lorem Ipsum is simply dummy text of the printing and
-              typesetting industry. Lorem Ipsum has been the industry's
-              standard dummy text ever since the 1500s, when an unknown
-              printer took a galley of type and scrambled it to make a type
-              specimen book. It has survived not only five centuries, but also the leap
-              into electronic typesetting, remaining essentially unchanged. It was popularised
-              in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-              and more recently with desktop publishing
-              software like Aldus PageMaker including versions of Lorem Ipsum.
-            </Text >
+          <Image
+            src="./src/assets/img/books.png"
+            margin={{ sm: "0 auto", md: "0" }}
+            w={{ base: "350px", md: "450px", lg: "500px" }}
+          />
+          <Flex
+            justifySelf={"left"}
+            bg={"#2C7AED"}
+            h={{ sm: "300px", md: "400px" }}
+            align={"center"}
+            justify="center"
+            p={"20px 20px"}
+            maxW="400px"
+            margin={{ sm: "0 auto", md: "0" }}
+            flexDir="column"
+            gap={{ sm: "30px", md: "60px" }}
+            borderRadius="8px"
+          >
+            <Text
+              color={"white"}
+              fontSize={{ base: "20px", lg: "26px" }}
+              fontWeight="600"
+            >
+              Busque por livros, salve uma lista de desejos, adicione à
+              biblioteca e recomende para outras pessoas. Tudo isso em um só
+              lugar!
+            </Text>
+            <Text
+              color={"white"}
+              fontSize={{ base: "20px", lg: "26px" }}
+              fontWeight="600"
+            >
+              Crie sua conta agora mesmo!
+            </Text>
           </Flex>
         </Flex>
       </Flex>
     </>
-  )
-}
+  );
+};
