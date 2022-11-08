@@ -68,10 +68,6 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   const [btnModalLoadingLogin, setBVtnModalLoadingLogin] = useState<boolean>(false);
   const [btnModalLoadingCadastro, setBVtnModalLoadingCadastro] = useState<boolean>(false);
 
-  console.log("modalControl",modalControl)
-  console.log("isOpen",isOpen)
-  
-
   const submitRegister = async (body: iRegisterBody): Promise<void> => {
 
     if(body === undefined){

@@ -7,10 +7,11 @@ import { useContextFunction } from "../../contexts/userContext/userContext";
 import { ModalLibrary } from "../ModalLibrary";
 
 const CardsLibrary = () => {
-  const { library, setCurrentBook, loading } = useContext(SearchContext);
+  const { library, setCurrentBook } = useContext(SearchContext);
   const { onOpen, isOpen, onClose } = useContextFunction();
-  onClose();
+  
 
+  
   return (
     <>
       <UnorderedList

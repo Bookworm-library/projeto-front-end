@@ -129,8 +129,11 @@ export const ModalLogin = () => {
                                                 {
                                                     eye ?
                                                     <Box display={"flex"} alignItems={"center"} w={"100%"} borderRadius={"4px"} bg="#FFFFFF" paddingRight={"20px"}>
-                                                        <Input                                                           
-                                                            border={"none"}
+                                                        <Input    
+                                                            _focus={{ border: "none", outline:"none", input:"focus" }} 
+                                                            _active={{ border: "none", outline:"none", input:"focus" }}  
+                                                            _hover={{ border: "none", outline:"none"  }}                                                     
+                                                            border={{outline:"none", input:"focus"}}
                                                             height={"3rem"}
                                                             type='password'
                                                             bg="#FFFFFF"
