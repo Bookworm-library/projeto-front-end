@@ -1,5 +1,6 @@
 import {
   Flex,
+  Heading,
   Image,
   UnorderedList
 } from "@chakra-ui/react";
@@ -13,12 +14,13 @@ import { ModalLibrary } from "../ModalLibrary";
 
 
 const DashboardMain = () => {
-  const { library, setCurrentBook, loading } = useContext(SearchContext);
+  const { wishList, setCurrentBook, loading } = useContext(SearchContext);
   const { onOpen, isOpen, onClose } = useContextFunction();
   onClose()
   
   return (
     <>
+      <Heading>Lista de desejos</Heading>
       <UnorderedList
         w="100%"
         h="100vh"
@@ -31,7 +33,8 @@ const DashboardMain = () => {
         backgroundRepeat="no-repeat"
         
       >
-        {library?.map((element) => {
+      
+        {wishList?.map((element) => {
           return (
             <HomeCard 
             key={element.id}
