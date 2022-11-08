@@ -22,15 +22,23 @@ const DashboardLibrary = () => {
       >
         <Box
           position="absolute"
-          top={"8rem"}
-          left="1rem"
+          top={"8.3rem"}
+          left="2rem"
           zIndex={"1"}
-          border="2px"
-          p="10px 40px"
+          w="22.5rem" 
+          p="5px 40px"
           borderRadius="50px"
-          bg="white"
+          bg={"linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(44,122,224,1) 0%, rgba(44,237,224,1) 100%)"}
+          sx={{ boxShadow: "0px 3px 7px rgba(0, 0, 0, 0.5)" }}
         >
-          <Heading color="#068AD9">Biblioteca:</Heading>
+          <Heading 
+          color="#ffffff"
+          h={"30px"}
+          fontSize="1.6rem" 
+          display="flex"
+          alignItems="center"
+          justifyContent="center" 
+          >Biblioteca:</Heading>
         </Box>
         <Flex  margin={"100px auto"} w="86.5%" >
             <CardsLibrary/>
