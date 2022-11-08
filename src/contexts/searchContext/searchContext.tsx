@@ -51,29 +51,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
   const [loading, setLoading] = useState(true);
   const [searchResults, setSearchResults] = useState<iBooks[]>();
   const [currentBook, setCurrentBook] = useState<iBooks>();
-  const [library, setLibrary] = useState<iBooks[] | undefined>([
-    {
-      id: "132456789",
-      volumeInfo: {
-        title: "PlaceHolder",
-        authors: "PlaceHolder",
-        description: "PlaceHolder",
-        imageLinks: {
-          thumbnail:
-            "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1663085107/amc-cdn/production/2/movies/62300/62331/PosterDynamic/142915.jpg",
-        },
-      },
-    },
-    {
-      id: "132456789123",
-      volumeInfo: {
-        title: "PlaceHolder2",
-        authors: "PlaceHolder2",
-        description: "PlaceHolder2",
-        imageLinks: undefined,
-      },
-    },
-  ]);
+  const [library, setLibrary] = useState<iBooks[] | undefined>([]);
 
   const location = useLocation();
   const navigate = useNavigate();

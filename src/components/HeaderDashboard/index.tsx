@@ -28,7 +28,7 @@ export const HeaderDashboard = () => {
     {
       buttonTitle: "Home",
       buttonAction: () => {
-        navigate("/dashboard/pesquisa");
+        navigate("/dashboard/home");
       },
     },
     {
@@ -131,7 +131,7 @@ export const HeaderDashboard = () => {
           _hover={{ opacity: "0.7" }}
           bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
           onClick={() => {
-            navigate("/dashboard/pesquisa");
+            navigate("/dashboard/home");
           }}
         >
           Home
