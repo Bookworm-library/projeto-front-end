@@ -16,17 +16,24 @@ export const SearchPage = () => {
       backgroundRepeat="no-repeat"
     >
       <Box
-        w="22.5rem"
-        h="3rem"
+        w="22.5rem"       
         display="flex"
         alignItems="center"
         justifyContent="center"
-        border="2px"
         borderColor="black"
         borderRadius="32px"
-        bg="white"
+        bg={"linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(44,122,224,1) 0%, rgba(44,237,224,1) 100%)"}
+        sx={{ boxShadow: "0px 3px 7px rgba(0, 0, 0, 0.5)" }}
       >
-        <Heading as="h3" fontSize="2rem" color="blue.light" >
+        <Heading 
+        as="h3" 
+        h={"40px"}
+        fontSize="1.6rem" 
+        color="#FFFFFF"  
+        display="flex"
+        alignItems="center"
+        justifyContent="center"               
+        >
           Livros pesquisados:
         </Heading>
       </Box>
