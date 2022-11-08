@@ -135,7 +135,6 @@ export const ModalLibrary = ({ isOpen, onClose }: iModalProps) => {
           >
             Recomendar
           </Button>
-
           <Button
             type="button"
             borderStyle="4px"

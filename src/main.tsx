@@ -4,13 +4,15 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { projectTheme } from "./styles/theme";
+import { SearchProvider } from "./contexts/searchContext/searchContext";
+
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ChakraProvider theme={projectTheme}>
+        <ChakraProvider theme={projectTheme}>
           <App />
-      </ChakraProvider>
+        </ChakraProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

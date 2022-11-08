@@ -21,7 +21,7 @@ import { registerSchema } from "../../validations/register";
 
 export const RegistForm = () => {
 
-  const { submitRegister, setModalControl, onClose, setBVtnModalLoadingCadastro, btnModalLoadingCadastro, setModalType } = useContextFunction();
+  const { submitRegister, setModalControl,onOpen, onClose, setBVtnModalLoadingCadastro, btnModalLoadingCadastro, setModalType } = useContextFunction();
 
   const {
     register,
@@ -40,14 +40,14 @@ export const RegistForm = () => {
       justifyContent={"center"}
     >
       <Image
-        display={{ sm: "none", lg: "block" }}
+        display={{base: "none", sm: "none", lg: "block" }}
         width={"640px"}
         height={"640px"}
         src={registImage}
         alt="Pessoa segurando um livro"
       />
       <Flex
-        width={"400px"}
+        width={{base:"300px", md:"400px"}}
         height={"640px"}
         flexDirection={"column"}
         alignItems={"center"}
@@ -231,8 +231,7 @@ export const RegistForm = () => {
                 setBVtnModalLoadingCadastro(false)
               }, 2000);
               setBVtnModalLoadingCadastro(true)
-            }
-            }
+            }}
           >
             {btnModalLoadingCadastro ? (<Spinner
               thickness='4px'
@@ -263,6 +262,7 @@ export const RegistForm = () => {
               _hover={{ bg: "transparent" }}
               onClick={() => {
                 setModalControl(false)
+                onOpen()
                 setModalType("login");
               }}
             >

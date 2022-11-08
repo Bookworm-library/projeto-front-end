@@ -7,6 +7,11 @@ export const MainLandingPage = () => {
 
   const { isOpen } = useContextFunction();
 
+  const breakpoints = {
+    sm: '319px',
+    md: '950px',
+  }
+
   return (
     <>
       {isOpen ? <ModalLogin /> : null}
@@ -18,10 +23,13 @@ export const MainLandingPage = () => {
         align={"center"}
         justify="center"
       >
-        <Flex marginTop={"200px"}>
-          <Image src="./src/assets/img/books.png" />
-          <Flex bg={"#2C7AED"} h="100%" minH={"400px"} maxH="400px" align={"center"} justify="center" p={"5px"} maxW="400px">
-            <Text color={"white"}>
+        <Flex marginTop={{base:"300px", sm:"500px", md:"500px", lg:"100px"}} 
+        w={[320, 950]}
+        display={{ lg: 'flex' }}
+        >
+          <Image src="./src/assets/img/books.png" margin={{sm:"0 auto"}} />
+          <Flex bg={"#2C7AED"} h="100%" minH={"400px"} maxH="400px" align={"center"} justify="center" p={"5px"} maxW="400px" margin={{sm:"0 auto"}} >
+            <Text color={"white"} fontSize={{ base: '14px', md: '16px', lg: '18px' }}>
               Lorem Ipsum is simply dummy text of the printing and
               typesetting industry. Lorem Ipsum has been the industry's
               standard dummy text ever since the 1500s, when an unknown

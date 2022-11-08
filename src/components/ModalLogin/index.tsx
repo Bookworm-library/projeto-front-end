@@ -44,19 +44,19 @@ export const ModalLogin = () => {
         <>
             <Flex>
                 <Modal isOpen={isOpen} onClose={onClose}>
-                    <ModalOverlay />
+                    <ModalOverlay w="100%" h="100%"/>
                     <Box boxSize='sm' >
                         <ModalContent
                             bg="transparent"
                             flexDirection={"row"}
-                            maxWidth="100vw" h="100vh"
+                            maxWidth="100%" h="100%"
                             margin={"0 auto"}
                             justifyContent={"center"}
                             alignItems={"center"}
                         >
                             <Box>
                                 <Image
-                                    display={{ sm: "none", lg: "block" }}
+                                    display={{base: "none", sm: "none", lg: "block" }}
                                     h="500px"
                                     w="600px"
                                     src={loginImage}
@@ -65,7 +65,7 @@ export const ModalLogin = () => {
                             <Box
                                 bg="#2C7AED"
                                 h="500px"
-                                w="425px">
+                                w={{base:"300px", md:"425px"}}>
                                 <Center color='white'>
                                     <ModalHeader >Login</ModalHeader>
                                     <ModalCloseButton
@@ -74,8 +74,8 @@ export const ModalLogin = () => {
                                         _hover={{ bg: "#FFFFFF" }}
                                         fontWeight='bold'
                                         position={"unset"}
-                                        marginLeft="100px"
-                                        marginRight="-120px"
+                                        marginLeft={{base:"60px",sm:"70px",lg:"100px"}}
+                                        marginRight={{base:"-70px",sm:"-60px",lg:"-120px"}}
                                     />
                                 </Center>
                                 <ModalBody  >

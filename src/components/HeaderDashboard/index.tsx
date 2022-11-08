@@ -117,8 +117,7 @@ export const HeaderDashboard = () => {
             onClose();
             setBVtnModalLoadingLogin(false)
             setModalControl(false);
-          }}
-        >
+          }}>
           Deslogar
         </Button>
       </Stack>

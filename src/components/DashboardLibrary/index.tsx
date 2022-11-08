@@ -18,7 +18,7 @@ const DashboardLibrary = () => {
         padding="1rem 2.5rem"
         backgroundSize="cover"
         backgroundPosition="center"
-       
+      
       >
         <Box
           position="absolute"
@@ -32,7 +32,7 @@ const DashboardLibrary = () => {
         >
           <Heading color="#068AD9">Biblioteca:</Heading>
         </Box>
-        <Flex  margin={"100px auto"} w="95%">
+        <Flex  margin={"100px auto"} w="86.5%" >
             <CardsLibrary/>
         </Flex>
       </Flex>
