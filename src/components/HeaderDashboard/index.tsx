@@ -102,6 +102,7 @@ export const HeaderDashboard = () => {
           bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
           onClick={() => {
             navigate("/dashboard/biblioteca");
+            onClose();
           }}
         >
           Biblioteca
