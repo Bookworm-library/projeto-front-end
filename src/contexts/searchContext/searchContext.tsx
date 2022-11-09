@@ -58,8 +58,10 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
   const [searchResults, setSearchResults] = useState<iBooks[]>();
   const [currentBook, setCurrentBook] = useState<iBooks>();
   const [library, setLibrary] = useState<iBooks[] | undefined>([]);
+
   const [wishList, setWishList] = useState<iBooks[] | undefined>([]);
   const [recomended, setRecomended] =  useState<iBooks[] | undefined>([]);
+
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -77,6 +79,8 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
     setWishList(data.wishlist.reverse())
     setRecomended(data.recomended)
   }
+
+ 
   useEffect(() => {
     getInfoUserLogin();
     setLoading(false);

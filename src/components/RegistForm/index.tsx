@@ -28,7 +28,9 @@ export const RegistForm = () => {
 
   const changeStateEye = () => {
     setEye(!eye)
+
   }
+
 
   const {
     register,
@@ -165,33 +167,34 @@ export const RegistForm = () => {
             >
               Senha:
             </FormLabel>
-            {eye ?
-              <Box display={"flex"} alignItems={"center"} w={"100%"} borderRadius={"4px"} bg="#FFFFFF" p={"0 20px"}>
-                <Input
-                  _focus={{ border: "none", outline: "none", input: "focus" }}
-                  _active={{ border: "none", outline: "none", input: "focus" }}
-                  _hover={{ border: "none", outline: "none" }}
-                  border={{ outline: "none", input: "focus" }}
-                  variant='unstyled'
-                  height={"3rem"}
-                  type='password'
-                  bg="#FFFFFF"
-                  placeholder="Digite sua senha..."
-                  {...register("password")} />
-                <FaEye color="#2C7AED" height={"46px"} onClick={changeStateEye} cursor={"pointer"} fontSize={"20px"} />
-              </Box>
-              :
-              <Box display={"flex"} alignItems={"center"} w={"100%"} borderRadius={"4px"} bg="#FFFFFF" p={"0 20px"}>
-                <Input
-                  variant='unstyled'
-                  border={"none"}
-                  height={"3rem"}
-                  type='text'
-                  bg="#FFFFFF"
-                  placeholder="Digite sua senha..."
-                  {...register("password")} />
-                <FaEye color="#2C7AED" height={"46px"} onClick={changeStateEye} cursor={"pointer"} fontSize={"20px"} />
-              </Box>}
+            {
+              eye ?
+                <Box display={"flex"} p={"0 20px"} alignItems={"center"} w={"100%"} borderRadius={"4px"} bg="#FFFFFF" >
+                  <Input
+                    id="password"
+                    {...register("password")}
+                    type="password"
+                    variant='unstyled'
+                    width={"100%"}
+                    height={"3rem"}
+                    bg={"white"}
+                    placeholder={"Digite sua senha"} />
+                  <FaEye color="#2C7AED" height={"46px"} onClick={changeStateEye} cursor={"pointer"} fontSize={"20px"} />
+                </Box>
+                :
+                <Box display={"flex"} p={"0 20px"} alignItems={"center"} w={"100%"} borderRadius={"4px"} bg="#FFFFFF" >
+                  <Input
+                    id="password"
+                    {...register("password")}
+                    variant='unstyled'
+                    type="text"
+                    width={"100%"}
+                    height={"3rem"}
+                    bg={"white"}
+                    placeholder={"Digite sua senha"} />
+                  <FaEye color="#2C7AED" height={"46px"} onClick={changeStateEye} cursor={"pointer"} fontSize={"20px"} />
+                </Box>
+            }
             <Box h={"26px"}>
               <FormErrorMessage
                 marginTop={0}
@@ -315,5 +318,6 @@ export const RegistForm = () => {
       </Flex>
     </Flex>
   );
-};
+}
+
 
