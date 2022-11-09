@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import DashboardLibrary from "../components/DashboardLibrary";
 import { DashboardPage } from "../pages/DashBoardPage";
 import { LandingPage } from "../pages/LandingPage";
@@ -9,20 +9,17 @@ import DashboardMain from "../components/DashboardMain";
 
 export const RoutesMain = () => (
   <>
-    <Routes>
+  <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/" element={<ProtectedRoutes />}>
-        <Route path="dashboard" element={<DashboardPage />}>
-          <Route path="/dashboard/home" element={<DashboardMain/>}></Route>
-          <Route index></Route>
-          <Route
-            path="/dashboard/biblioteca"
-            element={<DashboardLibrary />}
-          ></Route>
-          <Route path="/dashboard/pesquisa" element={<SearchPage />}></Route>
-          <Route path="/dashboard/sobre" element={<AboutPage />}></Route>
-        </Route>
+          <Route path="/dashboard" element={<DashboardPage />}>
+            <Route index element={<DashboardMain/>}></Route>
+            <Route path="/dashboard/biblioteca" element={<DashboardLibrary />}></Route>
+            <Route path="/dashboard/pesquisa" element={<SearchPage />}></Route>
+            <Route path="/dashboard/sobre" element={<AboutPage />}></Route>
+          </Route>
       </Route>
     </Routes>
   </>
 );
+

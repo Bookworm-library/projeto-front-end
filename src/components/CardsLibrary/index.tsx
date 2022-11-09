@@ -1,13 +1,19 @@
-import { UnorderedList } from "@chakra-ui/react";
+import {
+  Box,
+  UnorderedList,
+  Flex
+} from "@chakra-ui/react";
 import { useContext } from "react";
 import { SearchContext } from "../../contexts/searchContext/searchContext";
 import { iBooks } from "../../contexts/searchContext/searchContext";
 import { ListCard } from "../ListCard";
 import { useContextFunction } from "../../contexts/userContext/userContext";
-import { ModalLibrary } from "../ModalLibrary";
+import { Modals } from "../Modals";
+import { ImBooks } from "react-icons/im";
 
 const CardsLibrary = () => {
-  const { library, setCurrentBook } = useContext(SearchContext);
+  const { library, setCurrentBook, typeModal, setTypeModal } =
+    useContext(SearchContext);
   const { onOpen, isOpen, onClose } = useContextFunction();
 
   return (
@@ -16,10 +22,11 @@ const CardsLibrary = () => {
         display={"flex"}
         gap="30px"
         w="100%"
-        flexWrap={{ sm: "nowrap", lg: "wrap" }}
-        overflowX={{ sm: "auto", lg: "hidden" }}
+        flexWrap={{ sm: "nowrap", lg: "wrap", xl: "wrap" }}
+        overflowX={{ sm: "auto", mb: "hidden", lg: "hidden" }}
         overflowY="auto"
-        h="100% "
+        h={{ base: "550px", "2xl": "800px" }}
+        flexDirection={{ base: "column", lg: "row" }}
         alignItems={"center"}
         css={{
           "&::-webkit-scrollbar": {
@@ -33,21 +40,34 @@ const CardsLibrary = () => {
           },
         }}
       >
-        {library?.map((element: iBooks) => {
+        {library?.length ? library?.map((element: iBooks) => 
+        {
           return (
-            <ListCard
-              key={element.id}
-              element={element}
-              buttonTitle={"Ver Livro"}
-              itemAction={() => {
-                setCurrentBook(element);
-                onOpen();
-              }}
-            />
-          );
-        })}
+            <ListCard key={element.id} element={element} buttonTitle={"Ver Livro"} itemAction={() => {
+              onOpen();
+              setTypeModal(["tpRecom","tpRemove"])
+              setCurrentBook(element);
+            }} />) 
+        }
+        ) : (<Flex
+            display={"flex"} 
+            justifyContent={"center"} 
+            alignItems={"center"}
+            fontSize={{sm: "22px", md:"36px",lg: "46px" }} fontWeight={"bold"}
+            height={"300px"}
+            width={"80vw"}>
+            <Box 
+            w={"100%"} 
+            display={"flex"} 
+            justifyContent={"center"} 
+            alignItems={"center"}>
+              <ImBooks/>
+              Nenhum livro por aqui ainda!
+            </Box>  
+            </Flex>)
+            }
       </UnorderedList>
-      <ModalLibrary isOpen={isOpen} onClose={onClose} />
+      <Modals isOpen={isOpen} onClose={onClose} />
     </>
   );
 };

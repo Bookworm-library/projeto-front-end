@@ -28,7 +28,7 @@ export const HeaderDashboard = () => {
     {
       buttonTitle: "Home",
       buttonAction: () => {
-        navigate("/dashboard/home");
+        navigate("/dashboard");
       },
     },
     {
@@ -81,7 +81,7 @@ export const HeaderDashboard = () => {
         as="form"
         w="24rem"
         h="2.5rem"
-        display={{ sm: "none", lg: "flex" }}
+        display={{ base:"none",sm: "none", lg: "flex" }}
         alignItems="center"
         justifyContent="center"
         marginRight={{ lg: "1rem" }}
@@ -120,7 +120,7 @@ export const HeaderDashboard = () => {
         </Button>
       </FormControl>
       <Stack
-        display={{ sm: "none", lg: "flex" }}
+        display={{ base:"none",sm: "none", lg: "flex" }}
         align="center"
         direction={"row"}
         color="white"
@@ -131,7 +131,7 @@ export const HeaderDashboard = () => {
           _hover={{ opacity: "0.7" }}
           bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
           onClick={() => {
-            navigate("/dashboard/home");
+            navigate("/dashboard");
             onClose()
           }}
         >
