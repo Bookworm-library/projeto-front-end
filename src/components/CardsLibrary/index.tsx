@@ -36,6 +36,8 @@ const CardsLibrary = () => {
         {library?.map((element: iBooks) => {
           return (
             <ListCard
+              isOpen={isOpen}
+              onClose={onClose}
               key={element.id}
               element={element}
               buttonTitle={"Ver Livro"}

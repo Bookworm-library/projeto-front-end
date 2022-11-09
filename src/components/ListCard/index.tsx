@@ -12,12 +12,12 @@ import unknownImage from "../../assets/img/no-image-item.png";
 import { iBooks } from "../../contexts/searchContext/searchContext";
 
 export interface IListCardProps {
-  element: iBooks;
   buttonTitle: string;
-  itemAction?: () => void;
   typeList?: string;
+  element: iBooks;
   isOpen: boolean;
   onClose: () => void;
+  itemAction?: () => void;
 }
 
 export const ListCard = ({

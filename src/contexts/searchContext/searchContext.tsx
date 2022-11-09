@@ -92,7 +92,6 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
     setLoading(false);
   }, [library]);
 
-
   const submitSearch = async () => {
     if (location.pathname !== "/dashboard/pesquisa") {
       navigate("/dashboard/pesquisa");

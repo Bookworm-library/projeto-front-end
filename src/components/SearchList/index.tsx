@@ -53,12 +53,12 @@ export const SearchList = () => {
           searchResults?.map((element) => {
             return (
               <ListCard
+                onOpen={() => onOpen()}
                 key={element.id}
                 element={element}
                 buttonTitle={"Ver Livro"}
                 itemAction={() => {
                   setCurrentBook(element);
-                  onOpen();
                 }}
               />
             );
@@ -79,7 +79,11 @@ export const SearchList = () => {
         )}
       </UnorderedList>
       <Modals type={["tpWish", "tpLib"]} isOpen={isOpen} onClose={onClose} />
-      {/* <Modal
+    </>
+  );
+};
+
+{/* <Modal
         blockScrollOnMount={false}
         isCentered
         isOpen={isOpen}
@@ -166,6 +170,3 @@ export const SearchList = () => {
           </ModalFooter>
         </ModalContent>
       </Modal> */}
-    </>
-  );
-};
