@@ -2,6 +2,7 @@ import { createContext, ReactNode, SetStateAction, useState } from "react";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { number } from "yup/lib/locale";
 import { apiFake, apiSearch } from "../../services/api";
 
 interface iSearchProviderProps {
@@ -24,6 +25,10 @@ interface iSearchContext {
   removeFromWishlist: () => Promise<void>;
   removeFromLibrary: () => Promise<void>;
   addToRecomendedList: () => Promise<void>;
+  wishList:iBooks[] | undefined;
+  setWishList: React.Dispatch<SetStateAction<iBooks[] | undefined>>;
+  recomended: iBooks[] | undefined;
+  setRecomended: React.Dispatch<SetStateAction<iBooks[] | undefined>>;
 }
 
 export interface iBooks {
@@ -38,6 +43,7 @@ export interface iBooks {
         }
       | undefined;
   };
+  
 }
 interface iBooksArray {
   items: iBooks[];
@@ -53,6 +59,10 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
   const [currentBook, setCurrentBook] = useState<iBooks>();
   const [library, setLibrary] = useState<iBooks[] | undefined>([]);
 
+  const [wishList, setWishList] = useState<iBooks[] | undefined>([]);
+  const [recomended, setRecomended] =  useState<iBooks[] | undefined>([]);
+
+
   const location = useLocation();
   const navigate = useNavigate();
   const userId = localStorage.getItem("@BookwordmLibrary:userId");
@@ -64,7 +74,10 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
     });
     const livrosUser = data.library;
     const order = livrosUser?.reverse();
+
     setLibrary(order);
+    setWishList(data.wishlist.reverse())
+    setRecomended(data.recomended)
   }
 
  
@@ -73,6 +86,13 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
     setLoading(false);
   }, [library]);
 
+  async function getRecomended (){
+    const {data}= await apiFake.get(
+      `livrosRecomendados`,
+      { headers: { authorization: `Bearer ${token}` } }
+    );
+    setRecomended(data)
+  }
   const submitSearch = async () => {
     if (location.pathname !== "/dashboard/pesquisa") {
       navigate("/dashboard/pesquisa");
@@ -194,7 +214,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
           headers: { authorization: `Bearer ${token}` },
         });
         setLibrary(data.library);
-
+       
         toast.success("Livro adicionado à biblioteca!", {
           theme: "colored",
           position: "top-right",
@@ -259,6 +279,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
         const post = await apiFake.patch(`users/${userId}`, body, {
           headers: { authorization: `Bearer ${token}` },
         });
+  
         toast.success("Livro Recomendado com sucesso", {
           theme: "colored",
           position: "top-right",
@@ -269,6 +290,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
             `livrosRecomendados/${currentBook?.id}`,
             { headers: { authorization: `Bearer ${token}` } }
           );
+          
           const votes = data.votes;
           const patch = await apiFake.patch(
             `livrosRecomendados/${currentBook?.id}`,
@@ -280,6 +302,8 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
           const post = await apiFake.post(`livrosRecomendados`, book, {
             headers: { authorization: `Bearer ${token}` },
           });
+        
+      
         }
       }
     } catch (error) {
@@ -306,6 +330,10 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
         removeFromWishlist,
         removeFromLibrary,
         addToRecomendedList,
+        wishList,
+        setWishList,
+        recomended,
+        setRecomended
       }}
     >
       {children}

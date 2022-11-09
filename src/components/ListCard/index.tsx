@@ -11,7 +11,7 @@ import {
 import unknownImage from "../../assets/img/no-image-item.png";
 import { iBooks } from "../../contexts/searchContext/searchContext";
 
-interface IListCardProps {
+export interface IListCardProps {
   element: iBooks;
   buttonTitle: string;
   itemAction?: () => void;
