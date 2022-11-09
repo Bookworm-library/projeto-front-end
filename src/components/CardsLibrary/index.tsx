@@ -13,9 +13,7 @@ import { ImBooks }  from "react-icons/im";
 const CardsLibrary = () => {
   const { library, setCurrentBook } = useContext(SearchContext);
   const { onOpen, isOpen, onClose } = useContextFunction();
-  
 
-  
   return (
     <>
       <UnorderedList
@@ -25,7 +23,7 @@ const CardsLibrary = () => {
         flexWrap={{ sm: "nowrap", lg: "wrap" }}
         overflowX={{ sm: "auto", lg: "hidden" }}
         overflowY="auto"
-        h="100% "
+        h={{base:"550px", "2xl":"650px"}}
         alignItems={"center"}
         css={{
           "&::-webkit-scrollbar": {

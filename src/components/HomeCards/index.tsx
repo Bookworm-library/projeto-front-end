@@ -28,8 +28,9 @@ export const HomeCard =  ({
           marginBottom="1.5rem"
           borderRadius="4px"
           w={"300px"}
-          h={"290px"}
-          maxH={""}
+          h={"280px"}
+          
+
         >
           <Flex align={"center"} p="10px" flexDirection={"column"} >
             <Box>

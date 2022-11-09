@@ -13,13 +13,15 @@ const DashboardLibrary = () => {
       <Flex
         as={"main"}
         bgImage="../src/assets/img/bgbooks.svg"
-        h={"100%"}
+        h="100%"
         w="100%"
         backgroundRepeat="no-repeat"
         gap="2.5rem"
         padding="1rem 2.5rem"
         backgroundSize="cover"
         backgroundPosition="center"
+        display={"flex"}
+        flexDirection={"column"}
         
       >
         <Box
@@ -29,6 +31,7 @@ const DashboardLibrary = () => {
           borderRadius="50px"
           bg={"linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(44,122,224,1) 0%, rgba(44,237,224,1) 100%)"}
           sx={{ boxShadow: "0px 3px 7px rgba(0, 0, 0, 0.5)" }}
+        
         >
           <Heading 
           color="#ffffff"
@@ -42,7 +45,7 @@ const DashboardLibrary = () => {
           <Box>
           </Box>
         </Box>
-        <Flex  margin={"100px auto"} w="86.5%" >
+        <Flex  margin={"50px auto"} w="86.5%" >
             <CardsLibrary/>
         </Flex>
       </Flex>
