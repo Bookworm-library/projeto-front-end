@@ -1,6 +1,5 @@
 import { Heading, Image, UnorderedList, Box } from "@chakra-ui/react";
 import { Flex } from "@chakra-ui/react";
-
 import { useContext } from "react";
 import boyandbook from "../../assets/img/boyandbook.jpg";
 import { SearchContext } from "../../contexts/searchContext/searchContext";
@@ -17,22 +16,23 @@ const DashboardMain = () => {
   return (
     <>
       <UnorderedList
-        w="100%"
+        w={{sm: "100vw", md: "100%" }}
         h="100vh"
         display="flex"
-        justifyContent={"space-between"}
+        justifyContent={{sm: "center", md: "space-between" }}
         gap="2.5rem"
-        padding="1rem 2.5rem"
+        padding={{smHome: 0}}
         bgImage="/src/assets/img/bgbooks.svg"
         backgroundSize="cover"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
-       
+        margin={"0"}
+
       >
         <Box display={"flex"} flexDirection={"column"}>
           <Box
             border={"solid transparent"}
-            w={"22.5rem"}
+            w={{sm: "100%", md: "22.5rem" }}
             textAlign={"center"}
             bg={
               "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(44,122,224,1) 0%, rgba(44,237,224,1) 100%)"
@@ -42,7 +42,7 @@ const DashboardMain = () => {
             as="h3"
             h={"40px"}
             marginBottom={"20px"}
-            fontSize="1.6rem"
+            fontSize={{sm: "1.1rem", md: "1.6rem" }}
             fontWeight={"bold"}
             color={"#ffffff"}
             display="flex"
@@ -57,6 +57,7 @@ const DashboardMain = () => {
             gap={"10px"}
             h="310px"
             w="890px"
+  
             overflowY="hidden"
             css={{
               scrollbarWidth: "auto",
@@ -89,18 +90,20 @@ const DashboardMain = () => {
                 />
               );
             }) : (<Flex
-              display={"flex"} justifyContent={"center"} 
+              display={"flex"} 
+              justifyContent={"center"} 
               alignItems={"center"}
-              fontSize={"36px"} fontWeight={"bold"}
+              fontSize={{sm: "22px", md: "36px"}}
+              fontWeight={"bold"}
               height={"200px"}
-              width={"80vw"}>
-              <ImBooks />
+              width={{sm: "100%", md: "80vw" }}>
+              <ImBooks width={"50px"} fontSize={"22px"} />
               Nenhum livro por aqui ainda!
               </Flex>)}
           </Flex>
           <Box
             border={"solid transparent"}
-            w={"22.5rem"}
+            w={{sm: "100%", md: "22.5rem" }}
             textAlign={"center"}
             bg={
               "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(44,122,224,1) 0%, rgba(44,237,224,1) 100%)"
@@ -110,7 +113,7 @@ const DashboardMain = () => {
             as="h3"
             h={"40px"}
             marginBottom={"20px"}
-            fontSize="1.6rem"
+            fontSize={{sm: "1.1rem", md: "1.6rem" }}
             fontWeight={"bold"}
             color={"#ffffff"}
             display="flex"
@@ -160,7 +163,8 @@ const DashboardMain = () => {
             }) : (<Flex
               display={"flex"} justifyContent={"center"} 
               alignItems={"center"}
-              fontSize={"36px"} fontWeight={"bold"}
+              fontSize={{sm: "22px", md: "36px"}} 
+              fontWeight={"bold"}
               height={"200px"}
               width={"80vw"}>
               <ImBooks />
@@ -171,7 +175,7 @@ const DashboardMain = () => {
         </Box>
         <Flex>
           <Image
-            display={{ base: "none", sm: "none", lg: "block" }}
+            display={{ base: "none", sm: "none", md: "none", lg: "none", xlHome:"block" , xl: "none" }}
             h={"95%"}
             minH="610px"
             maxH={"700px"}

@@ -38,8 +38,8 @@ export const HomeCard = ({
         h={{
           base: "200px",
           sm: "200px",
-          lg: "200px",
-          xl: "230px",
+          lg: "220px",
+          xl: "240px",
           "2xl": "280px",
         }}
       >
@@ -107,7 +107,7 @@ export const HomeCard = ({
             bg="#2C7AED"
             _hover={{ opacity: "0.7" }}
             w="8rem"
-            h={{base:"2rem",sm:"2rem",lg:"2.3rem",xl:"2.625rem"}}
+            h={{base:"2rem",sm:"2rem",lg:"2rem",xl:"2.625rem"}}
             onClick={itemAction}
           >
             {buttonTitle}
