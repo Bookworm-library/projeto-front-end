@@ -73,7 +73,6 @@ const DashboardMain = () => {
                 border: "2px solid #ffffff",
               },
             }}
-
           >
             {recomended?.map((element) => {
               return (
