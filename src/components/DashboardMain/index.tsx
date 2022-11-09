@@ -9,6 +9,9 @@ import boyandbook from "../../assets/img/boyandbook.jpg";
 import { SearchContext } from "../../contexts/searchContext/searchContext";
 import { useContextFunction } from "../../contexts/userContext/userContext";
 import { HomeCard } from "../HomeCards";
+import { ImBooks }  from "react-icons/im";
+
+
 
 const DashboardMain = () => {
   const { wishList, recomended, setCurrentBook, loading } =
@@ -52,12 +55,7 @@ const DashboardMain = () => {
             Livros Mais Votados:
           </Box>
 
-          <Flex overflowX={"auto"} 
-          maxW={"65vw"} 
-          gap={"10px" } 
-          h ="310px" 
-          w="890px" 
-          overflowY="auto"
+          <Flex overflowX={"auto"} gap={"10px" } h ="310px" w="890px" overflowY="hidden"
             css={{
               scrollbarWidth: "auto",
               scrollbarColor: "#2c7aed #ffffff",
@@ -74,7 +72,7 @@ const DashboardMain = () => {
               },
             }}
           >
-            {recomended?.map((element) => {
+            {recomended?.length ? recomended?.map((element) => {
               return (
                 <HomeCard
                   key={element.id}
@@ -89,9 +87,16 @@ const DashboardMain = () => {
                   }}
                 />
               );
-            })}
+            }) : (<Flex
+              display={"flex"} justifyContent={"center"} 
+              alignItems={"center"}
+              fontSize={"36px"} fontWeight={"bold"}
+              height={"200px"}
+              width={"80vw"}>
+              <ImBooks />
+              Nenhum livro por aqui ainda!
+              </Flex>)}
           </Flex>
-
           <Box
             border={"solid transparent"}
             w={"22.5rem"}
@@ -113,14 +118,7 @@ const DashboardMain = () => {
           >
             Livros Desejados:
           </Box>
-     
-          <Flex 
-          overflowX={"scroll"} 
-          overflowY="auto" 
-          maxW={"65vw"} 
-          gap={"10px"} 
-          h ="310px" 
-          w="890px"
+          <Flex overflowX={"scroll"} overflowY="hidden" gap={"10px"} h ="310px" w="890px"
             css={{
               scrollbarWidth: "auto",
               scrollbarColor: "#2c7aed #ffffff",
@@ -137,7 +135,7 @@ const DashboardMain = () => {
               },
             }}
           >
-            {wishList?.map((element) => {
+            {wishList?.length ? wishList?.map((element) => {
               return (
                 <HomeCard
                   key={element.id}
@@ -152,7 +150,16 @@ const DashboardMain = () => {
                   }}
                 />
               );
-            })}
+            }) : (<Flex
+              display={"flex"} justifyContent={"center"} 
+              alignItems={"center"}
+              fontSize={"36px"} fontWeight={"bold"}
+              height={"200px"}
+              width={"80vw"}>
+              <ImBooks />
+              Nenhum livro por aqui ainda!
+              </Flex>)
+              }
           </Flex>
         </Box>
         <Flex>

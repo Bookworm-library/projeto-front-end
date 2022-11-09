@@ -12,7 +12,7 @@ const DashboardLibrary = () => {
       <Flex
         as={"main"}
         bgImage="../src/assets/img/bgbooks.svg"
-        h={"100%"}
+        h="100%"
         w="100%"
         backgroundRepeat="no-repeat"
         gap="2.5rem"

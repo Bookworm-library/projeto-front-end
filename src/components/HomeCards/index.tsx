@@ -34,7 +34,7 @@ export const HomeCard = ({
         w={"300px"}
         h={"280px"}
       >
-        <Flex align={"center"} p="10px" flexDirection={"column"}>
+        <Flex align={"center"} p="10px" flexDirection={"column"} >
           <Box>
             <Image
               src={
@@ -50,13 +50,8 @@ export const HomeCard = ({
             />
           </Box>
           <Box color={"white"} overflow="hidden">
-            <Text
-              as="span"
-              fontSize={"16px"}
-              fontWeight={"bold"}
-              noOfLines={[1, 2]}
-              width={"100%"}
-            >
+            <Text as="span" fontSize={"16px"} fontWeight={"bold"} noOfLines={[1]}
+              width={"100%"}>
               {element.volumeInfo.title}
             </Text>
             <Text as="span" fontSize={"16px"} noOfLines={[1]}>
@@ -71,16 +66,11 @@ export const HomeCard = ({
             _hover={{ opacity: "0.7" }}
             w="8rem"
             h="2.625rem"
-            onClick={itemAction}>
+            onClick={itemAction}
+          >
             {buttonTitle}
           </Button>
         </Stack>
       </ListItem>
-      <Modals
-        type={typeList === "recomended" ? ["tpLib", "tpWish"] : ["tpLib"]}
-        isOpen={isOpen}
-        onClose={onClose}
-      />
-    </>
-  );
+    </>);
 };
