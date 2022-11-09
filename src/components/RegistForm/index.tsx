@@ -25,13 +25,16 @@ export const RegistForm = () => {
   const { submitRegister, setModalControl, onOpen, onClose, setBVtnModalLoadingCadastro, btnModalLoadingCadastro, setModalType } = useContextFunction();
 
   const [eye, setEye] = useState(true)
+  const [teste, setteste] = useState(true)
   
 
   const changeStateEye = () => {
     if (eye === true) {
       setEye(false)
+      setteste(false)
     } else {
       setEye(true)
+      setteste(true)
     }
   }
 
@@ -222,7 +225,7 @@ export const RegistForm = () => {
               Confirme sua senha:
             </FormLabel>
             {
-              !eye ?
+              !teste ?
                 <Box display={"flex"} p={"0 20px"} alignItems={"center"} w={"100%"} borderRadius={"4px"} bg="#FFFFFF" >
                   <Input
                     variant='unstyled'
