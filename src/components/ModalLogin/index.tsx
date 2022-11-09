@@ -26,10 +26,12 @@ import {
 } from "../../contexts/userContext/userContext";
 import { Spinner } from '@chakra-ui/react'
 import { FaEye } from "react-icons/fa";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { SearchContext } from "../../contexts/searchContext/searchContext";
 
 export const ModalLogin = () => {
-    const { isOpen, onClose, submitLogin, setModalControl, setBVtnModalLoadingLogin, onOpen, btnModalLoadingLogin, setModalType } = useContextFunction();
+    const { isOpen, onClose, submitLogin, setModalControl, setBVtnModalLoadingLogin, btnModalLoadingLogin, setModalType } = useContextFunction();
+    const { library, setLibrary, wishList, setWishList} = useContext(SearchContext)
 
     const {
         register,
@@ -175,7 +177,8 @@ export const ModalLogin = () => {
                                             bg="#2CEDE0"
                                             color="#3580EE"
                                             _hover={{ opacity: "0.7" }}
-                                            onClick={() => {
+                                            onClick={() => {          
+                                                                                 
                                                 setTimeout(() => {
                                                     setBVtnModalLoadingLogin(false)
                                                 }, 2000);

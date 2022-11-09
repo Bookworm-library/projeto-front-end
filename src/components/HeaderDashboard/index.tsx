@@ -16,7 +16,7 @@ import { IMenuButton, MenuMobile } from "../MenuMobile";
 
 export const HeaderDashboard = () => {
   const navigate = useNavigate();
-  const { submitSearch, setSearch } = useContext(SearchContext);
+  const { submitSearch, setSearch ,setLibrary,library} = useContext(SearchContext);
   const { setModalControl, onClose, setBVtnModalLoadingLogin } =
     useContextFunction();
 
@@ -142,9 +142,9 @@ export const HeaderDashboard = () => {
           _hover={{ opacity: "0.7" }}
           bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
           onClick={() => {
+            setLibrary(library)
             navigate("/dashboard/biblioteca");
             onClose();
-
           }}
         >
           Biblioteca
