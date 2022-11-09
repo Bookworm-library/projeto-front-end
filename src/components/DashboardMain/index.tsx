@@ -27,6 +27,7 @@ const DashboardMain = () => {
         backgroundSize="cover"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
+       
       >
         <Box display={"flex"} flexDirection={"column"}>
           <Box
@@ -56,12 +57,13 @@ const DashboardMain = () => {
             gap={"10px"}
             h="310px"
             w="890px"
-            overflowY="auto"
+            overflowY="hidden"
             css={{
               scrollbarWidth: "auto",
               scrollbarColor: "#2c7aed #ffffff",
               "::-webkit-scrollbar": {
                 width: "12px",
+                height:"12px"
               },
               "::-webkit-scrollbar-track": {
                 background: "#ffffff",
@@ -119,8 +121,8 @@ const DashboardMain = () => {
           </Box>
 
           <Flex
-            overflowX={"scroll"}
-            overflowY="auto"
+            overflowX={"auto"}
+            overflowY="hidden"
             maxW={"65vw"}
             gap={"10px"}
             h="310px"
@@ -130,6 +132,7 @@ const DashboardMain = () => {
               scrollbarColor: "#2c7aed #ffffff",
               "::-webkit-scrollbar": {
                 width: "12px",
+                height:"12px"
               },
               "::-webkit-scrollbar-track": {
                 background: "#ffffff",
