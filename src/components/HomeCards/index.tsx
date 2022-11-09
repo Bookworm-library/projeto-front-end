@@ -29,6 +29,8 @@ export const HomeCard =  ({
           borderRadius="4px"
           w={"300px"}
           h={"280px"}
+          
+
         >
           <Flex align={"center"} p="10px" flexDirection={"column"} >
             <Box>
@@ -46,7 +48,7 @@ export const HomeCard =  ({
               />
             </Box>
             <Box color={"white"} overflow="hidden">
-              <Text as="span" fontSize={"16px"} fontWeight={"bold"} noOfLines={[1, 2]}
+              <Text as="span" fontSize={"16px"} fontWeight={"bold"} noOfLines={[1]}
               width={"100%"}>
                 {element.volumeInfo.title}
               </Text>

@@ -173,7 +173,7 @@ export const RegistForm = () => {
                   <Input
                     id="password"
                     {...register("password")}
-                    type="password"
+                    type="text"
                     variant='unstyled'
                     width={"100%"}
                     height={"3rem"}
@@ -187,7 +187,7 @@ export const RegistForm = () => {
                     id="password"
                     {...register("password")}
                     variant='unstyled'
-                    type="text"
+                    type="password"
                     width={"100%"}
                     height={"3rem"}
                     bg={"white"}
@@ -223,26 +223,26 @@ export const RegistForm = () => {
                 <Input
                   id="confirmPassword"
                   {...register("confirmPassword")}
-                  type="password"
-                  variant='unstyled'
-                  height={"3rem"}
-                  bg="#FFFFFF"
-                  placeholder={"Digite sua senha novamente"}
-                />
-                <FaEye color="#2C7AED" height={"46px"} onClick={changeStateEye} cursor={"pointer"} fontSize={"20px"} />
-              </Box>
-              :
-              <Box display={"flex"} alignItems={"center"} w={"100%"} borderRadius={"4px"} bg="#FFFFFF" p={"0 20px"}>
-                <Input
-                  id="confirmPassword"
-                  {...register("confirmPassword")}
                   type="text"
                   variant='unstyled'
                   height={"3rem"}
                   bg="#FFFFFF"
                   placeholder={"Digite sua senha novamente"}
                 />
-                <FaEye color="#2C7AED" height={"46px"} onClick={changeStateEye} cursor={"pointer"} fontSize={"20px"} />
+                
+              </Box>
+              :
+              <Box display={"flex"} alignItems={"center"} w={"100%"} borderRadius={"4px"} bg="#FFFFFF" p={"0 20px"}>
+                <Input
+                  id="confirmPassword"
+                  {...register("confirmPassword")}
+                  type="password"
+                  variant='unstyled'
+                  height={"3rem"}
+                  bg="#FFFFFF"
+                  placeholder={"Digite sua senha novamente"}
+                />
+                
               </Box>}
             <Box h={"26px"}>
               <FormErrorMessage
