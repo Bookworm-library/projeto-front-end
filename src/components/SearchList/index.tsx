@@ -1,36 +1,17 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Image,
-  ListItem,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Text,
-  UnorderedList,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { ListItem, UnorderedList, useDisclosure } from "@chakra-ui/react";
 import { useContext } from "react";
 import unknownImage from "../../assets/img/no-image-item.png";
 import { SearchContext } from "../../contexts/searchContext/searchContext";
 import { ListCard } from "../ListCard";
-import { ImBooks }  from "react-icons/im";
+import { ImBooks } from "react-icons/im";
+import { Modals } from "../Modals";
 
 export const SearchList = () => {
-  const {
-    searchResults,
-    currentBook,
-    setCurrentBook,
-    addToWishlist,
-    addToLibrary,
-  } = useContext(SearchContext);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { searchResults, setCurrentBook, setTypeModal } =
+    useContext(SearchContext);
+
+  const { onOpen, isOpen, onClose } = useDisclosure();
+
   return (
     <>
       <UnorderedList
@@ -52,26 +33,44 @@ export const SearchList = () => {
           },
         }}
       >
-        {
-          searchResults?.length ? searchResults?.map((element) => {
+        {searchResults?.length ? (
+          searchResults?.map((element) => {
             return (
-              <ListCard key={element.id} element={element} buttonTitle={"Ver Livro"} itemAction={() => {
-                setCurrentBook(element)
-                onOpen()
-              }} />)
-          }
-          ) : (<ListItem 
-            display={"flex"} justifyContent={"center"} 
+              <ListCard
+                key={element.id}
+                element={element}
+                buttonTitle={"Ver Livro"}
+                itemAction={() => {
+                  setCurrentBook(element);
+                  onOpen();
+                  setTypeModal(["tpLib", "tpWish"]);}}
+              />
+            );
+          })
+        ) : (
+          <ListItem
+            display={"flex"}
+            justifyContent={"center"}
             alignItems={"center"}
-            fontSize={"46px"} fontWeight={"bold"}
+            fontSize={"46px"}
+            fontWeight={"bold"}
             height={"300px"}
-            width={"80vw"}>
+            width={"80vw"}
+          >
             <ImBooks />
             Nenhum livro por aqui ainda!
-            </ListItem>)
-        }
+          </ListItem>
+        )}
       </UnorderedList>
-      <Modal
+      <Modals isOpen={isOpen} onClose={onClose} />
+    </>
+  );
+};
+
+
+
+{
+  /* <Modal
         blockScrollOnMount={false}
         isCentered
         isOpen={isOpen}
@@ -157,7 +156,6 @@ export const SearchList = () => {
             </Button>
           </ModalFooter>
         </ModalContent>
-      </Modal>
-    </>
-  );
-};
+      </Modal> */
+}
+

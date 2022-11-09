@@ -12,14 +12,14 @@ export const RoutesMain = () => (
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/" element={<ProtectedRoutes />}>
-          <Route path="/dashboard" element={<DashboardPage />}>
-            
-            <Route index element={<DashboardMain/>}></Route>
-            <Route path="/dashboard/biblioteca" element={<DashboardLibrary />}></Route>
-            <Route path="/dashboard/pesquisa" element={<SearchPage />}></Route>
-            <Route path="/dashboard/sobre" element={<AboutPage />}></Route>
-          </Route>
+        <Route path="/dashboard" element={<DashboardPage />}>
+          <Route index element={<DashboardMain />}></Route>
+          <Route path="/dashboard/biblioteca" element={<DashboardLibrary />}></Route>
+          <Route path="/dashboard/pesquisa" element={<SearchPage />}></Route>
+          <Route path="/dashboard/sobre" element={<AboutPage />}></Route>
+        </Route>
       </Route>
     </Routes>
   </>
 );
+
