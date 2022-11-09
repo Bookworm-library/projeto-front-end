@@ -4,7 +4,6 @@ const ProtectedRoutes = () => {
   const token = localStorage.getItem("@BookwordmLibrary:token");
 
   if (token) return <Outlet />;
-
   return <Navigate to="/" />;
 };
 

@@ -9,7 +9,7 @@ import DashboardMain from "../components/DashboardMain";
 
 export const RoutesMain = () => (
   <>
-    <Routes>
+  <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/" element={<ProtectedRoutes />}>
           <Route path="/dashboard" element={<DashboardPage />}>
@@ -22,3 +22,4 @@ export const RoutesMain = () => (
     </Routes>
   </>
 );
+
