@@ -8,7 +8,7 @@ import { Modals } from "../Modals";
 
 const CardsLibrary = () => {
   const { library, setCurrentBook } = useContext(SearchContext);
-  const { onOpen } = useContextFunction();
+  const { onOpen, isOpen, onClose } = useContextFunction();
 
   return (
     <>
@@ -47,7 +47,7 @@ const CardsLibrary = () => {
           );
         })}
       </UnorderedList>
-      <Modals type={["tpWish", "tpRemove"]} />
+      <Modals type={["tpWish", "tpRemove"]} isOpen={isOpen} onClose={onClose} />
     </>
   );
 };

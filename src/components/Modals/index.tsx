@@ -8,7 +8,6 @@ import {
   ModalFooter,
   Image,
   Text,
-  Button,
   Heading,
   Box,
   Flex,
@@ -16,16 +15,15 @@ import {
 import { useContext } from "react";
 import unknownImage from "../../assets/img/no-image-item.png";
 import { SearchContext } from "../../contexts/searchContext/searchContext";
-import { useContextFunction } from "../../contexts/userContext/userContext";
 import { ModalButton } from "../ModalButton";
 
 interface iModalProps {
   type: string[];
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-export const Modals = ({ type }: iModalProps) => {
-  const { isOpen, onClose } = useContextFunction();
-
+export const Modals = ({ type, isOpen, onClose }: iModalProps) => {
   const {
     currentBook,
     addToWishlist,

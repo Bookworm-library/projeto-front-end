@@ -15,6 +15,8 @@ export const HomeCard = ({
   buttonTitle,
   itemAction,
   typeList,
+  isOpen,
+  onClose,
 }: IListCardProps) => {
   return (
     <ListItem
@@ -75,6 +77,8 @@ export const HomeCard = ({
       </Stack>
       <Modals
         type={typeList === "recomended" ? ["tpLib", "tpWish"] : ["tpLib"]}
+        isOpen={isOpen}
+        onClose={onClose}
       />
     </ListItem>
   );

@@ -8,7 +8,7 @@ import { HomeCard } from "../HomeCards";
 const DashboardMain = () => {
   const { wishList, recomended, setCurrentBook, loading } =
     useContext(SearchContext);
-  const { onOpen } = useContextFunction();
+  const { onOpen, isOpen, onClose } = useContextFunction();
 
   return (
     <>
@@ -73,6 +73,8 @@ const DashboardMain = () => {
                   element={element}
                   buttonTitle={"Ver Livro"}
                   typeList="recomended"
+                  isOpen={isOpen}
+                  onClose={onClose}
                   itemAction={() => {
                     setCurrentBook(element);
                     onOpen();
@@ -130,6 +132,8 @@ const DashboardMain = () => {
                   element={element}
                   buttonTitle={"Ver Livro"}
                   typeList="wishList"
+                  isOpen={isOpen}
+                  onClose={onClose}
                   itemAction={() => {
                     setCurrentBook(element);
                     onOpen();

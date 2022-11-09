@@ -26,7 +26,7 @@ import { Modals } from "../Modals";
 export const SearchList = () => {
   const { searchResults, setCurrentBook } = useContext(SearchContext);
 
-  const { onOpen } = useDisclosure();
+  const { onOpen, isOpen, onClose } = useDisclosure();
 
   return (
     <>
@@ -78,7 +78,7 @@ export const SearchList = () => {
           </ListItem>
         )}
       </UnorderedList>
-      <Modals type={["tpWish", "tpLib"]} />
+      <Modals type={["tpWish", "tpLib"]} isOpen={isOpen} onClose={onClose} />
       {/* <Modal
         blockScrollOnMount={false}
         isCentered

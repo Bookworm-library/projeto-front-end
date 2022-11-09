@@ -16,6 +16,8 @@ export interface IListCardProps {
   buttonTitle: string;
   itemAction?: () => void;
   typeList?: string;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 export const ListCard = ({
