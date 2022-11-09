@@ -1,4 +1,8 @@
-import { UnorderedList, Flex } from "@chakra-ui/react";
+import {
+  Box,
+  UnorderedList,
+  Flex
+} from "@chakra-ui/react";
 import { useContext } from "react";
 import { SearchContext } from "../../contexts/searchContext/searchContext";
 import { iBooks } from "../../contexts/searchContext/searchContext";
@@ -36,35 +40,31 @@ const CardsLibrary = () => {
           },
         }}
       >
-        {library?.length ? (
-          library?.map((element: iBooks) => {
-            return (
-              <ListCard
-                key={element.id}
-                element={element}
-                buttonTitle={"Ver Livro"}
-                itemAction={() => {
-                  setCurrentBook(element);
-                  onOpen();
-                  setTypeModal(["tpRecom", "tpRemove"]);
-                }}
-              />
-            );
-          })
-        ) : (
-          <Flex
-            display={"flex"}
-            justifyContent={"center"}
+        {library?.length ? library?.map((element: iBooks) => 
+        {
+          return (
+            <ListCard key={element.id} element={element} buttonTitle={"Ver Livro"} itemAction={() => {
+              onOpen();
+              setCurrentBook(element);
+            }} />) 
+        }
+        ) : (<Flex
+            display={"flex"} 
+            justifyContent={"center"} 
             alignItems={"center"}
-            fontSize={"46px"}
-            fontWeight={"bold"}
+            fontSize={{sm: "22px", md:"36px",lg: "46px" }} fontWeight={"bold"}
             height={"300px"}
-            width={"80vw"}
-          >
-            <ImBooks />
-            Nenhum livro por aqui ainda!
-          </Flex>
-        )}
+            width={"80vw"}>
+            <Box 
+            w={"100%"} 
+            display={"flex"} 
+            justifyContent={"center"} 
+            alignItems={"center"}>
+              <ImBooks/>
+              Nenhum livro por aqui ainda!
+            </Box>  
+            </Flex>)
+            }
       </UnorderedList>
       <Modals isOpen={isOpen} onClose={onClose} />
     </>
