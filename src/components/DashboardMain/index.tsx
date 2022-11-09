@@ -32,8 +32,7 @@ const DashboardMain = () => {
         backgroundSize="cover"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
-     
-
+        margin={"0"}
       >
         <Box display={"flex"} flexDirection={"column"}>
           <Box
@@ -159,7 +158,7 @@ const DashboardMain = () => {
         </Box>
         <Flex>
           <Image
-            display={{ base: "none", sm: "none", lg: "block" }}
+            display={{ base: "none", sm: "none", md: "none", lg: "none", xlHome:"block" , xl: "none" }}
             h={"95%"}
             minH="610px"
             maxH={"700px"}

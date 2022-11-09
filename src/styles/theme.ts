@@ -23,6 +23,7 @@ export const projectTheme = extendTheme({
     md: "768px", 
     lg: "960px", 
     xl: "1200px" ,
+    xlHome: "1361px",
     '2xl': '1500px',
   },
 });

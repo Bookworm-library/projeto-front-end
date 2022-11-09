@@ -1,4 +1,5 @@
 import {
+  Box,
   UnorderedList,
   Flex
 } from "@chakra-ui/react";
@@ -47,13 +48,20 @@ const CardsLibrary = () => {
             }} />) 
         }
         ) : (<Flex
-            display={"flex"} justifyContent={"center"} 
+            display={"flex"} 
+            justifyContent={"center"} 
             alignItems={"center"}
-            fontSize={"46px"} fontWeight={"bold"}
+            fontSize={{sm: "22px", md:"36px",lg: "46px" }} fontWeight={"bold"}
             height={"300px"}
             width={"80vw"}>
-            <ImBooks />
-            Nenhum livro por aqui ainda!
+            <Box 
+            w={"100%"} 
+            display={"flex"} 
+            justifyContent={"center"} 
+            alignItems={"center"}>
+              <ImBooks/>
+              Nenhum livro por aqui ainda!
+            </Box>  
             </Flex>)
             }
       </UnorderedList>
