@@ -5,6 +5,7 @@ import { LandingPage } from "../pages/LandingPage";
 import { SearchPage } from "../pages/SearchPage";
 import ProtectedRoutes from "../components/ProtectedRouter";
 import { AboutPage } from "../components/AboutPage";
+import DashboardMain from "../components/DashboardMain";
 
 export const RoutesMain = () => (
   <>
@@ -12,6 +13,7 @@ export const RoutesMain = () => (
       <Route path="/" element={<LandingPage />} />
       <Route path="/" element={<ProtectedRoutes />}>
         <Route path="dashboard" element={<DashboardPage />}>
+          <Route path="/dashboard/home" element={<DashboardMain/>}></Route>
           <Route index></Route>
           <Route
             path="/dashboard/biblioteca"

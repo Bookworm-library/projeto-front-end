@@ -20,7 +20,7 @@ import { useContext } from "react";
 import unknownImage from "../../assets/img/no-image-item.png";
 import { SearchContext } from "../../contexts/searchContext/searchContext";
 import { ListCard } from "../ListCard";
-import { }  from "react-icons/fa";
+import { ImBooks }  from "react-icons/im";
 
 export const SearchList = () => {
   const {
@@ -60,7 +60,15 @@ export const SearchList = () => {
                 onOpen()
               }} />)
           }
-          ) : (<ListItem fontSize={"40px"} fontWeight={"bold"}>Nenhum livro por aqui ainda!</ListItem>)
+          ) : (<ListItem 
+            display={"flex"} justifyContent={"center"} 
+            alignItems={"center"}
+            fontSize={"46px"} fontWeight={"bold"}
+            height={"300px"}
+            width={"80vw"}>
+            <ImBooks />
+            Nenhum livro por aqui ainda!
+            </ListItem>)
         }
       </UnorderedList>
       <Modal
