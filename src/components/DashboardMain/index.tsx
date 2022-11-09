@@ -56,7 +56,7 @@ const DashboardMain = () => {
           >
             Livros Mais Votados:
           </Box>
-          <Flex overflowX={"auto"} maxW={"65vw"} gap={"10px"}
+          <Flex overflowX={"auto"} maxW={"65vw"} gap={"10px" } h ="310px" w="890px" overflowY="hidden"
             css={{
               scrollbarWidth: "auto",
               scrollbarColor: "#2c7aed #ffffff",
@@ -107,7 +107,7 @@ const DashboardMain = () => {
           >
             Livros Desejados:
           </Box>
-          <Flex overflowX={"scroll"} maxW={"65vw"} gap={"10px"}
+          <Flex overflowX={"scroll"} overflowY="hidden" maxW={"65vw"} gap={"10px"} h ="310px" w="890px"
             css={{
               scrollbarWidth: "auto",
               scrollbarColor: "#2c7aed #ffffff",
@@ -142,7 +142,9 @@ const DashboardMain = () => {
         <Flex>
           <Image
             display={{ base: "none", sm: "none", lg: "block" }}
-            h="670px"
+            h={"95%"}
+            minH="610px"
+            maxH={"700px"}
             w="350px"
             src={boyandbook}
           />
