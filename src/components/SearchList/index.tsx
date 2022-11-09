@@ -53,12 +53,12 @@ export const SearchList = () => {
           searchResults?.map((element) => {
             return (
               <ListCard
-                onOpen={() => onOpen()}
                 key={element.id}
                 element={element}
                 buttonTitle={"Ver Livro"}
                 itemAction={() => {
                   setCurrentBook(element);
+                  onOpen();
                 }}
               />
             );
