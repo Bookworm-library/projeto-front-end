@@ -56,7 +56,7 @@ const DashboardMain = () => {
         >
           Livros Mais Votados:
         </Box> 
-        <Flex overflowX={"auto"} maxW={"65vw"} gap={"10px"} >
+        <Flex overflowX={"auto"} overflowY={"hidden"} maxW={"65vw"} w={"1090px"} h={"310px"} gap={"10px"} >
         {recomended?.map((element) => {
             return (
               <HomeCard 
@@ -91,7 +91,7 @@ const DashboardMain = () => {
         >
           Livros Desejados:
         </Box>  
-        <Flex overflowX={"scroll"} maxW={"65vw"} gap={"10px"}>
+        <Flex overflowX={"scroll"} overflowY={"hidden"} maxW={"65vw"} w={"1090px"} h={"310px"} gap={"10px"}>
         {wishList?.map((element) => {
             return (
               <HomeCard 
@@ -110,8 +110,8 @@ const DashboardMain = () => {
       <Flex>
         <Image
           display={{ base: "none", sm: "none", lg: "block" }}
-          h="670px"
-          w="350px"
+          h="740px"
+          w="400px"
           src={boyandbook}
           />
       </Flex> 
