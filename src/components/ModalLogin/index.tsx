@@ -129,7 +129,7 @@ export const ModalLogin = () => {
                                                             variant='unstyled'
 
                                                             height={"3rem"}
-                                                            type='password'
+                                                            type='text'
                                                             bg="#FFFFFF"
                                                             placeholder="Digite sua senha..."
                                                             {...register("password")} />
@@ -142,7 +142,7 @@ export const ModalLogin = () => {
                                                             variant='unstyled'
                                                             border={"none"}
                                                             height={"3rem"}
-                                                            type='text'
+                                                            type='password'
                                                             bg="#FFFFFF"
                                                             placeholder="Digite sua senha..."
                                                             {...register("password")} />

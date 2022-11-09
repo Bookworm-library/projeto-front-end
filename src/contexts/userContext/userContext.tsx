@@ -122,11 +122,11 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       setBVtnModalLoadingLogin(false);
       
       if (token) {
-        navigate("/dashboard/home");
+        navigate("/dashboard");
       }
       
       setModalType("login");
-      navigate("/dashboard/home")
+      navigate("/dashboard")
       onClose()
     } catch (error) {
       toast.error("Usuário ou senha inválido!", {

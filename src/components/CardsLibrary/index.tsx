@@ -20,10 +20,11 @@ const CardsLibrary = () => {
         display={"flex"}
         gap="30px"
         w="100%"
-        flexWrap={{ sm: "nowrap", lg: "wrap" }}
-        overflowX={{ sm: "auto", lg: "hidden" }}
+        flexWrap={{ sm: "nowrap",lg: "wrap" ,xl:"wrap"}}
+        overflowX={{ sm: "auto", mb:"hidden",lg: "hidden" }}
         overflowY="auto"
-        h={{base:"550px", "2xl":"650px"}}
+        h={{base:"550px", "2xl":"800px"}}
+        flexDirection={{base:"column",lg:"row"}}
         alignItems={"center"}
         css={{
           "&::-webkit-scrollbar": {
