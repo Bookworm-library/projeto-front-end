@@ -4,7 +4,7 @@ import { SearchContext } from "../../contexts/searchContext/searchContext";
 import { iBooks } from "../../contexts/searchContext/searchContext";
 import { ListCard } from "../ListCard";
 import { useContextFunction } from "../../contexts/userContext/userContext";
-import { ModalLibrary } from "../ModalLibrary";
+import { Modals } from "../Modals";
 
 const CardsLibrary = () => {
   const { library, setCurrentBook } = useContext(SearchContext);
@@ -47,7 +47,7 @@ const CardsLibrary = () => {
           );
         })}
       </UnorderedList>
-      <ModalLibrary isOpen={isOpen} onClose={onClose} />
+      <Modals type={["tpWish", "tpRemove"]} isOpen={isOpen} onClose={onClose} />
     </>
   );
 };
