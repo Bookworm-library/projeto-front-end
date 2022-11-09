@@ -20,7 +20,6 @@ export const HomeCard = ({
 }: IListCardProps) => {
   return (
     <>
-
       <ListItem
         bgGradient="linear(to-t, cyan, blue.light)"
         key={element.id}
