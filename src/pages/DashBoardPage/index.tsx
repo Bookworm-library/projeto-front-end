@@ -9,7 +9,6 @@ export const DashboardPage = () => {
   return (
     <>
       <HeaderDashboard />
-
       <Box
         w="100%"
         mt="6.2rem"
@@ -18,7 +17,6 @@ export const DashboardPage = () => {
         alignItems="center"
         position="fixed"
         zIndex="1"
-       
       >
         <Flex w="100%" h="60px" bg="white" align={"center"} justify="center">
           <Searchbar />

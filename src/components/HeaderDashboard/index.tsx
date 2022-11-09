@@ -13,10 +13,11 @@ import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../../contexts/searchContext/searchContext";
 import { useContextFunction } from "../../contexts/userContext/userContext";
 import { IMenuButton, MenuMobile } from "../MenuMobile";
+import logoSvg from "../../assets/img/logo.svg"
 
 export const HeaderDashboard = () => {
   const navigate = useNavigate();
-  const { submitSearch, setSearch ,setLibrary,library} = useContext(SearchContext);
+  const { submitSearch, setSearch, setLibrary, library } = useContext(SearchContext);
   const { setModalControl, onClose, setBVtnModalLoadingLogin } =
     useContextFunction();
 
@@ -66,7 +67,7 @@ export const HeaderDashboard = () => {
     >
       <Flex align="center" gap={{ sm: "10px", lg: "20px" }}>
         <Image
-          src="../../src/assets/img/logo.svg"
+          src={logoSvg}
           w={{ base: "34px", md: "40px", lg: "48px" }}
         />
         <Heading
@@ -81,7 +82,7 @@ export const HeaderDashboard = () => {
         as="form"
         w="24rem"
         h="2.5rem"
-        display={{ base:"none",sm: "none", lg: "flex" }}
+        display={{ base: "none", sm: "none", lg: "flex" }}
         alignItems="center"
         justifyContent="center"
         marginRight={{ lg: "1rem" }}
@@ -120,7 +121,7 @@ export const HeaderDashboard = () => {
         </Button>
       </FormControl>
       <Stack
-        display={{ base:"none",sm: "none", lg: "flex" }}
+        display={{ base: "none", sm: "none", lg: "flex" }}
         align="center"
         direction={"row"}
         color="white"
