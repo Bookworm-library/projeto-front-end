@@ -1,13 +1,15 @@
-import { Box } from "@chakra-ui/react";
-import { Outlet } from "react-router-dom";
-
-import { HeaderDashboard } from "../../components/HeaderDashboard";
 import { Searchbar } from "../../components/Searchbar";
+import { Box} from "@chakra-ui/react";
+import { Outlet, useNavigate } from "react-router-dom";
+import { HeaderDashboard } from "../../components/HeaderDashboard";
+
 
 export const DashboardPage = () => {
+
   return (
     <>
       <HeaderDashboard />
+
       <Box
         w="100%"
         mt="8rem"
@@ -20,6 +22,7 @@ export const DashboardPage = () => {
         <Searchbar />
       </Box>
       <Box pt={{ sm: "190px", lg: "120px" }}>
+
         <Outlet />
       </Box>
     </>
