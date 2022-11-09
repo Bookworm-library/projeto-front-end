@@ -1,9 +1,10 @@
 import {
   Flex,
   Heading,
-  Box
+  Box,
 } from "@chakra-ui/react";
 import CardsLibrary from "../CardsLibrary";
+import { ImBooks }  from "react-icons/im";
 
 const DashboardLibrary = () => {
   return (
@@ -15,21 +16,20 @@ const DashboardLibrary = () => {
         w="100%"
         backgroundRepeat="no-repeat"
         gap="2.5rem"
-        padding="1rem 2.5rem"
+        padding={{base:"0",lg:"1rem 2.5rem"}}
         backgroundSize="cover"
         backgroundPosition="center"
-        
+        direction={"column"}
       >
         <Box
-          position="absolute"
-          top={"8.3rem"}
-          left="2rem"
-          zIndex={"1"}
+          h={"40px"}
           w="22.5rem" 
           p="5px 40px"
           borderRadius="50px"
           bg={"linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(44,122,224,1) 0%, rgba(44,237,224,1) 100%)"}
           sx={{ boxShadow: "0px 3px 7px rgba(0, 0, 0, 0.5)" }}
+          maxW="300px"
+          margin={{base:"0 auto",md:"0",lg:"0"}}
         >
           <Heading 
           color="#ffffff"
@@ -38,9 +38,12 @@ const DashboardLibrary = () => {
           display="flex"
           alignItems="center"
           justifyContent="center" 
-          >Biblioteca:</Heading>
+          >Biblioteca:
+          </Heading>
+          <Box>
+          </Box>
         </Box>
-        <Flex  margin={"100px auto"} w="86.5%" >
+        <Flex  margin={"auto"} w="86.7%">
             <CardsLibrary/>
         </Flex>
       </Flex>

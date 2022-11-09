@@ -10,7 +10,7 @@ export const DashboardPage = () => {
     <>
       <HeaderDashboard />
      
-      <Box pt={"120px"}>
+      <Box pt={"120px"} >
       
         <Outlet />
         
