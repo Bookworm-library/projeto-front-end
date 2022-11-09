@@ -120,23 +120,16 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         autoClose: 2000,
       });
       setBVtnModalLoadingLogin(false);
-<<<<<<< HEAD
 
-       navigate("/dashboard/home"); 
 
-=======
-      
->>>>>>> af7a91196c588c444b51c1ac907a77928706d315
+       navigate("/dashboard"); 
       if (token) {
         navigate("/dashboard");
       }
       
       setModalType("login");
-<<<<<<< HEAD
-      navigate("/dashboard/home")
-=======
+
       navigate("/dashboard")
->>>>>>> af7a91196c588c444b51c1ac907a77928706d315
       onClose()
     } catch (error) {
       toast.error("Usuário ou senha inválido!", {

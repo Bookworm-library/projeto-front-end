@@ -18,18 +18,18 @@ import { SearchContext } from "../../contexts/searchContext/searchContext";
 import { ModalButton } from "../ModalButton";
 
 interface iModalProps {
-  type: string[];
   isOpen: boolean;
   onClose: () => void;
 }
 
-export const Modals = ({ type, isOpen, onClose }: iModalProps) => {
+export const Modals = ({ isOpen, onClose }: iModalProps) => {
   const {
     currentBook,
     addToWishlist,
     addToLibrary,
     removeFromLibrary,
     addToRecomendedList,
+    typeModal,
   } = useContext(SearchContext);
 
   return (
@@ -122,28 +122,28 @@ export const Modals = ({ type, isOpen, onClose }: iModalProps) => {
         </ModalBody>
 
         <ModalFooter display="flex" flexDir="column" gap="10px">
-          {type.includes("tpWish") && (
+          {typeModal.includes("tpWish") && (
             <ModalButton
               buttonTitle="Adicionar à lista de desejos"
               buttonAction={addToWishlist}
             />
           )}
 
-          {type.includes("tpLib") && (
+          {typeModal.includes("tpLib") && (
             <ModalButton
               buttonTitle="Adicionar à biblioteca"
               buttonAction={addToLibrary}
             />
           )}
 
-          {type.includes("tpRecom") && (
+          {typeModal.includes("tpRecom") && (
             <ModalButton
               buttonTitle="Recomendar"
               buttonAction={addToRecomendedList}
             />
           )}
 
-          {type.includes("tpRemove") && (
+          {typeModal.includes("tpRemove") && (
             <ModalButton
               buttonTitle="Excluir"
               buttonAction={removeFromLibrary}

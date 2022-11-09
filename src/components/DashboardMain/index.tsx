@@ -1,8 +1,5 @@
-
-import {  Heading, Image, UnorderedList, Box } from "@chakra-ui/react";
-import {
-  Flex,
-} from "@chakra-ui/react";
+import { Heading, Image, UnorderedList, Box } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 import { useContext } from "react";
 import boyandbook from "../../assets/img/boyandbook.jpg";
@@ -10,11 +7,10 @@ import { SearchContext } from "../../contexts/searchContext/searchContext";
 import { useContextFunction } from "../../contexts/userContext/userContext";
 import { HomeCard } from "../HomeCards";
 import { ImBooks }  from "react-icons/im";
-
-
+import { Modals } from "../Modals";
 
 const DashboardMain = () => {
-  const { wishList, recomended, setCurrentBook, loading } =
+  const { wishList, recomended, setCurrentBook, setTypeModal, loading } =
     useContext(SearchContext);
   const { onOpen, isOpen, onClose } = useContextFunction();
 
@@ -54,8 +50,13 @@ const DashboardMain = () => {
           >
             Livros Mais Votados:
           </Box>
-
-          <Flex overflowX={"auto"} gap={"10px" } h ="310px" w="890px" overflowY="hidden"
+          <Flex
+            overflowX={"auto"}
+            maxW={"65vw"}
+            gap={"10px"}
+            h="310px"
+            w="890px"
+            overflowY="auto"
             css={{
               scrollbarWidth: "auto",
               scrollbarColor: "#2c7aed #ffffff",
@@ -78,12 +79,10 @@ const DashboardMain = () => {
                   key={element.id}
                   element={element}
                   buttonTitle={"Ver Livro"}
-                  typeList="recomended"
-                  isOpen={isOpen}
-                  onClose={onClose}
                   itemAction={() => {
                     setCurrentBook(element);
                     onOpen();
+                    setTypeModal(["tpWish", "tpLib"]);
                   }}
                 />
               );
@@ -118,7 +117,14 @@ const DashboardMain = () => {
           >
             Livros Desejados:
           </Box>
-          <Flex overflowX={"scroll"} overflowY="hidden" gap={"10px"} h ="310px" w="890px"
+
+          <Flex
+            overflowX={"scroll"}
+            overflowY="auto"
+            maxW={"65vw"}
+            gap={"10px"}
+            h="310px"
+            w="890px"
             css={{
               scrollbarWidth: "auto",
               scrollbarColor: "#2c7aed #ffffff",
@@ -141,12 +147,10 @@ const DashboardMain = () => {
                   key={element.id}
                   element={element}
                   buttonTitle={"Ver Livro"}
-                  typeList="wishList"
-                  isOpen={isOpen}
-                  onClose={onClose}
                   itemAction={() => {
                     setCurrentBook(element);
                     onOpen();
+                    setTypeModal(["tpLib"]);
                   }}
                 />
               );
@@ -173,9 +177,8 @@ const DashboardMain = () => {
           />
         </Flex>
       </UnorderedList>
+      <Modals isOpen={isOpen} onClose={onClose} />
     </>
   );
 };
 export default DashboardMain;
-
- 
