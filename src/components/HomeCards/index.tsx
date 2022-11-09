@@ -19,6 +19,7 @@ export const HomeCard =  ({
   }: IListCardProps) => {
     return (
         <ListItem
+            bgGradient="linear(to-t, cyan, blue.light)"
             key={element.id}
             width={{ md: "30%", lg: "30%", xl: "23%" }}
             display="flex"
@@ -27,35 +28,30 @@ export const HomeCard =  ({
             margin={0}
             padding={"1rem"}
             marginBottom="1.5rem"
-            bgGradient="linear(to-t, cyan, blue.light)"
             borderRadius="4px"
-            maxW={"320px"}
-            minW="320px"
-            minH="20.5rem"
-            maxH="20.5rem"
+            w={"300px"}
+            h={"280px"}
           >
-            <Flex align={"start"} p="10px">
-              <Image
-                src={
-                  element.volumeInfo.imageLinks
-                    ? element.volumeInfo.imageLinks?.thumbnail
-                    : unknownImage
-                }
-                minW="8.25rem"
-                minH="12.5rem"
-                margin={0}
-                padding={0}
-              />
-              <Box p="0px 15px" color={"white"} overflow="hidden">
-                <Heading as="h3" fontSize={"20px"}>
-                  Título:
-                </Heading>
-                <Text as="span" fontSize={"16px"} noOfLines={[1, 2, 3]}>
+            <Flex align={"center"} p="10px" flexDirection={"column"} >
+              <Box>
+                <Image
+                  src={
+                    element.volumeInfo.imageLinks
+                      ? element.volumeInfo.imageLinks?.thumbnail
+                      : unknownImage
+                  }
+                  minW="8rem"
+                  maxH="8rem"
+                  h="8rem"
+                  margin={0}
+                  padding={0}
+                />
+              </Box>
+              <Box color={"white"} overflow="hidden">
+                <Text as="span" fontSize={"16px"} fontWeight={"bold"} noOfLines={[1, 2]}
+                width={"100%"}>
                   {element.volumeInfo.title}
                 </Text>
-                <Heading as="h3" fontSize={"20px"} marginTop="10px">
-                  Autor:
-                </Heading>
                 <Text as="span" fontSize={"16px"} noOfLines={[1]}>
                   {element.volumeInfo.authors}
                 </Text>
@@ -66,7 +62,7 @@ export const HomeCard =  ({
                 color="white"
                 bg="#2C7AED"
                 _hover={{ opacity: "0.7" }}
-                w="13.75rem"
+                w="8rem"
                 h="2.625rem"
               >
                 Ver Livro
