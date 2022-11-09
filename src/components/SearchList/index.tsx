@@ -34,12 +34,15 @@ export const SearchList = () => {
   return (
     <>
       <UnorderedList
-        listStyleType="none"
-        display="flex"
-        flexWrap="wrap"
-        gap="2rem"
-        h={"80vh"}
+        display={"flex"}
+        gap="30px"
+        w="100%"
+        flexWrap={{ sm: "nowrap",lg: "wrap" ,xl:"wrap"}}
+        overflowX={{ sm: "auto", mb:"hidden",lg: "hidden" }}
         overflowY="auto"
+        h={{base:"550px", "2xl":"800px"}}
+        flexDirection={{base:"column",lg:"row"}}
+        alignItems={"center"}
         css={{
           "&::-webkit-scrollbar": {
             width: "4px",
