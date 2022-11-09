@@ -25,7 +25,7 @@ interface iSearchContext {
   removeFromWishlist: () => Promise<void>;
   removeFromLibrary: () => Promise<void>;
   addToRecomendedList: () => Promise<void>;
-  wishList:iBooks[] | undefined;
+  wishList: iBooks[] | undefined;
   setWishList: React.Dispatch<SetStateAction<iBooks[] | undefined>>;
   recomended: iBooks[] | undefined;
   setRecomended: React.Dispatch<SetStateAction<iBooks[] | undefined>>;
@@ -38,12 +38,12 @@ export interface iBooks {
     authors: string | undefined;
     description: string;
     imageLinks:
-      | {
-          thumbnail: string;
-        }
-      | undefined;
+    | {
+      thumbnail: string;
+    }
+    | undefined;
   };
-  
+
 }
 interface iBooksArray {
   items: iBooks[];
@@ -60,7 +60,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
   const [library, setLibrary] = useState<iBooks[] | undefined>([]);
 
   const [wishList, setWishList] = useState<iBooks[] | undefined>([]);
-  const [recomended, setRecomended] =  useState<iBooks[] | undefined>([]);
+  const [recomended, setRecomended] = useState<iBooks[] | undefined>([]);
 
 
   const location = useLocation();
@@ -74,25 +74,25 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
     });
     const livrosUser = data.library;
     const order = livrosUser?.reverse();
-
     setLibrary(order);
     setWishList(data.wishlist.reverse())
-    setRecomended(data.recomended)
   }
 
- 
-  useEffect(() => {
-    getInfoUserLogin();
-    setLoading(false);
-  }, [library]);
-
-  async function getRecomended (){
-    const {data}= await apiFake.get(
+  async function livrosRecomendados() {
+    const { data } = await apiFake.get(
       `livrosRecomendados`,
       { headers: { authorization: `Bearer ${token}` } }
     );
     setRecomended(data)
   }
+  livrosRecomendados()
+
+  useEffect(() => {
+    getInfoUserLogin();
+    setLoading(false);
+  }, [library]);
+
+
   const submitSearch = async () => {
     if (location.pathname !== "/dashboard/pesquisa") {
       navigate("/dashboard/pesquisa");
@@ -214,7 +214,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
           headers: { authorization: `Bearer ${token}` },
         });
         setLibrary(data.library);
-       
+
         toast.success("Livro adicionado à biblioteca!", {
           theme: "colored",
           position: "top-right",
@@ -279,7 +279,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
         const post = await apiFake.patch(`users/${userId}`, body, {
           headers: { authorization: `Bearer ${token}` },
         });
-  
+
         toast.success("Livro Recomendado com sucesso", {
           theme: "colored",
           position: "top-right",
@@ -290,7 +290,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
             `livrosRecomendados/${currentBook?.id}`,
             { headers: { authorization: `Bearer ${token}` } }
           );
-          
+
           const votes = data.votes;
           const patch = await apiFake.patch(
             `livrosRecomendados/${currentBook?.id}`,
@@ -302,8 +302,8 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
           const post = await apiFake.post(`livrosRecomendados`, book, {
             headers: { authorization: `Bearer ${token}` },
           });
-        
-      
+
+
         }
       }
     } catch (error) {

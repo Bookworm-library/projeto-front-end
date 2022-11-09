@@ -18,7 +18,6 @@ const DashboardMain = () => {
   const { wishList, recomended, setCurrentBook, loading } = useContext(SearchContext);
   const { onOpen, isOpen, onClose } = useContextFunction();
 
-
   return (
     <>
       <UnorderedList

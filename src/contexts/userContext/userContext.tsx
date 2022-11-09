@@ -120,13 +120,14 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         autoClose: 2000,
       });
       setBVtnModalLoadingLogin(false);
-      navigate("/dashboard");
+       navigate("/dashboard/home"); 
 
       if (token) {
-        navigate("/dashboard");
+        navigate("/dashboard/home");
       }
 
       setModalType("login");
+      onClose() ;
     } catch (error) {
       toast.error("Usuário ou senha inválido!", {
         icon: FaBook,
