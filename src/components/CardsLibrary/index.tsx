@@ -11,10 +11,11 @@ import { ModalLibrary } from "../ModalLibrary";
 import { ImBooks }  from "react-icons/im";
 
 const CardsLibrary = () => {
-  const { library, setCurrentBook, loading } = useContext(SearchContext);
+  const { library, setCurrentBook } = useContext(SearchContext);
   const { onOpen, isOpen, onClose } = useContextFunction();
-  onClose();
+  
 
+  
   return (
     <>
       <UnorderedList

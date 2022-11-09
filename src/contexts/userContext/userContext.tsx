@@ -68,10 +68,6 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   const [btnModalLoadingLogin, setBVtnModalLoadingLogin] = useState<boolean>(false);
   const [btnModalLoadingCadastro, setBVtnModalLoadingCadastro] = useState<boolean>(false);
 
-  console.log("modalControl",modalControl)
-  console.log("isOpen",isOpen)
-  
-
   const submitRegister = async (body: iRegisterBody): Promise<void> => {
 
     if(body === undefined){
@@ -124,12 +120,14 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         autoClose: 2000,
       });
       setBVtnModalLoadingLogin(false);
-
+      
       if (token) {
         navigate("/dashboard/home");
       }
-
+      
       setModalType("login");
+      navigate("/dashboard/home")
+      onClose()
     } catch (error) {
       toast.error("Usuário ou senha inválido!", {
         icon: FaBook,
