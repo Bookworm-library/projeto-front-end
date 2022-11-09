@@ -1,9 +1,9 @@
 import {
+  Box,
   Flex,
   Heading,
   Image,
   UnorderedList,
-  Box
 } from "@chakra-ui/react";
 import { useContext } from "react";
 import boyandbook from "../../assets/img/boyandbook.jpg";

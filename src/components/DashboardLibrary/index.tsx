@@ -1,9 +1,11 @@
 import {
   Flex,
   Heading,
-  Box
+  Box,
+  ListItem,
 } from "@chakra-ui/react";
 import CardsLibrary from "../CardsLibrary";
+import { ImBooks }  from "react-icons/im";
 
 const DashboardLibrary = () => {
   return (
@@ -21,10 +23,7 @@ const DashboardLibrary = () => {
         
       >
         <Box
-          position="absolute"
-          top={"8.3rem"}
-          left="2rem"
-          zIndex={"1"}
+          h={"40px"}
           w="22.5rem" 
           p="5px 40px"
           borderRadius="50px"
@@ -38,7 +37,10 @@ const DashboardLibrary = () => {
           display="flex"
           alignItems="center"
           justifyContent="center" 
-          >Biblioteca:</Heading>
+          >Biblioteca:
+          </Heading>
+          <Box>
+          </Box>
         </Box>
         <Flex  margin={"100px auto"} w="86.5%" >
             <CardsLibrary/>
