@@ -2,7 +2,6 @@ import {
   Flex,
   Heading,
   Box,
-  ListItem,
 } from "@chakra-ui/react";
 import CardsLibrary from "../CardsLibrary";
 import { ImBooks }  from "react-icons/im";

@@ -120,12 +120,15 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         autoClose: 2000,
       });
       setBVtnModalLoadingLogin(false);
-      
+
+
+       navigate("/dashboard"); 
       if (token) {
         navigate("/dashboard");
       }
       
       setModalType("login");
+
       navigate("/dashboard")
       onClose()
     } catch (error) {

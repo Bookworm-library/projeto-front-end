@@ -17,6 +17,8 @@ interface iSearchContext {
   setSearchResults: React.Dispatch<React.SetStateAction<iBooks[] | undefined>>;
   currentBook: iBooks | undefined;
   setCurrentBook: React.Dispatch<React.SetStateAction<iBooks | undefined>>;
+  typeModal: string[];
+  setTypeModal: React.Dispatch<React.SetStateAction<string[]>>;
   submitSearch: () => void;
   addToWishlist: () => Promise<void>;
   addToLibrary: () => Promise<void>;
@@ -38,12 +40,11 @@ export interface iBooks {
     authors: string | undefined;
     description: string;
     imageLinks:
-    | {
-      thumbnail: string;
-    }
-    | undefined;
+      | {
+          thumbnail: string;
+        }
+      | undefined;
   };
-
 }
 interface iBooksArray {
   items: iBooks[];
@@ -58,10 +59,9 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
   const [searchResults, setSearchResults] = useState<iBooks[]>();
   const [currentBook, setCurrentBook] = useState<iBooks>();
   const [library, setLibrary] = useState<iBooks[] | undefined>([]);
-
+  const [typeModal, setTypeModal] = useState<string[]>([]);
   const [wishList, setWishList] = useState<iBooks[] | undefined>([]);
   const [recomended, setRecomended] = useState<iBooks[] | undefined>([]);
-
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -75,23 +75,21 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
     const livrosUser = data.library;
     const order = livrosUser?.reverse();
     setLibrary(order);
-    setWishList(data.wishlist.reverse())
+    setWishList(data.wishlist.reverse());
   }
 
   async function livrosRecomendados() {
-    const { data } = await apiFake.get(
-      `livrosRecomendados`,
-      { headers: { authorization: `Bearer ${token}` } }
-    );
-    setRecomended(data)
+    const { data } = await apiFake.get(`livrosRecomendados`, {
+      headers: { authorization: `Bearer ${token}` },
+    });
+    setRecomended(data);
   }
-  livrosRecomendados()
+  livrosRecomendados();
 
   useEffect(() => {
     getInfoUserLogin();
     setLoading(false);
   }, [library]);
-
 
   const submitSearch = async () => {
     if (location.pathname !== "/dashboard/pesquisa") {
@@ -302,8 +300,6 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
           const post = await apiFake.post(`livrosRecomendados`, book, {
             headers: { authorization: `Bearer ${token}` },
           });
-
-
         }
       }
     } catch (error) {
@@ -323,6 +319,8 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
         submitSearch,
         currentBook,
         setCurrentBook,
+        typeModal,
+        setTypeModal,
         addToWishlist,
         addToLibrary,
         library,
@@ -333,7 +331,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
         wishList,
         setWishList,
         recomended,
-        setRecomended
+        setRecomended,
       }}
     >
       {children}

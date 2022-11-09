@@ -8,7 +8,6 @@ import {
   ModalFooter,
   Image,
   Text,
-  Button,
   Heading,
   Box,
   Flex,
@@ -16,15 +15,22 @@ import {
 import { useContext } from "react";
 import unknownImage from "../../assets/img/no-image-item.png";
 import { SearchContext } from "../../contexts/searchContext/searchContext";
+import { ModalButton } from "../ModalButton";
 
 interface iModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export const ModalLibrary = ({ isOpen, onClose }: iModalProps) => {
-  const { currentBook, removeFromLibrary, addToRecomendedList } =
-    useContext(SearchContext);
+export const Modals = ({ isOpen, onClose }: iModalProps) => {
+  const {
+    currentBook,
+    addToWishlist,
+    addToLibrary,
+    removeFromLibrary,
+    addToRecomendedList,
+    typeModal,
+  } = useContext(SearchContext);
 
   return (
     <Modal
@@ -115,43 +121,35 @@ export const ModalLibrary = ({ isOpen, onClose }: iModalProps) => {
           </Box>
         </ModalBody>
 
-        <ModalFooter
-          w="100%"
-          flexDirection="row"
-          alignItems="baseline"
-          justifyContent="space-between"
-          gap="15px"
-        >
-          <Button
-            type="button"
-            borderStyle="4px"
-            mt="10px"
-            w="100%"
-            bg="white"
-            color="black"
-            _hover={{ opacity: "0.7" }}
-            alignSelf="end"
-            onClick={addToRecomendedList}
-          >
-            Recomendar
-          </Button>
-          <Button
-            type="button"
-            borderStyle="4px"
-            mt="10px"
-            w="100%"
-            bg="red"
-            color="white"
-            _hover={{ opacity: "0.7" }}
-            alignSelf="end"
-            onClick={(e) => {
-              e.preventDefault();
-              removeFromLibrary();
-              onClose();
-            }}
-          >
-            Exluir
-          </Button>
+        <ModalFooter display="flex" flexDir="column" gap="10px">
+          {typeModal.includes("tpWish") && (
+            <ModalButton
+              buttonTitle="Adicionar à lista de desejos"
+              buttonAction={addToWishlist}
+            />
+          )}
+
+          {typeModal.includes("tpLib") && (
+            <ModalButton
+              buttonTitle="Adicionar à biblioteca"
+              buttonAction={addToLibrary}
+            />
+          )}
+
+          {typeModal.includes("tpRecom") && (
+            <ModalButton
+              buttonTitle="Recomendar"
+              buttonAction={addToRecomendedList}
+            />
+          )}
+
+          {typeModal.includes("tpRemove") && (
+            <ModalButton
+              buttonTitle="Excluir"
+              buttonAction={removeFromLibrary}
+              style="remove"
+            />
+          )}
         </ModalFooter>
       </ModalContent>
     </Modal>
