@@ -14,9 +14,6 @@ export const HomeCard = ({
   element,
   buttonTitle,
   itemAction,
-  typeList,
-  isOpen,
-  onClose,
 }: IListCardProps) => {
   return (
     <ListItem
@@ -33,7 +30,6 @@ export const HomeCard = ({
       w={"300px"}
       h={"280px"}
     >
-
       <Flex align={"center"} p="10px" flexDirection={"column"}>
         <Box>
           <Image
@@ -71,15 +67,11 @@ export const HomeCard = ({
           _hover={{ opacity: "0.7" }}
           w="8rem"
           h="2.625rem"
-          onClick={itemAction}>
+          onClick={itemAction}
+        >
           {buttonTitle}
         </Button>
       </Stack>
-      <Modals
-        type={typeList === "recomended" ? ["tpLib", "tpWish"] : ["tpLib"]}
-        isOpen={isOpen}
-        onClose={onClose}
-      />
     </ListItem>
   );
 };
