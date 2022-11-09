@@ -45,6 +45,7 @@ const CardsLibrary = () => {
           return (
             <ListCard key={element.id} element={element} buttonTitle={"Ver Livro"} itemAction={() => {
               onOpen();
+              setTypeModal(["tpRecom","tpRemove"])
               setCurrentBook(element);
             }} />) 
         }
