@@ -9,9 +9,7 @@ import { ModalLibrary } from "../ModalLibrary";
 const CardsLibrary = () => {
   const { library, setCurrentBook } = useContext(SearchContext);
   const { onOpen, isOpen, onClose } = useContextFunction();
-  
 
-  
   return (
     <>
       <UnorderedList
