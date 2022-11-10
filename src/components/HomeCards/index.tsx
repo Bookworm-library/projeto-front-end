@@ -20,7 +20,7 @@ export const HomeCard = ({
       <ListItem
         bgGradient="linear(to-t, cyan, blue.light)"
         key={element.id}
-        width={{ md: "30%", lg: "30%", xl: "23%" }}
+        width={{sm: "180px", md: "180px", lg: "180px", xl: "180px" }}
         display="flex"
         flexDirection="column"
         alignItems="center"
@@ -46,9 +46,9 @@ export const HomeCard = ({
         <Flex
           align={{
             base: "flex-start",
-            sm: "flex-start",
-            lg: "flex-start",
-            xl: "flex-start",
+            sm: "center",
+            lg: "center",
+            xl: "center",
             "2xl": "center",
           }}
           p={{
