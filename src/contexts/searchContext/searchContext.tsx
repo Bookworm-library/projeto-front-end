@@ -84,12 +84,12 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
     });
     setRecomended(data);
   }
-  livrosRecomendados();
+   livrosRecomendados(); 
 
-  useEffect(() => {
+   useEffect(() => {
     getInfoUserLogin();
     setLoading(false);
-  }, [library]);
+  }, [library]); 
 
   const submitSearch = async () => {
     if (location.pathname !== "/dashboard/pesquisa") {
