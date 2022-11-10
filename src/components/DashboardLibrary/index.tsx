@@ -43,8 +43,8 @@ const DashboardLibrary = () => {
           <Box>
           </Box>
         </Box>
-        <Flex  margin={"auto"} w="86.7%">
-            <CardsLibrary/>
+        <Flex  margin={"0"} w="100%" height="100%">
+            <CardsLibrary />
         </Flex>
       </Flex>
     </Flex>
