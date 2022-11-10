@@ -8,6 +8,8 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
+import bgImage from "../../assets/img/bgbooks.svg"
+
 export const AboutPage = () => {
   const devs = [
     {
@@ -57,10 +59,10 @@ export const AboutPage = () => {
   return (
     <>
       <Flex
-        bgImage="./src/assets/img/bgbooks.svg"
+        bgImage={bgImage}
         as="ul"
         w="100%"
-        maxH="100vh"
+        height="100vh"
         m="0 auto"
         wrap={"wrap"}
         gap="30px"

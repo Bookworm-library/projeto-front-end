@@ -32,6 +32,7 @@ interface iSearchContext {
   recomended: iBooks[] | undefined;
   setRecomended: React.Dispatch<SetStateAction<iBooks[] | undefined>>;
   livrosRecomendados: () => Promise<void>;
+  getInfoUserLogin: () => Promise<void>;
 }
 
 export interface iBooks {
@@ -76,7 +77,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
     const livrosUser = data.library;
     const order = livrosUser?.reverse();
       setLibrary(order);
-      setWishList(data.wishlist.reverse());
+      setWishList(data.wishlist);
   }
 
   async function livrosRecomendados() {
@@ -334,7 +335,8 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
         setWishList,
         recomended,
         setRecomended,
-        livrosRecomendados
+        livrosRecomendados,
+        getInfoUserLogin
       }}
     >
       {children}

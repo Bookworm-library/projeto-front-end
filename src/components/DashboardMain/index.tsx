@@ -9,10 +9,10 @@ import { ImBooks }  from "react-icons/im";
 import { Modals } from "../Modals";
 
 const DashboardMain = () => {
-  const { wishList, recomended, setCurrentBook, setTypeModal, loading, livrosRecomendados} =
+  const { wishList, recomended, setCurrentBook, setTypeModal, getInfoUserLogin, livrosRecomendados} =
     useContext(SearchContext);
   const { onOpen, isOpen, onClose } = useContextFunction();
-  useEffect(() => {livrosRecomendados()},[])
+  useEffect(() => {livrosRecomendados(), getInfoUserLogin()},[])
 
   return (
     <>

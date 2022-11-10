@@ -39,6 +39,12 @@ export const HeaderDashboard = () => {
       },
     },
     {
+      buttonTitle: "Sobre",
+      buttonAction: () => {
+        navigate("/dashboard/sobre");
+      },
+    },
+    {
       buttonTitle: "Deslogar",
       buttonAction: () => {
         localStorage.removeItem("@BookwordmLibrary:token");
@@ -65,7 +71,7 @@ export const HeaderDashboard = () => {
       position="fixed"
       zIndex="2"
     >
-      <Flex align="center" gap={{ sm: "10px", lg: "20px" }}>
+      <Flex onClick={()=>{navigate("/dashboard")}} align="center" gap={{ sm: "10px", lg: "20px" }} _hover={{cursor: "pointer"}}>
         <Image
           src={logoSvg}
           w={{ base: "34px", md: "40px", lg: "48px" }}
@@ -132,23 +138,23 @@ export const HeaderDashboard = () => {
           _hover={{ opacity: "0.7" }}
           bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
           onClick={() => {
-            navigate("/dashboard");
-            onClose()
-          }}
-        >
-          Home
-        </Button>
-        <Button
-          sx={{ boxShadow: "0px 4px 9px rgba(0, 0, 0, 0.315)" }}
-          _hover={{ opacity: "0.7" }}
-          bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
-          onClick={() => {
             setLibrary(library)
             navigate("/dashboard/biblioteca");
             onClose();
           }}
         >
           Biblioteca
+        </Button>
+        <Button
+          sx={{ boxShadow: "0px 4px 9px rgba(0, 0, 0, 0.315)" }}
+          _hover={{ opacity: "0.7" }}
+          bgGradient="linear(to-t,#2CEDE0, #2C7AED)"
+          onClick={() => {
+            navigate("/dashboard/sobre");
+            onClose()
+          }}
+        >
+          Sobre
         </Button>
         <Button
           sx={{ boxShadow: "0px 4px 9px rgba(0, 0, 0, 0.315)" }}
