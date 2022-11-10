@@ -1,6 +1,6 @@
 import { Heading, Image, UnorderedList, Box } from "@chakra-ui/react";
 import { Flex } from "@chakra-ui/react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import boyandbook from "../../assets/img/boyandbook.jpg";
 import { SearchContext } from "../../contexts/searchContext/searchContext";
 import { useContextFunction } from "../../contexts/userContext/userContext";
@@ -9,14 +9,15 @@ import { ImBooks }  from "react-icons/im";
 import { Modals } from "../Modals";
 
 const DashboardMain = () => {
-  const { wishList, recomended, setCurrentBook, setTypeModal, loading } =
+  const { wishList, recomended, setCurrentBook, setTypeModal, loading, livrosRecomendados} =
     useContext(SearchContext);
   const { onOpen, isOpen, onClose } = useContextFunction();
+  useEffect(() => {livrosRecomendados()},[])
 
   return (
     <>
       <UnorderedList
-        w={{sm: "100vw", md: "100%" }}
+        w={{sm: "100vw", md: "95%" }}
         h="100vh"
         display="flex"
         justifyContent={{sm: "center", md: "space-between" }}
