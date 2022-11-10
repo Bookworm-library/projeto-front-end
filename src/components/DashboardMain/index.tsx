@@ -7,6 +7,7 @@ import { useContextFunction } from "../../contexts/userContext/userContext";
 import { HomeCard } from "../HomeCards";
 import { ImBooks }  from "react-icons/im";
 import { Modals } from "../Modals";
+import bgImage from "../../assets/img/bgbooks.svg"
 
 const DashboardMain = () => {
   const { wishList, recomended, setCurrentBook, setTypeModal, getInfoUserLogin, livrosRecomendados} =
@@ -23,7 +24,7 @@ const DashboardMain = () => {
         justifyContent={{sm: "center", md: "space-between" }}
         gap="2.5rem"
         padding={{smHome: 0}}
-        bgImage="/src/assets/img/bgbooks.svg"
+        bgImage={bgImage}
         backgroundSize="cover"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"

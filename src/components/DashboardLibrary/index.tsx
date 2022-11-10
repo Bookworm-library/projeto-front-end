@@ -5,13 +5,14 @@ import {
 } from "@chakra-ui/react";
 import CardsLibrary from "../CardsLibrary";
 import { ImBooks }  from "react-icons/im";
+import bgImage from "../../assets/img/bgbooks.svg"
 
 const DashboardLibrary = () => {
   return (
     <Flex direction="column" h="100vh" w="100%"   >
       <Flex
         as={"main"}
-        bgImage="../src/assets/img/bgbooks.svg"
+        bgImage={bgImage}
         h="100%"
         w="100%"
         backgroundRepeat="no-repeat"
