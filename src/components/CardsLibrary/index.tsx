@@ -25,7 +25,7 @@ const CardsLibrary = () => {
         flexWrap={{ sm: "nowrap", lg: "wrap", xl: "wrap" }}
         overflowX={{ sm: "auto", mb: "hidden", lg: "hidden" }}
         overflowY="auto"
-        h={{ base: "550px", "2xl": "800px" }}
+        h={"100%"}
         flexDirection={{ base: "column", lg: "row" }}
         alignItems={"center"}
         css={{

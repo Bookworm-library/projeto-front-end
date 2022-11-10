@@ -30,6 +30,7 @@ export const Modals = ({ isOpen, onClose }: iModalProps) => {
     removeFromLibrary,
     addToRecomendedList,
     typeModal,
+    livrosRecomendados
   } = useContext(SearchContext);
 
   return (
@@ -139,7 +140,9 @@ export const Modals = ({ isOpen, onClose }: iModalProps) => {
           {typeModal.includes("tpRecom") && (
             <ModalButton
               buttonTitle="Recomendar"
-              buttonAction={addToRecomendedList}
+              buttonAction={
+                addToRecomendedList
+              }
             />
           )}
 

@@ -31,6 +31,7 @@ interface iSearchContext {
   setWishList: React.Dispatch<SetStateAction<iBooks[] | undefined>>;
   recomended: iBooks[] | undefined;
   setRecomended: React.Dispatch<SetStateAction<iBooks[] | undefined>>;
+  livrosRecomendados: () => Promise<void>;
 }
 
 export interface iBooks {
@@ -84,7 +85,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
     });
     setRecomended(data);
   }
-  livrosRecomendados();
+  
 
   useEffect(() => {
     getInfoUserLogin();
@@ -283,6 +284,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
           position: "top-right",
           autoClose: 2000,
         });
+        
         try {
           const { data } = await apiFake.get(
             `livrosRecomendados/${currentBook?.id}`,
@@ -332,6 +334,7 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
         setWishList,
         recomended,
         setRecomended,
+        livrosRecomendados
       }}
     >
       {children}
