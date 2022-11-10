@@ -27,7 +27,7 @@ const DashboardMain = () => {
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         margin={"0"}
-
+        marginLeft={"10px"}
       >
         <Box display={"flex"} flexDirection={"column"}>
           <Box
