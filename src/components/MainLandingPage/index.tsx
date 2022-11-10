@@ -3,6 +3,8 @@ import { Flex, Image, Text } from "@chakra-ui/react";
 import { useContextFunction } from "../../contexts/userContext/userContext";
 import { ModalLogin } from "../ModalLogin";
 import imgLandingPage from "../../assets/img/books.png"
+import bgImage from "../../assets/img/bgbooks.svg"
+
 
 export const MainLandingPage = () => {
   const { isOpen } = useContextFunction();
@@ -17,7 +19,7 @@ export const MainLandingPage = () => {
       {isOpen ? <ModalLogin /> : null}
       <Flex
         as={"main"}
-        bgImage="./src/assets/img/bgbooks.svg"
+        bgImage={bgImage}
         h={"100%"}
         p={"20px"}
         align={"center"}

@@ -40,10 +40,10 @@ export interface iBooks {
     authors: string | undefined;
     description: string;
     imageLinks:
-      | {
-          thumbnail: string;
-        }
-      | undefined;
+    | {
+      thumbnail: string;
+    }
+    | undefined;
   };
 }
 interface iBooksArray {
@@ -74,8 +74,8 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
     });
     const livrosUser = data.library;
     const order = livrosUser?.reverse();
-    setLibrary(order);
-    setWishList(data.wishlist.reverse());
+      setLibrary(order);
+      setWishList(data.wishlist.reverse());
   }
 
   async function livrosRecomendados() {
@@ -87,8 +87,8 @@ export const SearchProvider = ({ children }: iSearchProviderProps) => {
   livrosRecomendados();
 
   useEffect(() => {
-    getInfoUserLogin();
-    setLoading(false);
+      getInfoUserLogin();
+      setLoading(false);
   }, [library]);
 
   const submitSearch = async () => {
