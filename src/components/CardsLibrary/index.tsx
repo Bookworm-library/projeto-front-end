@@ -28,6 +28,7 @@ const CardsLibrary = () => {
         h={"100%"}
         flexDirection={{ base: "column", lg: "row" }}
         alignItems={"center"}
+        alignContent="flex-start"
         css={{
           "&::-webkit-scrollbar": {
             width: "4px",
